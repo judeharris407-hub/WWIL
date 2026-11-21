@@ -1,0 +1,33 @@
+{
+  "name": "wwil-backend",
+  "version": "1.0.0",
+  "description": "Worldwide International Logistics (WWIL) Enterprise API & Database Engine",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "seed": "node src/seed.js"
+  },
+  "keywords": [
+    "logistics",
+    "postgresql",
+    "express",
+    "tracking",
+    "cargo"
+  ],
+  "author": "WWIL Global Operations",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.11.5",
+    "resend": "^6.39.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}

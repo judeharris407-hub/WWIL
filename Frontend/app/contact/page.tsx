@@ -1,0 +1,273 @@
+'use client';
+
+import React, { useState } from 'react';
+import { 
+  Phone, 
+  Mail, 
+  MapPin, 
+  Clock, 
+  Send, 
+  CheckCircle2, 
+  Building2, 
+  Globe 
+} from 'lucide-react';
+
+export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    subject: 'Enterprise Freight Inquiry',
+    message: '',
+  });
+  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitting(true);
+    setTimeout(() => {
+      setSubmitting(false);
+      setSubmitted(true);
+    }, 700);
+  };
+
+  const regionalOffices = [
+    {
+      region: 'Americas Gateway Hub',
+      city: 'Miami / Newark, United States',
+      address: 'World Trade Logistics Center, Port Boulevard, Suite 1200, Miami FL 33132',
+      phone: '+1 (800) 845-9945',
+      email: 'americas@wwil-logistics.com',
+    },
+    {
+      region: 'European Core Terminal',
+      city: 'Rotterdam / Frankfurt',
+      address: 'Gateway Maasvlakte II, Haven 9200, 3199 LK Rotterdam, Netherlands',
+      phone: '+31 (10) 489-WWIL',
+      email: 'europe@wwil-logistics.com',
+    },
+    {
+      region: 'Asia-Pacific Core',
+      city: 'Singapore / Shanghai',
+      address: 'Jurong Port Logistics Complex, 15 Marina Way, Singapore 018977',
+      phone: '+65 6842 9945',
+      email: 'apac@wwil-logistics.com',
+    },
+    {
+      region: 'Middle East & Africa Gateway',
+      city: 'Dubai (JAFZA)',
+      address: 'Jebel Ali Free Zone Authority, Building 14, Office 402, Dubai, UAE',
+      phone: '+971 4 881 9945',
+      email: 'mena@wwil-logistics.com',
+    },
+  ];
+
+  return (
+    <div className="bg-[#F8FAFC] min-h-screen py-12 lg:py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+        
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto space-y-3">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200 text-[#FF6200] text-xs font-bold uppercase tracking-wider">
+            <Globe className="w-3.5 h-3.5" />
+            Global Communications
+          </div>
+          <h1 className="font-display font-extrabold text-3xl sm:text-5xl text-slate-900 tracking-tight">
+            Contact WWIL <span className="text-[#FF6200]">Operations</span>
+          </h1>
+          <p className="text-slate-600 text-base leading-relaxed">
+            Our 24/7 central dispatch centers and licensed customs controllers are available across all time zones to support your logistics pipeline.
+          </p>
+        </div>
+
+        {/* Contact Information & Inquiry Form Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          
+          {/* Left Side: Support Hours & Highlights (5 Cols) */}
+          <div className="lg:col-span-5 space-y-6">
+            <div className="bg-wwil-navy-900 text-white rounded-2xl p-8 shadow-xl border border-slate-800 space-y-6">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#FF6200] block">
+                24/7 Central Emergency Operations
+              </span>
+              <h2 className="font-display font-extrabold text-2xl text-white">
+                Global Operations Terminal Desk
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                No automated bot queues for urgent cargo questions. Direct phone and telemetric access to licensed logistics planners worldwide.
+              </p>
+
+              <div className="space-y-4 pt-2 border-t border-slate-800 text-xs">
+                <div className="flex items-start gap-3">
+                  <Phone className="w-4 h-4 text-[#FF6200] shrink-0 mt-0.5" />
+                  <div>
+                    <span className="text-slate-400 block">Toll-Free Global Line</span>
+                    <strong className="text-sm text-white">+1 (800) 845-WWIL (9945)</strong>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <Mail className="w-4 h-4 text-[#FF6200] shrink-0 mt-0.5" />
+                  <div>
+                    <span className="text-slate-400 block">Operations Email</span>
+                    <strong className="text-sm text-white">operations@wwil-logistics.com</strong>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <Clock className="w-4 h-4 text-[#FF6200] shrink-0 mt-0.5" />
+                  <div>
+                    <span className="text-slate-400 block">Support Cadence</span>
+                    <strong className="text-sm text-white">24 Hours / 7 Days / 365 Days</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-2">
+              <div className="flex items-center gap-2 text-emerald-600 font-bold text-xs uppercase tracking-wider">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span>All Regional Gateways Operational</span>
+              </div>
+              <p className="text-xs text-slate-500">
+                Average phone pickup latency: &lt; 20 seconds. Automated EDI status queries run every 60 seconds.
+              </p>
+            </div>
+          </div>
+
+          {/* Right Side: Clean Inquiry Form (7 Cols) */}
+          <div className="lg:col-span-7 bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-xl">
+            <div className="pb-5 border-b border-slate-100 mb-6">
+              <h3 className="font-display font-bold text-xl text-slate-900">Direct Inquiries &amp; Consultations</h3>
+              <p className="text-xs text-slate-500 mt-0.5">Submit consignment questions to our route planning team</p>
+            </div>
+
+            {submitted ? (
+              <div className="p-8 text-center space-y-4">
+                <div className="w-14 h-14 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
+                  <CheckCircle2 className="w-8 h-8" />
+                </div>
+                <h4 className="font-display font-bold text-xl text-slate-900">Message Successfully Transmitted</h4>
+                <p className="text-xs text-slate-600 max-w-sm mx-auto">
+                  Thank you for contacting WWIL Operations. A licensed logistics specialist will review your inquiry and follow up within 30 minutes.
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setSubmitted(false)}
+                  className="px-5 py-2.5 rounded-lg bg-slate-900 text-white font-bold text-xs hover:bg-slate-800 transition-colors"
+                >
+                  Send Another Message
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label htmlFor="contact-name" className="block text-xs font-bold text-slate-700 mb-1">
+                      Your Full Name *
+                    </label>
+                    <input
+                      type="text"
+                      id="contact-name"
+                      required
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      placeholder="e.g. Elena Rostova"
+                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:bg-white focus:border-[#FF6200] focus:ring-1 focus:ring-[#FF6200]"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="contact-email" className="block text-xs font-bold text-slate-700 mb-1">
+                      Business Email *
+                    </label>
+                    <input
+                      type="email"
+                      id="contact-email"
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      placeholder="e.rostova@enterprise.com"
+                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:bg-white focus:border-[#FF6200] focus:ring-1 focus:ring-[#FF6200]"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="contact-subject" className="block text-xs font-bold text-slate-700 mb-1">
+                    Inquiry Subject
+                  </label>
+                  <select
+                    id="contact-subject"
+                    value={formData.subject}
+                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                    className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:bg-white focus:border-[#FF6200] focus:ring-1 focus:ring-[#FF6200]"
+                  >
+                    <option value="Enterprise Freight Inquiry">Enterprise Freight Inquiry</option>
+                    <option value="Air Charter Booking">Air Charter Booking</option>
+                    <option value="Ocean FCL Volume Contract">Ocean FCL Volume Contract</option>
+                    <option value="Customs Brokerage Assistance">Customs Brokerage Assistance</option>
+                    <option value="Warehousing & Storage Space">Warehousing &amp; Storage Space</option>
+                    <option value="Billing & Manifest Questions">Billing &amp; Manifest Questions</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label htmlFor="contact-message" className="block text-xs font-bold text-slate-700 mb-1">
+                    Message / Cargo Specifications *
+                  </label>
+                  <textarea
+                    id="contact-message"
+                    required
+                    rows={4}
+                    value={formData.message}
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                    placeholder="Provide details on your origin, destination, cargo volume, or specific compliance requirements..."
+                    className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:bg-white focus:border-[#FF6200] focus:ring-1 focus:ring-[#FF6200]"
+                  ></textarea>
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="w-full py-4 px-6 rounded-xl bg-[#FF6200] hover:bg-[#E05600] text-white font-bold text-sm tracking-wide shadow-lg shadow-orange-500/25 transition-all flex items-center justify-center gap-2"
+                >
+                  <Send className="w-4 h-4" />
+                  <span>{submitting ? 'TRANSMITTING MESSAGE...' : 'SEND INQUIRY'}</span>
+                </button>
+              </form>
+            )}
+          </div>
+
+        </div>
+
+        {/* Global Regional Offices Grid */}
+        <div className="space-y-6">
+          <div className="text-center max-w-xl mx-auto space-y-1">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#FF6200]">Global Footprint</span>
+            <h2 className="font-display font-extrabold text-2xl text-slate-900">Regional Port Offices</h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {regionalOffices.map((office, idx) => (
+              <div key={idx} className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-3">
+                <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-800">
+                  <Building2 className="w-5 h-5 text-[#FF6200]" />
+                </div>
+                <div>
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#FF6200] block">{office.region}</span>
+                  <h3 className="font-bold text-slate-900 text-sm">{office.city}</h3>
+                </div>
+                <p className="text-xs text-slate-500 leading-relaxed">{office.address}</p>
+                <div className="pt-2 border-t border-slate-100 space-y-1 text-xs">
+                  <p className="text-slate-700 font-medium">{office.phone}</p>
+                  <p className="text-slate-500 text-[11px]">{office.email}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  );
+}

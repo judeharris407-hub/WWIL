@@ -1,0 +1,37 @@
+# Dependencies
+node_modules/
+*/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Next.js Build & Cache
+.next/
+*/.next/
+out/
+build/
+dist/
+
+# Local Environment Variables & Secrets
+.env
+.env*.local
+*.env
+*.env.local
+!.env.example
+!*/.env.example
+
+# OS & Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Temporary & Test files
+scratch_*
+temp_*
+test_*
