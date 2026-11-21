@@ -63,61 +63,84 @@ export default function ContactPage() {
   ];
 
   return (
-    <div className="bg-[#F8FAFC] min-h-screen py-12 lg:py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-        
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200 text-[#FF6200] text-xs font-bold uppercase tracking-wider">
+    <div className="bg-[#F8FAFC] min-h-screen">
+      
+      {/* ===================================================================== */}
+      {/* HERO BANNER (Dark Corporate Slate/Navy with Logistics Photography)    */}
+      {/* ===================================================================== */}
+      <section className="relative bg-slate-900 text-white py-16 lg:py-24 overflow-hidden border-b border-slate-800">
+        <img
+          src="/assets/warehouse2.avif"
+          alt="Worldwide International Logistics Operations Hub"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        {/* Semi-transparent dark corporate slate/navy overlay (bg-slate-900/80) */}
+        <div className="absolute inset-0 bg-slate-900/80 bg-gradient-to-r from-slate-950/95 via-slate-900/85 to-slate-900/80 backdrop-blur-[2px]"></div>
+
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 text-[#FF6200] text-xs font-bold uppercase tracking-wider">
             <Globe className="w-3.5 h-3.5" />
             Global Communications
           </div>
-          <h1 className="font-display font-extrabold text-3xl sm:text-5xl text-slate-900 tracking-tight">
+          <h1 className="font-display font-extrabold text-3xl sm:text-5xl text-white tracking-tight">
             Contact WWIL <span className="text-[#FF6200]">Operations</span>
           </h1>
-          <p className="text-slate-600 text-base leading-relaxed">
+          <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
             Our 24/7 central dispatch centers and licensed customs controllers are available across all time zones to support your logistics pipeline.
           </p>
         </div>
+      </section>
 
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 space-y-16">
+        
         {/* Contact Information & Inquiry Form Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
           {/* Left Side: Support Hours & Highlights (5 Cols) */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="bg-wwil-navy-900 text-white rounded-2xl p-8 shadow-xl border border-slate-800 space-y-6">
-              <span className="text-xs font-bold uppercase tracking-wider text-[#FF6200] block">
-                24/7 Central Emergency Operations
-              </span>
-              <h2 className="font-display font-extrabold text-2xl text-white">
-                Global Operations Terminal Desk
-              </h2>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                No automated bot queues for urgent cargo questions. Direct phone and telemetric access to licensed logistics planners worldwide.
-              </p>
+            <div className="relative overflow-hidden bg-wwil-navy-900 text-white rounded-2xl p-8 shadow-xl border border-slate-800 space-y-6">
+              <img
+                src="/assets/bgpic1.avif"
+                alt="WWIL Terminal Desk Operations"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              {/* Semi-transparent dark corporate slate/navy overlay (bg-slate-900/80) */}
+              <div className="absolute inset-0 bg-slate-900/80 bg-gradient-to-r from-slate-950/95 via-slate-900/85 to-slate-950/90 backdrop-blur-[2px]"></div>
 
-              <div className="space-y-4 pt-2 border-t border-slate-800 text-xs">
-                <div className="flex items-start gap-3">
-                  <Phone className="w-4 h-4 text-[#FF6200] shrink-0 mt-0.5" />
-                  <div>
-                    <span className="text-slate-400 block">Toll-Free Global Line</span>
-                    <strong className="text-sm text-white">+1 (800) 845-WWIL (9945)</strong>
+              <div className="relative z-10 space-y-6">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#FF6200] block">
+                  24/7 Central Emergency Operations
+                </span>
+                <h2 className="font-display font-extrabold text-2xl text-white">
+                  Global Operations Terminal Desk
+                </h2>
+                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                  No automated bot queues for urgent cargo questions. Direct phone and telemetric access to licensed logistics planners worldwide.
+                </p>
+
+                <div className="space-y-4 pt-2 border-t border-slate-800 text-xs">
+                  <div className="flex items-start gap-3">
+                    <Phone className="w-4 h-4 text-[#FF6200] shrink-0 mt-0.5" />
+                    <div>
+                      <span className="text-slate-400 block">Toll-Free Global Line</span>
+                      <strong className="text-sm text-white">+1 (800) 845-WWIL (9945)</strong>
+                    </div>
                   </div>
-                </div>
 
-                <div className="flex items-start gap-3">
-                  <Mail className="w-4 h-4 text-[#FF6200] shrink-0 mt-0.5" />
-                  <div>
-                    <span className="text-slate-400 block">Operations Email</span>
-                    <strong className="text-sm text-white">operations@wwil-logistics.com</strong>
+                  <div className="flex items-start gap-3">
+                    <Mail className="w-4 h-4 text-[#FF6200] shrink-0 mt-0.5" />
+                    <div>
+                      <span className="text-slate-400 block">Operations Email</span>
+                      <strong className="text-sm text-white">operations@wwil-logistics.com</strong>
+                    </div>
                   </div>
-                </div>
 
-                <div className="flex items-start gap-3">
-                  <Clock className="w-4 h-4 text-[#FF6200] shrink-0 mt-0.5" />
-                  <div>
-                    <span className="text-slate-400 block">Support Cadence</span>
-                    <strong className="text-sm text-white">24 Hours / 7 Days / 365 Days</strong>
+                  <div className="flex items-start gap-3">
+                    <Clock className="w-4 h-4 text-[#FF6200] shrink-0 mt-0.5" />
+                    <div>
+                      <span className="text-slate-400 block">Support Cadence</span>
+                      <strong className="text-sm text-white">24 Hours / 7 Days / 365 Days</strong>
+                    </div>
                   </div>
                 </div>
               </div>

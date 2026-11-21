@@ -119,22 +119,35 @@ export default function ServicesPage() {
   ];
 
   return (
-    <div className="bg-[#F8FAFC] min-h-screen py-12 lg:py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
-        
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200 text-[#FF6200] text-xs font-bold uppercase tracking-wider">
+    <div className="bg-[#F8FAFC] min-h-screen">
+      
+      {/* ===================================================================== */}
+      {/* HERO BANNER (Dark Corporate Slate/Navy with Logistics Photography)    */}
+      {/* ===================================================================== */}
+      <section className="relative bg-slate-900 text-white py-16 lg:py-24 overflow-hidden border-b border-slate-800">
+        <img
+          src="/assets/banner2.jpg"
+          alt="WWIL Multimodal Logistics Operations"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        {/* Semi-transparent dark corporate slate/navy overlay (bg-slate-900/80) */}
+        <div className="absolute inset-0 bg-slate-900/80 bg-gradient-to-r from-slate-950/95 via-slate-900/85 to-slate-900/80 backdrop-blur-[2px]"></div>
+
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 text-[#FF6200] text-xs font-bold uppercase tracking-wider">
             <Layers className="w-3.5 h-3.5" />
             Multimodal Capabilities
           </div>
-          <h1 className="font-display font-extrabold text-3xl sm:text-5xl text-slate-900 tracking-tight">
+          <h1 className="font-display font-extrabold text-3xl sm:text-5xl text-white tracking-tight">
             Integrated Global <span className="text-[#FF6200]">Supply Chain Services</span>
           </h1>
-          <p className="text-slate-600 text-base leading-relaxed">
+          <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
             From single-pallet high-priority air freight to multi-thousand TEU maritime charters and bonded distribution, WWIL delivers end-to-end reliability.
           </p>
         </div>
+      </section>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 space-y-16">
 
         {/* Detailed Service Sections */}
         <div className="space-y-12">

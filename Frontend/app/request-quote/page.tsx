@@ -10,22 +10,35 @@ export const metadata: Metadata = {
 
 export default function RequestQuotePage() {
   return (
-    <div className="bg-[#F8FAFC] min-h-screen py-12 lg:py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-        
-        {/* Page Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-3">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-50 border border-orange-200 text-[#FF6200] text-xs font-bold uppercase tracking-wider">
+    <div className="bg-[#F8FAFC] min-h-screen">
+      
+      {/* ===================================================================== */}
+      {/* HERO BANNER (Dark Corporate Slate/Navy with Logistics Photography)    */}
+      {/* ===================================================================== */}
+      <section className="relative bg-slate-900 text-white py-16 lg:py-24 overflow-hidden border-b border-slate-800">
+        <img
+          src="/assets/Truck1.avif"
+          alt="Worldwide International Logistics Freight Fleet"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        {/* Semi-transparent dark corporate slate/navy overlay (bg-slate-900/80) */}
+        <div className="absolute inset-0 bg-slate-900/80 bg-gradient-to-r from-slate-950/95 via-slate-900/85 to-slate-900/80 backdrop-blur-[2px]"></div>
+
+        <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 text-[#FF6200] text-xs font-bold uppercase tracking-wider">
             <Award className="w-3.5 h-3.5" />
             Enterprise Rate Request
           </div>
-          <h1 className="font-display font-extrabold text-3xl sm:text-5xl text-slate-900 tracking-tight">
+          <h1 className="font-display font-extrabold text-3xl sm:text-5xl text-white tracking-tight">
             Guaranteed Freight Allocation &amp; <span className="text-[#FF6200]">Fixed Tariffs</span>
           </h1>
-          <p className="text-slate-600 text-base leading-relaxed">
+          <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
             Eliminate unexpected demurrage and unpredictable spot surcharges. Receive official contractual tariff matrices backed by priority carrier space.
           </p>
         </div>
+      </section>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 space-y-12">
 
         {/* 3 Value Pillars */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">

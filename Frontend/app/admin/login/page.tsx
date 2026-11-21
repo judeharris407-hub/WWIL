@@ -64,8 +64,15 @@ export default function AdminLoginPage() {
   return (
     <div className="min-h-screen bg-wwil-navy-950 text-white flex flex-col justify-center py-12 sm:px-6 lg:px-8 relative overflow-hidden bg-grid-pattern">
       
-      {/* Ambient Lighting Accents */}
+      {/* Logistics Photography Background & Dark Corporate Translucent Overlay */}
       <div className="absolute inset-0 pointer-events-none">
+        <img
+          src="/assets/banner1.jpg"
+          alt="Worldwide International Logistics Command Center"
+          className="absolute inset-0 w-full h-full object-cover scale-105"
+        />
+        {/* Semi-transparent dark corporate slate/navy overlay (bg-slate-900/80) */}
+        <div className="absolute inset-0 bg-slate-900/80 bg-gradient-to-r from-slate-950/95 via-slate-900/85 to-slate-950/90 backdrop-blur-[2px]"></div>
         <div className="absolute top-1/4 -left-32 w-96 h-96 bg-[#FF6200]/15 rounded-full blur-3xl"></div>
         <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl"></div>
       </div>

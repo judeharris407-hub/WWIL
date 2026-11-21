@@ -531,8 +531,16 @@ export default function AdminDashboardPage() {
         </div>
 
         {/* Top Header & Breadcrumb */}
-        <div className="bg-wwil-navy-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div className="space-y-1">
+        <div className="relative overflow-hidden bg-wwil-navy-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <img
+            src="/assets/bgpic1.avif"
+            alt="WWIL Operations Network"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          {/* Semi-transparent dark corporate slate/navy overlay (bg-slate-900/80) */}
+          <div className="absolute inset-0 bg-slate-900/80 bg-gradient-to-r from-slate-950/95 via-slate-900/85 to-slate-900/80 backdrop-blur-[2px]"></div>
+
+          <div className="relative z-10 space-y-1">
             <div className="flex items-center gap-2">
               <span className="w-2.5 h-2.5 rounded-full bg-[#FF6200] beacon-pulse"></span>
               <span className="text-xs uppercase font-bold tracking-widest text-[#FF6200]">
@@ -547,7 +555,7 @@ export default function AdminDashboardPage() {
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="relative z-10 flex flex-wrap items-center gap-3">
             <button
               onClick={() => {
                 generateNewId();
@@ -640,7 +648,7 @@ export default function AdminDashboardPage() {
             </div>
 
             {/* Mode & Status Filters */}
-            <div className="flex flex-wrap items-center gap-3">
+            <div className="relative z-10 flex flex-wrap items-center gap-3">
               {/* Mode Pills */}
               <div className="flex items-center bg-slate-100 p-1 rounded-xl text-xs font-semibold text-slate-600">
                 {(['All', 'Air', 'Ocean', 'Ground'] as const).map((mode) => (

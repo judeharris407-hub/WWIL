@@ -123,16 +123,40 @@ export default function TrackingDashboard({ initialTrackingId = 'TRK-2024-001234
 
   // Dynamic Background Image based on Means of Transportation
   const getBackgroundImage = () => {
-    switch (shipment.type) {
-      case 'Air':
-        return '/assets/plane1.avif';
-      case 'Ocean':
-        return '/assets/ship1.avif';
-      case 'Ground':
-        return '/assets/Truck1.avif';
-      default:
-        return '/assets/banner1.jpg';
+    const rawMode = (
+      (shipment as any).transport_mode || 
+      (shipment as any).transportMode || 
+      shipment.type || 
+      ''
+    ).toString().toLowerCase();
+
+    if (
+      rawMode.includes('ocean') || 
+      rawMode.includes('sea') || 
+      rawMode.includes('marine') || 
+      rawMode.includes('vessel') || 
+      rawMode.includes('ship')
+    ) {
+      return '/assets/ship1.avif';
     }
+    if (
+      rawMode.includes('ground') || 
+      rawMode.includes('truck') || 
+      rawMode.includes('road') || 
+      rawMode.includes('land')
+    ) {
+      return '/assets/Truck1.avif';
+    }
+    if (
+      rawMode.includes('air') || 
+      rawMode.includes('plane') || 
+      rawMode.includes('express') || 
+      rawMode.includes('flight') || 
+      rawMode.includes('aviation')
+    ) {
+      return '/assets/plane1.avif';
+    }
+    return '/assets/banner1.jpg';
   };
 
   // Dynamic Transportation Badge & Icon
@@ -192,8 +216,8 @@ export default function TrackingDashboard({ initialTrackingId = 'TRK-2024-001234
             className="absolute inset-0 w-full h-full object-cover transition-all duration-700 scale-105"
           />
 
-          {/* Clean Dark Corporate Slate Gradient Overlay (bg-slate-900/75) */}
-          <div className="absolute inset-0 bg-slate-900/75 bg-gradient-to-r from-slate-950/95 via-slate-900/85 to-slate-900/75 backdrop-blur-[3px]"></div>
+          {/* Semi-transparent dark corporate slate/navy overlay (bg-slate-900/80) */}
+          <div className="absolute inset-0 bg-slate-900/80 bg-gradient-to-r from-slate-950/90 via-slate-900/80 to-slate-900/75 backdrop-blur-[2px]"></div>
 
           {/* Top Row: Meta Badge & Admin Portal Link */}
           <div className="relative z-10 p-6 sm:p-8 flex flex-wrap items-center justify-between gap-4 border-b border-white/10">

@@ -26,16 +26,17 @@ export default function HomePage() {
       {/* 1. HERO SECTION (Asymmetric Split with Clean White Tracking Card)     */}
       {/* ===================================================================== */}
       <section className="relative bg-wwil-navy-950 text-white overflow-hidden pt-12 pb-24 lg:pt-20 lg:pb-32">
-        {/* Ambient Glows & Background Layer */}
+        {/* Logistics Photography Background & Dark Corporate Translucent Overlay */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute -top-40 -left-40 w-96 h-96 bg-[#FF6200]/15 rounded-full blur-3xl"></div>
-          <div className="absolute top-1/2 -right-40 w-[30rem] h-[30rem] bg-blue-600/10 rounded-full blur-3xl"></div>
           <img
             src="/assets/banner1.jpg"
             alt="Worldwide International Logistics Port and Freight Operations"
-            className="absolute inset-0 w-full h-full object-cover opacity-15 mix-blend-overlay"
+            className="absolute inset-0 w-full h-full object-cover scale-105"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-wwil-navy-950 via-wwil-navy-950/80 to-transparent"></div>
+          {/* Semi-transparent dark corporate slate/navy overlay (bg-slate-900/80) */}
+          <div className="absolute inset-0 bg-slate-900/80 bg-gradient-to-r from-slate-950/95 via-slate-900/85 to-slate-900/80 backdrop-blur-[2px]"></div>
+          <div className="absolute -top-40 -left-40 w-96 h-96 bg-[#FF6200]/15 rounded-full blur-3xl"></div>
+          <div className="absolute top-1/2 -right-40 w-[30rem] h-[30rem] bg-blue-600/10 rounded-full blur-3xl"></div>
         </div>
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -119,8 +120,16 @@ export default function HomePage() {
       {/* ===================================================================== */}
       {/* 2. STATS COUNTER BANNER (Deep Corporate Slate with Orange Accents)    */}
       {/* ===================================================================== */}
-      <section className="relative bg-wwil-navy-900 text-white py-12 lg:py-16 border-y border-slate-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative bg-wwil-navy-900 text-white py-12 lg:py-16 border-y border-slate-800 overflow-hidden">
+        {/* Logistics Photography Background & Dark Corporate Translucent Overlay */}
+        <img
+          src="/assets/bgpic1.avif"
+          alt="WWIL Global Freight Hub Telemetry"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-slate-900/80 bg-gradient-to-r from-slate-950/95 via-slate-900/85 to-slate-950/90 backdrop-blur-[2px]"></div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="flex flex-wrap items-center justify-between pb-8 mb-8 border-b border-slate-800 text-xs text-slate-400 gap-4">
             <div className="flex items-center gap-2">
@@ -679,24 +688,33 @@ export default function HomePage() {
               </div>
 
               {/* Client Endorsement */}
-              <div className="p-5 rounded-2xl bg-wwil-navy-900 text-white space-y-3 shadow-lg">
-                <div className="flex items-center gap-1 text-[#FF6200] text-xs">
-                  <Star className="w-3.5 h-3.5 fill-[#FF6200]" />
-                  <Star className="w-3.5 h-3.5 fill-[#FF6200]" />
-                  <Star className="w-3.5 h-3.5 fill-[#FF6200]" />
-                  <Star className="w-3.5 h-3.5 fill-[#FF6200]" />
-                  <Star className="w-3.5 h-3.5 fill-[#FF6200]" />
-                </div>
-                <p className="text-xs text-slate-300 italic leading-relaxed">
-                  "WWIL reduced our transatlantic container transit times by 4 full days while cutting customs clearance delays to zero. Their digital command center gives our executive team full visibility."
-                </p>
-                <div className="flex items-center gap-3 pt-1 border-t border-slate-800">
-                  <div className="w-8 h-8 rounded-full bg-[#FF6200] flex items-center justify-center font-bold text-xs text-white">
-                    MV
+              <div className="relative overflow-hidden p-5 rounded-2xl bg-wwil-navy-900 text-white space-y-3 shadow-lg border border-slate-800">
+                <img
+                  src="/assets/banner2.jpg"
+                  alt="WWIL Maritime Port Facility"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-slate-900/85 backdrop-blur-[2px]"></div>
+
+                <div className="relative z-10 space-y-3">
+                  <div className="flex items-center gap-1 text-[#FF6200] text-xs">
+                    <Star className="w-3.5 h-3.5 fill-[#FF6200]" />
+                    <Star className="w-3.5 h-3.5 fill-[#FF6200]" />
+                    <Star className="w-3.5 h-3.5 fill-[#FF6200]" />
+                    <Star className="w-3.5 h-3.5 fill-[#FF6200]" />
+                    <Star className="w-3.5 h-3.5 fill-[#FF6200]" />
                   </div>
-                  <div>
-                    <strong className="text-xs text-white block">Marcus Vance</strong>
-                    <span className="text-[11px] text-slate-400 block">VP Global Logistics &bull; Apex Heavy Industries</span>
+                  <p className="text-xs text-slate-300 italic leading-relaxed">
+                    "WWIL reduced our transatlantic container transit times by 4 full days while cutting customs clearance delays to zero. Their digital command center gives our executive team full visibility."
+                  </p>
+                  <div className="flex items-center gap-3 pt-1 border-t border-slate-800">
+                    <div className="w-8 h-8 rounded-full bg-[#FF6200] flex items-center justify-center font-bold text-xs text-white">
+                      MV
+                    </div>
+                    <div>
+                      <strong className="text-xs text-white block">Marcus Vance</strong>
+                      <span className="text-[11px] text-slate-400 block">VP Global Logistics &bull; Apex Heavy Industries</span>
+                    </div>
                   </div>
                 </div>
               </div>
