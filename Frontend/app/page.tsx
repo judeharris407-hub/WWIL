@@ -29,8 +29,8 @@ export default function HomePage() {
         {/* Logistics Photography Background & Dark Corporate Translucent Overlay */}
         <div className="absolute inset-0 pointer-events-none">
           <img
-            src="/assets/banner1.jpg"
-            alt="Worldwide International Logistics Port and Freight Operations"
+            src="/assets/ship1.avif"
+            alt="Worldwide International Logistics Container Vessel and Port Terminal"
             className="absolute inset-0 w-full h-full object-cover scale-105"
           />
           {/* Semi-transparent dark corporate slate/navy overlay (bg-slate-900/80) */}
