@@ -95,6 +95,7 @@ export default function InteractiveMapPicker({
         center={[lat, lng]}
         zoom={6}
         scrollWheelZoom={true}
+        touchZoom={true}
         className="w-full h-full"
       >
         {/* Esri World Street Map - Free, Keyless, High-Detail */}
@@ -129,7 +130,7 @@ export default function InteractiveMapPicker({
       {/* Floating Instructions Banner */}
       <div className="absolute bottom-3 left-3 z-[400] bg-slate-900/90 text-white backdrop-blur-md px-3 py-1.5 rounded-lg text-xs flex items-center gap-2 border border-slate-700 shadow-md pointer-events-none">
         <span className="w-2 h-2 rounded-full bg-[#2563EB] animate-ping"></span>
-        <span>Click map or drag the orange pin to place terminal coordinates</span>
+        <span>Click map or drag the pin to place terminal coordinates</span>
       </div>
     </div>
   );

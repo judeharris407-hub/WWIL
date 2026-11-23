@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, Polyline, useMap } from 'react-leaflet';
+import React, { useEffect, useState, useMemo } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, Tooltip, Polyline, useMap } from 'react-leaflet';
 import L from 'leaflet';
-import { Layers, Navigation, Plane, Ship, Truck } from 'lucide-react';
+import { Layers, Plane, Ship, Truck } from 'lucide-react';
 import { Shipment } from '@/lib/trackingData';
 import { calculateModeAwareRoute, RouteLegs, normalizeTransportMode } from '@/lib/routing';
 
@@ -39,7 +39,7 @@ const TILE_PROVIDERS = {
   },
   osm: {
     name: 'OpenStreetMap',
-    url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    url: 'https://{s}.tile.openstreetmap.org/{z}/{y}/{x}.png',
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     maxZoom: 19,
   },
@@ -52,49 +52,38 @@ const TILE_PROVIDERS = {
 };
 
 export default function LiveMap({ shipment }: LiveMapProps) {
-  const [selectedProvider, setSelectedProvider] = useState<'esriStreet' | 'osm' | 'esriSatellite'>('esriStreet');
-  const [isLoadingRoute, setIsLoadingRoute] = useState(false);
-  
-  // High-precision mode-aware route legs state
+  const [selectedProvider, setSelectedProvider] = useState<keyof typeof TILE_PROVIDERS>('esriStreet');
   const [routeData, setRouteData] = useState<RouteLegs>({
-    fullRoute: shipment.routeCoordinates,
-    completedLeg: [
-      [shipment.origin.lat, shipment.origin.lng],
-      [shipment.currentLocation.lat, shipment.currentLocation.lng],
-    ],
-    remainingLeg: [
-      [shipment.currentLocation.lat, shipment.currentLocation.lng],
-      [shipment.destination.lat, shipment.destination.lng],
-    ],
+    fullRoute: [],
+    completedLeg: [],
+    remainingLeg: [],
     isHighway: false,
     mode: normalizeTransportMode(shipment.type),
   });
+  const [isLoadingRoute, setIsLoadingRoute] = useState(false);
 
-  // Calculate high-fidelity mode-aware route (OSRM for Ground, Maritime for Ocean, Great-Circle for Air)
+  // Compute mode-aware route path asynchronously
   useEffect(() => {
     let isCancelled = false;
-    setIsLoadingRoute(true);
 
-    calculateModeAwareRoute({
-      origin: [shipment.origin.lat, shipment.origin.lng],
-      destination: [shipment.destination.lat, shipment.destination.lng],
-      current: [shipment.currentLocation.lat, shipment.currentLocation.lng],
-      transportMode: shipment.type,
-      status: shipment.status,
-      existingRoute: shipment.routeCoordinates,
-    })
-      .then((legs) => {
-        if (!isCancelled) {
-          setRouteData(legs);
-          setIsLoadingRoute(false);
-        }
-      })
-      .catch((err) => {
-        if (!isCancelled) {
-          console.warn('Mode-aware route calculation fallback:', err);
-          setIsLoadingRoute(false);
-        }
+    async function computeRoute() {
+      setIsLoadingRoute(true);
+      const computed = await calculateModeAwareRoute({
+        origin: [shipment.origin.lat, shipment.origin.lng],
+        destination: [shipment.destination.lat, shipment.destination.lng],
+        current: [shipment.currentLocation.lat, shipment.currentLocation.lng],
+        transportMode: (shipment as any).transport_mode || shipment.type,
+        status: shipment.status,
+        existingRoute: shipment.routeCoordinates,
       });
+
+      if (!isCancelled) {
+        setRouteData(computed);
+        setIsLoadingRoute(false);
+      }
+    }
+
+    computeRoute();
 
     return () => {
       isCancelled = true;
@@ -112,86 +101,146 @@ export default function LiveMap({ shipment }: LiveMapProps) {
     shipment.routeCoordinates,
   ]);
 
-  // Origin Marker Icon (Blue Ring)
-  const originIcon = L.divIcon({
-    className: 'custom-map-marker',
-    html: `
-      <div style="
-        background-color: #2563EB;
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        border: 3px solid #FFFFFF;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.35);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 11px;
-        font-weight: 800;
-        font-family: sans-serif;
-      ">
-        A
-      </div>
-    `,
-    iconSize: [30, 30],
-    iconAnchor: [15, 15],
-  });
+  // Determine normalized active transport mode
+  const activeMode = useMemo(() => {
+    const raw = (
+      (shipment as any).transport_mode || 
+      (shipment as any).transportMode || 
+      shipment.type || 
+      ''
+    ).toString();
+    return normalizeTransportMode(raw);
+  }, [shipment]);
 
-  // Current Live Location Marker (Vibrant Orange Beacon with Pulse)
-  const currentIcon = L.divIcon({
-    className: 'custom-map-marker-current',
-    html: `
-      <div style="position: relative; width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;">
-        <span style="
-          position: absolute;
-          width: 38px;
-          height: 38px;
-          border-radius: 50%;
-          background-color: rgba(37, 99, 235, 0.45);
-          animation: beaconPulse 1.8s infinite ease-out;
-        "></span>
+  // 1. Origin Marker Icon (Cobalt Blue Badge with MapPin)
+  const originIcon = useMemo(() => {
+    return L.divIcon({
+      className: 'custom-map-marker-origin',
+      html: `
         <div style="
           background-color: #2563EB;
-          width: 24px;
-          height: 24px;
+          width: 32px;
+          height: 32px;
           border-radius: 50%;
           border: 3px solid #FFFFFF;
-          box-shadow: 0 0 15px rgba(37, 99, 235, 0.7);
-          position: relative;
-          z-index: 10;
-        "></div>
-      </div>
-    `,
-    iconSize: [38, 38],
-    iconAnchor: [19, 19],
-  });
+          box-shadow: 0 4px 12px rgba(37, 99, 235, 0.45);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          cursor: pointer;
+        ">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/>
+            <circle cx="12" cy="10" r="3" fill="#FFFFFF"/>
+          </svg>
+        </div>
+      `,
+      iconSize: [32, 32],
+      iconAnchor: [16, 16],
+    });
+  }, []);
 
-  // Destination Marker Icon (Dark Corporate Slate Ring)
-  const destinationIcon = L.divIcon({
-    className: 'custom-map-marker',
-    html: `
-      <div style="
-        background-color: #0F172A;
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        border: 3px solid #FFFFFF;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.35);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 11px;
-        font-weight: 800;
-        font-family: sans-serif;
-      ">
-        B
-      </div>
-    `,
-    iconSize: [30, 30],
-    iconAnchor: [15, 15],
-  });
+  // 2. Destination Marker Icon (Navy Slate Badge with Destination Flag)
+  const destinationIcon = useMemo(() => {
+    return L.divIcon({
+      className: 'custom-map-marker-destination',
+      html: `
+        <div style="
+          background-color: #0F172A;
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          border: 3px solid #FFFFFF;
+          box-shadow: 0 4px 12px rgba(15, 23, 42, 0.45);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          cursor: pointer;
+        ">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
+            <line x1="4" y1="22" x2="4" y2="15"/>
+          </svg>
+        </div>
+      `,
+      iconSize: [32, 32],
+      iconAnchor: [16, 16],
+    });
+  }, []);
+
+  // 3. Dynamic Transport Vehicle / Vessel Icon for Live Position
+  const currentIcon = useMemo(() => {
+    let vehicleSvg = '';
+
+    if (activeMode === 'Air') {
+      // Airplane SVG
+      vehicleSvg = `
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.3c.4-.2.6-.6.5-1.1z"/>
+        </svg>
+      `;
+    } else if (activeMode === 'Ocean') {
+      // Cargo Ship / Vessel SVG
+      vehicleSvg = `
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M2 21c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.5 0 2.5 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1"/>
+          <path d="M19.38 20A11.6 11.6 0 0 0 21 14l-9-4-9 4c0 2.9.94 5.34 2.81 7.76"/>
+          <path d="M19 13V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v6"/>
+          <path d="M12 10V2"/>
+          <path d="M12 2h4"/>
+        </svg>
+      `;
+    } else {
+      // Freight Truck SVG (Ground)
+      vehicleSvg = `
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/>
+          <path d="M15 18H9"/>
+          <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/>
+          <circle cx="17" cy="18.5" r="2.5"/>
+          <circle cx="7" cy="18.5" r="2.5"/>
+        </svg>
+      `;
+    }
+
+    return L.divIcon({
+      className: 'custom-map-marker-current',
+      html: `
+        <div style="position: relative; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+          <!-- Outer Pulsing Radiating Beacon Ring -->
+          <span style="
+            position: absolute;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: rgba(37, 99, 235, 0.45);
+            animation: beaconPulse 1.8s infinite ease-out;
+          "></span>
+          <!-- Dynamic Vehicle Badge Surface -->
+          <div style="
+            background: linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%);
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            border: 3px solid #FFFFFF;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.65);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFFFFF;
+            position: relative;
+            z-index: 10;
+          ">
+            ${vehicleSvg}
+          </div>
+        </div>
+      `,
+      iconSize: [44, 44],
+      iconAnchor: [22, 22],
+    });
+  }, [activeMode]);
 
   const originCoords: [number, number] = [shipment.origin.lat, shipment.origin.lng];
   const destCoords: [number, number] = [shipment.destination.lat, shipment.destination.lng];
@@ -204,7 +253,8 @@ export default function LiveMap({ shipment }: LiveMapProps) {
       <MapContainer
         center={currentCoords}
         zoom={3}
-        scrollWheelZoom={false}
+        scrollWheelZoom={true}
+        touchZoom={true}
         className="w-full h-full"
       >
         <MapController coords={routeData.fullRoute} />
@@ -258,7 +308,7 @@ export default function LiveMap({ shipment }: LiveMapProps) {
                 dashArray: '8, 8',
               }}
             />
-            {/* Dashed vibrant upcoming remaining stroke */}
+            {/* Dashed upcoming remaining stroke */}
             <Polyline
               positions={routeData.remainingLeg}
               pathOptions={{
@@ -273,9 +323,14 @@ export default function LiveMap({ shipment }: LiveMapProps) {
 
         {/* Origin Marker */}
         <Marker position={originCoords} icon={originIcon}>
+          <Tooltip direction="top" offset={[0, -16]} opacity={1}>
+            <div className="text-[11px] font-semibold text-slate-800">
+              <span className="text-[#2563EB] font-bold">Origin:</span> {shipment.origin.name}
+            </div>
+          </Tooltip>
           <Popup>
             <div className="p-3 text-xs space-y-1">
-              <span className="font-bold text-slate-800 uppercase tracking-wider block text-[10px]">Origin Port</span>
+              <span className="font-bold text-[#2563EB] uppercase tracking-wider block text-[10px]">Origin</span>
               <strong className="text-sm text-slate-900 block">{shipment.origin.name}</strong>
               <p className="text-slate-500">{shipment.origin.country}</p>
               <div className="text-[11px] text-slate-400 pt-1">Departed: {shipment.departedAt}</div>
@@ -285,9 +340,14 @@ export default function LiveMap({ shipment }: LiveMapProps) {
 
         {/* Destination Marker */}
         <Marker position={destCoords} icon={destinationIcon}>
+          <Tooltip direction="top" offset={[0, -16]} opacity={1}>
+            <div className="text-[11px] font-semibold text-slate-800">
+              <span className="text-slate-900 font-bold">Destination:</span> {shipment.destination.name}
+            </div>
+          </Tooltip>
           <Popup>
             <div className="p-3 text-xs space-y-1">
-              <span className="font-bold text-slate-800 uppercase tracking-wider block text-[10px]">Destination Hub</span>
+              <span className="font-bold text-slate-800 uppercase tracking-wider block text-[10px]">Destination</span>
               <strong className="text-sm text-slate-900 block">{shipment.destination.name}</strong>
               <p className="text-slate-500">{shipment.destination.country}</p>
               <div className="text-[11px] text-[#2563EB] font-semibold pt-1">ETA: {shipment.eta}</div>
@@ -295,18 +355,31 @@ export default function LiveMap({ shipment }: LiveMapProps) {
           </Popup>
         </Marker>
 
-        {/* Current Live Location Marker */}
+        {/* Current Live Location Marker (Dynamic Vehicle / Vessel) */}
         <Marker position={currentCoords} icon={currentIcon}>
+          <Tooltip direction="top" offset={[0, -22]} opacity={1}>
+            <div className="text-[11px] font-semibold text-slate-800">
+              <span className="text-[#2563EB] font-bold">Live Position:</span> {shipment.currentLocation.name}
+            </div>
+          </Tooltip>
           <Popup>
-            <div className="p-3 text-xs space-y-1">
-              <span className="font-bold text-[#2563EB] uppercase tracking-wider block text-[10px]">Active Position Telemetry</span>
+            <div className="p-3 text-xs space-y-1 min-w-[200px]">
+              <div className="flex items-center justify-between pb-1 mb-1 border-b border-slate-100">
+                <span className="font-bold text-[#2563EB] uppercase tracking-wider text-[10px] flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#2563EB] animate-ping"></span>
+                  Live {activeMode} Telemetry
+                </span>
+                <span className="px-1.5 py-0.5 rounded text-[10px] font-bold bg-emerald-100 text-emerald-800">
+                  {shipment.status}
+                </span>
+              </div>
               <strong className="text-sm text-slate-900 block">{shipment.currentLocation.name}</strong>
-              <p className="text-slate-600 font-medium">{shipment.carrier}</p>
+              <p className="text-slate-600 font-medium text-xs">{shipment.carrier}</p>
               <p className="text-slate-500 font-mono text-[11px]">{shipment.conveyance}</p>
-              <div className="mt-1 pt-1 border-t border-slate-100 flex items-center justify-between text-[11px]">
-                <span className="text-emerald-600 font-bold">{shipment.status}</span>
-                <span className="text-slate-500 font-mono">
-                  {shipment.currentLocation.lat.toFixed(2)}°, {shipment.currentLocation.lng.toFixed(2)}°
+              <div className="mt-2 pt-1 border-t border-slate-100 flex items-center justify-between text-[11px]">
+                <span className="text-slate-400">Coordinates:</span>
+                <span className="text-slate-700 font-mono font-semibold">
+                  {shipment.currentLocation.lat.toFixed(4)}°, {shipment.currentLocation.lng.toFixed(4)}°
                 </span>
               </div>
             </div>
@@ -314,7 +387,7 @@ export default function LiveMap({ shipment }: LiveMapProps) {
         </Marker>
       </MapContainer>
 
-      {/* Map Layer Switcher & Legend Overlay */}
+      {/* Map Layer Switcher Overlay */}
       <div className="absolute top-4 right-4 z-[400] flex items-center gap-1 bg-white/95 backdrop-blur-md p-1.5 rounded-xl border border-slate-200 shadow-md">
         <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-2 flex items-center gap-1">
           <Layers className="w-3 h-3 text-[#2563EB]" />
@@ -364,19 +437,19 @@ export default function LiveMap({ shipment }: LiveMapProps) {
           </div>
 
           {/* Mode-Aware Navigation Badge */}
-          {routeData.mode === 'Ground' && (
+          {activeMode === 'Ground' && (
             <span className="flex items-center gap-1 text-[10px] text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full font-bold">
               <Truck className="w-2.5 h-2.5 text-emerald-600" />
               <span>{routeData.isHighway ? 'OSRM Highway Route' : 'Road Routing'}</span>
             </span>
           )}
-          {routeData.mode === 'Ocean' && (
+          {activeMode === 'Ocean' && (
             <span className="flex items-center gap-1 text-[10px] text-cyan-800 bg-cyan-50 border border-cyan-200 px-2 py-0.5 rounded-full font-bold">
               <Ship className="w-2.5 h-2.5 text-cyan-600" />
               <span>Maritime Sea Corridor</span>
             </span>
           )}
-          {routeData.mode === 'Air' && (
+          {activeMode === 'Air' && (
             <span className="flex items-center gap-1 text-[10px] text-[#2563EB] bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-full font-bold">
               <Plane className="w-2.5 h-2.5 text-[#2563EB]" />
               <span>Geodesic Flight Arc</span>
@@ -384,16 +457,16 @@ export default function LiveMap({ shipment }: LiveMapProps) {
           )}
         </div>
 
-        {/* Marker Key */}
+        {/* Marker Key: Clean Origin, Live Vessel / Transit Position, Destination */}
         <div className="flex flex-wrap items-center gap-3 text-[11px] text-slate-600">
           <span className="flex items-center gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-blue-600"></span> Origin (A)
+            <span className="w-2.5 h-2.5 rounded-full bg-[#2563EB]"></span> Origin
+          </span>
+          <span className="flex items-center gap-1.5 font-semibold text-slate-800">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#2563EB] ring-2 ring-blue-300"></span> Live Vessel / Transit Position
           </span>
           <span className="flex items-center gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#2563EB]"></span> Live Position
-          </span>
-          <span className="flex items-center gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-slate-900"></span> Destination (B)
+            <span className="w-2.5 h-2.5 rounded-full bg-[#0F172A]"></span> Destination
           </span>
         </div>
 

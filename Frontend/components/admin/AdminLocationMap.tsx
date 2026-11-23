@@ -111,21 +111,24 @@ export default function AdminLocationMap({
       html: `
         <div style="
           background-color: #2563EB;
-          width: 24px;
-          height: 24px;
+          width: 26px;
+          height: 26px;
           border-radius: 50%;
           border: 2px solid #FFFFFF;
           display: flex;
           align-items: center;
           justify-content: center;
           color: white;
-          font-size: 10px;
-          font-weight: bold;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-        ">A</div>
+          box-shadow: 0 2px 8px rgba(37,99,235,0.4);
+        ">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/>
+            <circle cx="12" cy="10" r="2.5" fill="#FFFFFF"/>
+          </svg>
+        </div>
       `,
-      iconSize: [24, 24],
-      iconAnchor: [12, 12],
+      iconSize: [26, 26],
+      iconAnchor: [13, 13],
     });
   }, []);
 
@@ -135,21 +138,24 @@ export default function AdminLocationMap({
       html: `
         <div style="
           background-color: #0F172A;
-          width: 24px;
-          height: 24px;
+          width: 26px;
+          height: 26px;
           border-radius: 50%;
           border: 2px solid #FFFFFF;
           display: flex;
           align-items: center;
           justify-content: center;
           color: white;
-          font-size: 10px;
-          font-weight: bold;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-        ">B</div>
+          box-shadow: 0 2px 8px rgba(15,23,42,0.4);
+        ">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/>
+            <line x1="4" y1="22" x2="4" y2="15"/>
+          </svg>
+        </div>
       `,
-      iconSize: [24, 24],
-      iconAnchor: [12, 12],
+      iconSize: [26, 26],
+      iconAnchor: [13, 13],
     });
   }, []);
 
@@ -172,6 +178,7 @@ export default function AdminLocationMap({
         center={[lat, lng]}
         zoom={5}
         scrollWheelZoom={true}
+        touchZoom={true}
         className="w-full h-full"
       >
         {/* Esri World Street - free, keyless, zero watermarks */}
@@ -239,7 +246,9 @@ export default function AdminLocationMap({
         {originCoords && (
           <Marker position={originCoords} icon={originIcon}>
             <Popup>
-              <div className="p-1 text-xs">Origin Terminal (A)</div>
+              <div className="p-1 text-xs font-semibold text-slate-800">
+                <span className="text-[#2563EB] font-bold">Origin:</span> Departure Terminal
+              </div>
             </Popup>
           </Marker>
         )}
@@ -248,7 +257,9 @@ export default function AdminLocationMap({
         {destCoords && (
           <Marker position={destCoords} icon={destIcon}>
             <Popup>
-              <div className="p-1 text-xs">Destination Hub (B)</div>
+              <div className="p-1 text-xs font-semibold text-slate-800">
+                <span className="text-slate-900 font-bold">Destination:</span> Arrival Hub
+              </div>
             </Popup>
           </Marker>
         )}
@@ -277,7 +288,7 @@ export default function AdminLocationMap({
       <div className="absolute bottom-3 left-3 right-3 sm:right-auto z-[400] bg-slate-900/90 text-white backdrop-blur-md px-3 py-2 rounded-lg text-xs flex flex-wrap items-center justify-between gap-3 border border-slate-700 shadow-md pointer-events-none">
         <div className="flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-[#2563EB] beacon-pulse"></span>
-          <span>Click map or drag orange pin to set GPS coordinates</span>
+          <span>Click map or drag live waypoint pin to set GPS coordinates</span>
         </div>
         <div className="flex items-center gap-2.5 text-[10.5px] border-t sm:border-t-0 sm:border-l border-slate-700 pt-1 sm:pt-0 sm:pl-3">
           <span className="flex items-center gap-1 font-semibold text-white">
