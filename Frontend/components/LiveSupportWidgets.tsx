@@ -5,7 +5,7 @@ import Script from 'next/script';
 import { usePathname, useSearchParams } from 'next/navigation';
 
 // Official WhatsApp Brand SVG
-function WhatsAppIcon({ className = 'w-6 h-6' }: { className?: string }) {
+function WhatsAppIcon({ className = 'w-5 h-5' }: { className?: string }) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -35,21 +35,28 @@ function LiveSupportWidgetsContent() {
   const isAdminRoute = pathname ? pathname.startsWith('/admin') : false;
 
   // 1. Environment Keys & Fallbacks
-  const smartsuppKey = process.env.NEXT_PUBLIC_SMARTSUPP_KEY?.trim() || '';
+  const rawSmartsuppKey = process.env.NEXT_PUBLIC_SMARTSUPP_KEY?.trim() || '';
+  // Check if valid key exists (non-empty, not placeholder)
+  const hasValidSmartsuppKey = Boolean(
+    rawSmartsuppKey && 
+    rawSmartsuppKey.length > 5 && 
+    !rawSmartsuppKey.toLowerCase().includes('placeholder') &&
+    !rawSmartsuppKey.toLowerCase().includes('your_')
+  );
+
   const rawWhatsApp = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.trim() || '13479214785';
-  // Digits only international format: e.g. (347) 921-4785 -> 13479214785
+  // Digits only in international format: e.g. (347) 921-4785 -> 13479214785
   const whatsappNumber = rawWhatsApp.replace(/\D/g, '') || '13479214785';
 
-  // 2. Smartsupp Initialization & Visibility Management
+  // 2. Smartsupp Visibility Management on Route Transitions
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    if (smartsuppKey) {
+    if (hasValidSmartsuppKey) {
       (window as any)._smartsupp = (window as any)._smartsupp || {};
-      (window as any)._smartsupp.key = smartsuppKey;
+      (window as any)._smartsupp.key = rawSmartsuppKey;
     }
 
-    // Hide or show Smartsupp dynamically when navigating between admin & customer routes
     if ((window as any).smartsupp) {
       try {
         if (isAdminRoute) {
@@ -61,7 +68,7 @@ function LiveSupportWidgetsContent() {
         // Silently catch if chat API is not fully loaded yet
       }
     }
-  }, [smartsuppKey, isAdminRoute]);
+  }, [rawSmartsuppKey, hasValidSmartsuppKey, isAdminRoute]);
 
   // 3. Contextual WhatsApp Pre-filled Message
   const trackingId = searchParams ? searchParams.get('id') : null;
@@ -76,7 +83,7 @@ function LiveSupportWidgetsContent() {
 
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(prefilledMessage)}`;
 
-  // Do not render floating widgets on Admin dashboard/login pages
+  // Do not render customer support widgets on Admin routes
   if (isAdminRoute) {
     return (
       <>
@@ -97,61 +104,76 @@ function LiveSupportWidgetsContent() {
   return (
     <>
       {/* =================================================================== */}
-      {/* 1. SMARTSUPP LIVE CHAT LOADER                                       */}
+      {/* 1. SMARTSUPP LIVE CHAT INITIALIZATION & LOADER                     */}
       {/* =================================================================== */}
-      {smartsuppKey && (
-        <>
-          <Script
-            id="smartsupp-init"
-            strategy="lazyOnload"
-            dangerouslySetInnerHTML={{
-              __html: `
-                window._smartsupp = window._smartsupp || {};
-                window._smartsupp.key = '${smartsuppKey}';
-              `,
-            }}
-          />
-          <Script
-            id="smartsupp-loader"
-            strategy="lazyOnload"
-            src="https://www.smartsuppchat.com/loader.js?"
-          />
-        </>
+      {hasValidSmartsuppKey && (
+        <Script
+          id="smartsupp-loader"
+          strategy="lazyOnload"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window._smartsupp = window._smartsupp || {};
+              window._smartsupp.key = '${rawSmartsuppKey}';
+              window.smartsupp || (function(d) {
+                var s, c, o = smartsupp = function(){ o._.push(arguments) };
+                o._ = [];
+                s = d.getElementsByTagName('script')[0];
+                c = d.createElement('script');
+                c.type = 'text/javascript';
+                c.charset = 'utf-8';
+                c.async = true;
+                c.src = 'https://www.smartsuppchat.com/loader.js?';
+                s.parentNode.insertBefore(c, s);
+              })(document);
+            `,
+          }}
+        />
       )}
 
+      {/* Global CSS ensuring Smartsupp sits at default bottom: 20px, right: 20px */}
+      <style jsx global>{`
+        #smartsupp-widget-container,
+        #chat-application {
+          bottom: 20px !important;
+          right: 20px !important;
+          z-index: 40 !important;
+        }
+      `}</style>
+
       {/* =================================================================== */}
-      {/* 2. FLOATING WHATSAPP SUPPORT BUTTON (BOTTOM-LEFT, NO OVERLAP)       */}
+      {/* 2. FLOATING WHATSAPP BUTTON (STACKED CLEANLY ABOVE SMARTSUPP)       */}
+      {/* Bottom-right at bottom-24 right-5, sitting above Smartsupp at bottom-5 */}
       {/* =================================================================== */}
       {mounted && (
         <aside
           aria-label="Live WhatsApp Support"
-          className="fixed bottom-5 left-5 z-50 select-none group"
+          className="fixed bottom-24 right-5 z-50 select-none group"
         >
           <a
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
             title="Chat with WWIL Operations on WhatsApp"
-            className="flex items-center gap-3 px-4 py-3 rounded-full bg-[#25D366] hover:bg-[#20BD5A] text-white shadow-2xl shadow-emerald-950/30 hover:shadow-emerald-950/40 border border-white/20 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-emerald-400/40"
+            className="flex items-center gap-2.5 px-3.5 py-2.5 sm:px-4 sm:py-2.5 rounded-full bg-[#25D366] hover:bg-[#20BD5A] text-white shadow-xl shadow-emerald-950/25 hover:shadow-emerald-950/35 border border-white/20 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-emerald-400/40"
           >
             {/* WhatsApp Icon with Pulse Ping */}
             <div className="relative flex items-center justify-center shrink-0">
-              <WhatsAppIcon className="w-6 h-6 fill-white" />
-              <span className="absolute -top-1 -right-1 flex h-3 w-3">
+              <WhatsAppIcon className="w-5 h-5 fill-white" />
+              <span className="absolute -top-1 -right-1 flex h-2.5 w-2.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-200 border-2 border-[#25D366]"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-200 border-2 border-[#25D366]"></span>
               </span>
             </div>
 
-            {/* Label (Always visible or neatly responsive) */}
+            {/* Label */}
             <div className="flex flex-col text-left pr-1">
               <div className="flex items-center gap-1.5">
                 <span className="font-display font-bold text-xs leading-none tracking-tight">
-                  Chat on WhatsApp
+                  WhatsApp Support
                 </span>
               </div>
               <span className="text-[10px] text-white/90 font-medium leading-tight mt-0.5">
-                {isTrackingPage && trackingId ? `Consignment: ${trackingId}` : '24/7 Operations Desk'}
+                {isTrackingPage && trackingId ? `ID: ${trackingId}` : 'Online 24/7'}
               </span>
             </div>
           </a>
