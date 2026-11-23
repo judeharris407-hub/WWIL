@@ -11,6 +11,7 @@
 const express = require('express');
 const pool = require('../config/db');
 const { sendQuoteConfirmationEmail, sendOperationsAlertEmail } = require('../services/emailService');
+const { validateBody, quoteSubmissionSchema } = require('../middleware/validators');
 
 const router = express.Router();
 
@@ -18,7 +19,7 @@ const router = express.Router();
  * POST /api/quotes
  * Submit freight quotation inquiry, record in PostgreSQL, and dispatch Resend confirmation email
  */
-router.post('/', async (req, res) => {
+router.post('/', validateBody(quoteSubmissionSchema), async (req, res) => {
   // Support both camelCase and snake_case parameter formats
   const freight_type = req.body.freightType || req.body.freight_type;
   const departure_country = req.body.departureCountry || req.body.departure_country;

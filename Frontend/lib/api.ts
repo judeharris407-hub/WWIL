@@ -45,6 +45,7 @@ export interface DatabaseQuote {
   full_name: string;
   email: string;
   phone?: string;
+  company_website?: string;
 }
 
 /**

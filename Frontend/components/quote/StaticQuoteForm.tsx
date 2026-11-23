@@ -14,6 +14,7 @@ export default function StaticQuoteForm() {
     businessEmail: '',
     phoneNumber: '',
     cargoDescription: '',
+    company_website: '', // Honeypot bot trap (invisible to legitimate users)
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -42,6 +43,7 @@ export default function StaticQuoteForm() {
           email: formData.businessEmail,
           phone: formData.phoneNumber,
           notes: formData.cargoDescription,
+          company_website: formData.company_website, // Transmit honeypot for backend bot evaluation
         }),
       });
 
@@ -280,6 +282,20 @@ export default function StaticQuoteForm() {
 
         {/* Submit Button */}
         <div className="pt-2">
+          {/* Honeypot Bot Trap: Hidden field invisible to sighted users & screen readers */}
+          <div aria-hidden="true" style={{ position: 'absolute', left: '-9999px', top: '-9999px', opacity: 0, height: 0, width: 0, overflow: 'hidden' }}>
+            <label htmlFor="company_website">Company Website</label>
+            <input
+              type="text"
+              id="company_website"
+              name="company_website"
+              value={formData.company_website}
+              onChange={handleChange}
+              tabIndex={-1}
+              autoComplete="off"
+            />
+          </div>
+
           <button
             type="submit"
             disabled={isSubmitting}

@@ -15,6 +15,7 @@ const express = require('express');
 const pool = require('../config/db');
 const { verifyAdminToken } = require('../middleware/auth');
 const { sendShipmentCreatedEmail, sendStatusUpdateEmail } = require('../services/emailService');
+const { validateBody, createParcelSchema, patchLocationSchema } = require('../middleware/validators');
 
 const router = express.Router();
 
@@ -91,7 +92,7 @@ router.get('/', async (req, res) => {
  * Create a new shipment record in 'parcels' and append the initial entry to 'shipment_history'
  * Protected by admin authentication
  */
-router.post('/', verifyAdminToken, async (req, res) => {
+router.post('/', verifyAdminToken, validateBody(createParcelSchema), async (req, res) => {
   const {
     // Standard snake_case
     tracking_number,
@@ -498,7 +499,7 @@ router.put('/:id', verifyAdminToken, async (req, res) => {
  * Updates current_lat, current_lng and appends new row to shipment_history
  * Protected by admin authentication
  */
-router.patch('/:id/location', verifyAdminToken, async (req, res) => {
+router.patch('/:id/location', verifyAdminToken, validateBody(patchLocationSchema), async (req, res) => {
   const { id } = req.params;
   const { current_lat, current_lng, location_name, notes, status } = req.body;
 

@@ -10,6 +10,7 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const pool = require('../config/db');
+const { validateBody, adminLoginSchema } = require('../middleware/validators');
 
 const router = express.Router();
 const JWT_SECRET = process.env.JWT_SECRET || 'wwil_super_secret_jwt_key_2026_operations';
@@ -21,7 +22,7 @@ const DEMO_SECURITY_KEY = 'WWIL-Ops#2026';
  * POST /api/admin/login
  * Verify administrator credentials against 'admins' table using bcrypt
  */
-router.post('/login', async (req, res) => {
+router.post('/login', validateBody(adminLoginSchema), async (req, res) => {
   const { email, password } = req.body;
 
   // 1. Input Validation

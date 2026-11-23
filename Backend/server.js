@@ -10,6 +10,8 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
 const pool = require('./config/db');
 
 // Domain Route Handlers
@@ -22,11 +24,19 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // ==============================================================================
-// 1. Core Middleware
+// 1. Core Security & Middleware
 // ==============================================================================
 
-// CORS Configuration (Configured for Next.js frontend on localhost and Vercel)
-const allowedOrigins = [
+// HTTP Security Headers via Helmet
+app.use(
+  helmet({
+    contentSecurityPolicy: false, // Allows cross-origin embeds and frontend client flexibility
+    crossOriginResourcePolicy: { policy: 'cross-origin' },
+  })
+);
+
+// Explicit Origin Allowlist for CORS
+const explicitAllowlist = [
   'http://localhost:3000',
   'http://127.0.0.1:3000',
   process.env.FRONTEND_URL,
@@ -37,18 +47,17 @@ const corsOptions = {
     // Allow non-browser requests (e.g. mobile apps, curl, server-to-server)
     if (!origin) return callback(null, true);
 
-    // If FRONTEND_URL is wildcard or matches
-    if (process.env.FRONTEND_URL === '*' || allowedOrigins.includes(origin)) {
+    // Direct match against explicit allowlist
+    if (explicitAllowlist.includes(origin)) {
       return callback(null, true);
     }
 
-    // Match *.vercel.app preview and production domains
-    if (/^https:\/\/.*\.vercel\.app$/.test(origin)) {
+    // Match *.vercel.app preview and production domains if FRONTEND_URL not strictly locked
+    if (origin.endsWith('.vercel.app')) {
       return callback(null, true);
     }
 
-    // Default: allow origin to avoid blocking deployment frontends
-    callback(null, true);
+    callback(new Error(`CORS blocked request from unauthorized origin: ${origin}`));
   },
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
@@ -56,9 +65,50 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-// Body Parsing Middleware
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// Body Parsing Middleware with 50kb limit to prevent payload overload attacks
+app.use(express.json({ limit: '50kb' }));
+app.use(express.urlencoded({ extended: true, limit: '50kb' }));
+
+// ------------------------------------------------------------------------------
+// Multi-Tier Rate Limiting Configuration
+// ------------------------------------------------------------------------------
+
+// 1. Global API Rate Limiter: 100 requests per 15 minutes per IP
+const globalApiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 100,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: {
+    success: false,
+    error: 'Too many requests from this IP address. Please retry in 15 minutes.',
+  },
+});
+app.use('/api', globalApiLimiter);
+
+// 2. Strict Rate Limiter on Admin Login: 8 attempts per 15 minutes per IP
+const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 8,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: {
+    success: false,
+    error: 'Too many login attempts from this IP address. Access restricted for 15 minutes.',
+  },
+});
+
+// 3. Form-Submission Rate Limiter on Quotes: 5 submissions per hour per IP
+const quoteLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000,
+  max: 5,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: {
+    success: false,
+    error: 'Exceeded maximum freight quotation requests (5 per hour). Please contact direct operations or try again later.',
+  },
+});
 
 // Request Logging (Development mode)
 app.use((req, res, next) => {
@@ -126,7 +176,9 @@ app.get('/', (req, res) => {
 // ==============================================================================
 // 3. Domain Route Registrations
 // ==============================================================================
-// Admin Authentication (POST /api/admin/login)
+// Admin Authentication (POST /api/admin/login with strict brute-force limiter)
+app.use('/api/admin/login', loginLimiter);
+app.use('/api/auth/login', loginLimiter);
 app.use('/api/admin', adminRoutes);
 app.use('/api/auth', adminRoutes); // Alias for flexible client compatibility
 
@@ -136,8 +188,8 @@ app.use('/api/parcels', parcelRoutes);
 // Public Shipment Tracking (GET /api/tracking/:trackingNumber)
 app.use('/api/tracking', trackingRoutes);
 
-// Inbound Quotation Requests (POST /api/quotes, GET /api/quotes)
-app.use('/api/quotes', quoteRoutes);
+// Inbound Quotation Requests (POST /api/quotes with anti-spam limiter)
+app.use('/api/quotes', quoteLimiter, quoteRoutes);
 
 // ==============================================================================
 // 4. Error Handling
