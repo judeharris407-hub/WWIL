@@ -48,16 +48,16 @@ export default function InteractiveMapPicker({
             width: 44px;
             height: 44px;
             border-radius: 50%;
-            background-color: rgba(255, 98, 0, 0.4);
+            background-color: rgba(37, 99, 235, 0.4);
             animation: beaconPulse 1.6s infinite ease-out;
           "></span>
           <div style="
-            background-color: #FF6200;
+            background-color: #2563EB;
             width: 30px;
             height: 30px;
             border-radius: 50%;
             border: 3px solid #FFFFFF;
-            box-shadow: 0 4px 14px rgba(255, 98, 0, 0.7);
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.7);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -128,7 +128,7 @@ export default function InteractiveMapPicker({
 
       {/* Floating Instructions Banner */}
       <div className="absolute bottom-3 left-3 z-[400] bg-slate-900/90 text-white backdrop-blur-md px-3 py-1.5 rounded-lg text-xs flex items-center gap-2 border border-slate-700 shadow-md pointer-events-none">
-        <span className="w-2 h-2 rounded-full bg-[#FF6200] animate-ping"></span>
+        <span className="w-2 h-2 rounded-full bg-[#2563EB] animate-ping"></span>
         <span>Click map or drag the orange pin to place terminal coordinates</span>
       </div>
     </div>

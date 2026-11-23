@@ -72,21 +72,21 @@ export default function AdminLoginPage() {
           className="absolute inset-0 w-full h-full object-cover scale-105"
         />
         {/* Semi-transparent dark corporate slate/navy overlay (bg-slate-900/80) */}
-        <div className="absolute inset-0 bg-slate-900/80 bg-gradient-to-r from-slate-950/95 via-slate-900/85 to-slate-950/90 backdrop-blur-[2px]"></div>
-        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-[#FF6200]/15 rounded-full blur-3xl"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-900/60 to-slate-950/80"></div>
+        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-[#2563EB]/15 rounded-full blur-3xl"></div>
         <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl"></div>
       </div>
 
       <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10 text-center space-y-3">
         {/* Brand Logo */}
         <Link href="/" className="inline-flex items-center gap-3 group">
-          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#FF6200] to-[#E05600] flex items-center justify-center shadow-lg shadow-orange-500/25 group-hover:scale-105 transition-transform">
+          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] flex items-center justify-center shadow-lg shadow-blue-500/25 group-hover:scale-105 transition-transform">
             <span className="font-display font-black text-2xl text-white">W</span>
           </div>
           <div className="text-left">
             <div className="flex items-center gap-1.5">
               <span className="font-display font-black text-2xl tracking-wider text-white">WWIL</span>
-              <span className="w-2 h-2 rounded-full bg-[#FF6200]"></span>
+              <span className="w-2 h-2 rounded-full bg-[#2563EB]"></span>
             </div>
             <span className="text-[10px] uppercase tracking-widest text-slate-400 font-semibold block -mt-1">
               Worldwide International Logistics
@@ -95,7 +95,7 @@ export default function AdminLoginPage() {
         </Link>
 
         <div>
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-[11px] font-bold uppercase tracking-wider text-[#FF6200] mt-2">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-900 border border-slate-800 text-[11px] font-bold uppercase tracking-wider text-[#2563EB] mt-2">
             <ShieldCheck className="w-3.5 h-3.5" />
             Enterprise Dispatch Portal
           </span>
@@ -123,7 +123,7 @@ export default function AdminLoginPage() {
           <div className="p-3.5 rounded-xl bg-slate-800/80 border border-slate-700/80 flex items-center justify-between text-xs">
             <div className="space-y-0.5">
               <span className="font-bold text-slate-200 block text-[11px] flex items-center gap-1">
-                <Sparkles className="w-3 h-3 text-[#FF6200]" />
+                <Sparkles className="w-3 h-3 text-[#2563EB]" />
                 Demo Credentials Available
               </span>
               <span className="text-[10px] text-slate-400 block font-mono">
@@ -133,7 +133,7 @@ export default function AdminLoginPage() {
             <button
               type="button"
               onClick={handleQuickDemoFill}
-              className="px-3 py-1.5 rounded-lg bg-[#FF6200]/20 hover:bg-[#FF6200]/30 text-[#FF6200] font-bold text-[11px] transition-colors border border-[#FF6200]/30"
+              className="px-3 py-1.5 rounded-lg bg-[#2563EB]/20 hover:bg-[#2563EB]/30 text-[#2563EB] font-bold text-[11px] transition-colors border border-[#2563EB]/30"
             >
               1-Click Fill
             </button>
@@ -148,7 +148,7 @@ export default function AdminLoginPage() {
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-                  <Mail className="w-4 h-4 text-[#FF6200]" />
+                  <Mail className="w-4 h-4 text-[#2563EB]" />
                 </div>
                 <input
                   id="admin-email"
@@ -157,7 +157,7 @@ export default function AdminLoginPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="controller@wwil-logistics.com"
-                  className="w-full pl-10 pr-4 py-3 bg-slate-950/80 border border-slate-700 rounded-xl text-white placeholder-slate-500 text-xs focus:outline-none focus:border-[#FF6200] focus:ring-1 focus:ring-[#FF6200] transition-colors"
+                  className="w-full pl-10 pr-4 py-3 bg-slate-950/80 border border-slate-700 rounded-xl text-white placeholder-slate-500 text-xs focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] transition-colors"
                 />
               </div>
             </div>
@@ -171,7 +171,7 @@ export default function AdminLoginPage() {
               </div>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
-                  <KeyRound className="w-4 h-4 text-[#FF6200]" />
+                  <KeyRound className="w-4 h-4 text-[#2563EB]" />
                 </div>
                 <input
                   id="admin-password"
@@ -180,7 +180,7 @@ export default function AdminLoginPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••••••"
-                  className="w-full pl-10 pr-10 py-3 bg-slate-950/80 border border-slate-700 rounded-xl text-white placeholder-slate-500 text-xs focus:outline-none focus:border-[#FF6200] focus:ring-1 focus:ring-[#FF6200] transition-colors font-mono"
+                  className="w-full pl-10 pr-10 py-3 bg-slate-950/80 border border-slate-700 rounded-xl text-white placeholder-slate-500 text-xs focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] transition-colors font-mono"
                 />
                 <button
                   type="button"
@@ -199,7 +199,7 @@ export default function AdminLoginPage() {
                   type="checkbox"
                   checked={rememberTerminal}
                   onChange={(e) => setRememberTerminal(e.target.checked)}
-                  className="rounded bg-slate-950 border-slate-700 text-[#FF6200] focus:ring-[#FF6200]"
+                  className="rounded bg-slate-950 border-slate-700 text-[#2563EB] focus:ring-[#2563EB]"
                 />
                 <span>Remember terminal workstation</span>
               </label>
@@ -211,7 +211,7 @@ export default function AdminLoginPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full py-3.5 px-6 rounded-xl bg-[#FF6200] hover:bg-[#E05600] text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-orange-500/25 transition-all duration-200 flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-[#FF6200] focus:ring-offset-2 focus:ring-offset-slate-900 mt-2"
+              className="w-full py-3.5 px-6 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-blue-500/25 transition-all duration-200 flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:ring-offset-2 focus:ring-offset-slate-900 mt-2"
             >
               {isLoading ? (
                 <>
@@ -232,7 +232,7 @@ export default function AdminLoginPage() {
           <div className="pt-4 border-t border-slate-800 text-center">
             <Link
               href="/"
-              className="text-xs text-slate-400 hover:text-[#FF6200] transition-colors inline-flex items-center gap-1.5"
+              className="text-xs text-slate-400 hover:text-[#2563EB] transition-colors inline-flex items-center gap-1.5"
             >
               <span>Return to Public Homepage</span>
               <ArrowRight className="w-3 h-3" />

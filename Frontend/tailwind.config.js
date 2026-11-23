@@ -10,10 +10,15 @@ module.exports = {
     extend: {
       colors: {
         wwil: {
-          orange: '#FF6200',
-          'orange-hover': '#E05600',
-          'orange-light': '#FFF5EE',
-          'orange-50': '#FFF7ED',
+          blue: '#2563EB',
+          'blue-hover': '#1D4ED8',
+          'blue-light': '#EFF6FF',
+          'blue-50': '#EFF6FF',
+          sky: '#0284C7',
+          orange: '#2563EB',
+          'orange-hover': '#1D4ED8',
+          'orange-light': '#EFF6FF',
+          'orange-50': '#EFF6FF',
           'navy-950': '#080D1A',
           'navy-900': '#0F172A',
           'navy-800': '#1E293B',
@@ -29,7 +34,7 @@ module.exports = {
         display: ['Space Grotesk', 'system-ui', 'sans-serif'],
       },
       boxShadow: {
-        'glow-orange': '0 0 25px -5px rgba(255, 98, 0, 0.4)',
+        'glow-blue': '0 0 25px -5px rgba(37, 99, 235, 0.4)',
         'card-soft': '0 10px 30px -5px rgba(0, 0, 0, 0.05)',
       }
     },

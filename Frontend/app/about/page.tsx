@@ -30,15 +30,15 @@ export default function AboutPage() {
           className="absolute inset-0 w-full h-full object-cover"
         />
         {/* Semi-transparent dark corporate slate/navy overlay (bg-slate-900/80) */}
-        <div className="absolute inset-0 bg-slate-900/80 bg-gradient-to-r from-slate-950/95 via-slate-900/85 to-slate-900/80 backdrop-blur-[2px]"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-900/65 to-slate-900/35"></div>
 
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 text-[#FF6200] text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 text-[#2563EB] text-xs font-bold uppercase tracking-wider">
             <Globe className="w-3.5 h-3.5" />
             Corporate Overview
           </div>
           <h1 className="font-display font-extrabold text-3xl sm:text-5xl text-white tracking-tight">
-            Engineering the Backbone of <span className="text-[#FF6200]">Global Commerce</span>
+            Engineering the Backbone of <span className="text-[#2563EB]">Global Commerce</span>
           </h1>
           <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
             Founded with the belief that international logistics should operate with mathematical precision, WWIL delivers high-capacity physical freight networks paired with real-time telemetry.
@@ -69,7 +69,7 @@ export default function AboutPage() {
                   <span className="text-xs text-slate-500">Countries Served</span>
                 </div>
                 <div>
-                  <strong className="font-display font-bold text-2xl text-[#FF6200] block">48</strong>
+                  <strong className="font-display font-bold text-2xl text-[#2563EB] block">48</strong>
                   <span className="text-xs text-slate-500">Global Hub Terminals</span>
                 </div>
                 <div>
@@ -88,7 +88,7 @@ export default function AboutPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
                 <div className="absolute bottom-6 left-6 right-6 p-4 rounded-xl bg-white/95 backdrop-blur-md border border-slate-200 shadow-md">
-                  <span className="text-xs text-[#FF6200] font-bold uppercase tracking-wider block mb-1">
+                  <span className="text-xs text-[#2563EB] font-bold uppercase tracking-wider block mb-1">
                     Direct Terminal Presence
                   </span>
                   <p className="text-xs text-slate-700">
@@ -109,11 +109,11 @@ export default function AboutPage() {
             className="absolute inset-0 w-full h-full object-cover"
           />
           {/* Semi-transparent dark corporate slate/navy overlay (bg-slate-900/80) */}
-          <div className="absolute inset-0 bg-slate-900/80 bg-gradient-to-r from-slate-950/95 via-slate-900/85 to-slate-950/90 backdrop-blur-[2px]"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-900/60 to-slate-950/80"></div>
 
           <div className="relative z-10 space-y-8">
             <div className="text-center max-w-2xl mx-auto space-y-2">
-              <span className="text-xs uppercase font-bold text-[#FF6200] tracking-wider">
+              <span className="text-xs uppercase font-bold text-[#2563EB] tracking-wider">
                 Governance &amp; Accreditation
               </span>
               <h3 className="font-display font-extrabold text-2xl sm:text-3xl text-white">
@@ -126,7 +126,7 @@ export default function AboutPage() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="bg-slate-900/90 rounded-xl p-5 border border-slate-700/80 space-y-2 backdrop-blur-sm">
-                <ShieldCheck className="w-8 h-8 text-[#FF6200]" />
+                <ShieldCheck className="w-8 h-8 text-[#2563EB]" />
                 <h4 className="font-bold text-sm text-white">ISO 9001:2015 Certified</h4>
                 <p className="text-xs text-slate-400">
                   Audited quality management across all multimodal booking and documentation procedures.
@@ -134,7 +134,7 @@ export default function AboutPage() {
               </div>
 
               <div className="bg-slate-900/90 rounded-xl p-5 border border-slate-700/80 space-y-2 backdrop-blur-sm">
-                <Award className="w-8 h-8 text-[#FF6200]" />
+                <Award className="w-8 h-8 text-[#2563EB]" />
                 <h4 className="font-bold text-sm text-white">IATA Cargo Agent</h4>
                 <p className="text-xs text-slate-400">
                   Direct ticketing and airway bill authorization on all primary international airline alliances.
@@ -142,7 +142,7 @@ export default function AboutPage() {
               </div>
 
               <div className="bg-slate-900/90 rounded-xl p-5 border border-slate-700/80 space-y-2 backdrop-blur-sm">
-                <Globe className="w-8 h-8 text-[#FF6200]" />
+                <Globe className="w-8 h-8 text-[#2563EB]" />
                 <h4 className="font-bold text-sm text-white">FIATA &amp; FMC Licensed</h4>
                 <p className="text-xs text-slate-400">
                   Licensed Non-Vessel Operating Common Carrier (NVOCC) with official bill of lading authority.
@@ -150,7 +150,7 @@ export default function AboutPage() {
               </div>
 
               <div className="bg-slate-900/90 rounded-xl p-5 border border-slate-700/80 space-y-2 backdrop-blur-sm">
-                <CheckCircle2 className="w-8 h-8 text-[#FF6200]" />
+                <CheckCircle2 className="w-8 h-8 text-[#2563EB]" />
                 <h4 className="font-bold text-sm text-white">C-TPAT &amp; AEO Tier 3</h4>
                 <p className="text-xs text-slate-400">
                   Highest security tier validation ensuring priority green-lane customs inspection clearance.

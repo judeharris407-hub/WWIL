@@ -13,7 +13,7 @@ export default function Footer() {
           {/* Column 1: Company Overview */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#FF6200] to-[#E05600] flex items-center justify-center shadow-lg shadow-orange-500/20">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] flex items-center justify-center shadow-lg shadow-blue-500/20">
                 <span className="font-display font-extrabold text-xl text-white">W</span>
               </div>
               <div className="flex flex-col">
@@ -27,7 +27,7 @@ export default function Footer() {
               Empowering global commerce with precision multimodal freight forwarding, intermodal rail logistics, intelligent warehousing, and verified real-time satellite telemetry across 180+ countries.
             </p>
             <div className="pt-2 flex items-center gap-2 text-xs text-slate-400">
-              <ShieldCheck className="w-4 h-4 text-[#FF6200]" />
+              <ShieldCheck className="w-4 h-4 text-[#2563EB]" />
               <span>Licensed Federal Maritime NVOCC &amp; IATA Agent</span>
             </div>
           </div>
@@ -37,32 +37,32 @@ export default function Footer() {
             <h4 className="font-display font-bold text-sm text-white uppercase tracking-wider">Freight Services</h4>
             <ul className="space-y-2 text-xs text-slate-400">
               <li>
-                <Link href="/services#air-ocean" className="hover:text-[#FF6200] transition-colors">
+                <Link href="/services#air-ocean" className="hover:text-[#2563EB] transition-colors">
                   Global Ocean Freight (FCL / LCL)
                 </Link>
               </li>
               <li>
-                <Link href="/services#air-ocean" className="hover:text-[#FF6200] transition-colors">
+                <Link href="/services#air-ocean" className="hover:text-[#2563EB] transition-colors">
                   Expedited Air Cargo Charters
                 </Link>
               </li>
               <li>
-                <Link href="/services#ground" className="hover:text-[#FF6200] transition-colors">
+                <Link href="/services#ground" className="hover:text-[#2563EB] transition-colors">
                   Intermodal Ground &amp; Rail Freight
                 </Link>
               </li>
               <li>
-                <Link href="/services#warehousing" className="hover:text-[#FF6200] transition-colors">
+                <Link href="/services#warehousing" className="hover:text-[#2563EB] transition-colors">
                   Intelligent Bonded Warehousing
                 </Link>
               </li>
               <li>
-                <Link href="/services#customs" className="hover:text-[#FF6200] transition-colors">
+                <Link href="/services#customs" className="hover:text-[#2563EB] transition-colors">
                   Single-Window Customs Clearance
                 </Link>
               </li>
               <li>
-                <Link href="/services#express" className="hover:text-[#FF6200] transition-colors">
+                <Link href="/services#express" className="hover:text-[#2563EB] transition-colors">
                   Time-Critical Express Delivery
                 </Link>
               </li>
@@ -74,25 +74,25 @@ export default function Footer() {
             <h4 className="font-display font-bold text-sm text-white uppercase tracking-wider">Quick Links</h4>
             <ul className="space-y-2 text-xs text-slate-400">
               <li>
-                <Link href="/" className="hover:text-[#FF6200] transition-colors">Home</Link>
+                <Link href="/" className="hover:text-[#2563EB] transition-colors">Home</Link>
               </li>
               <li>
-                <Link href="/track-order" className="hover:text-[#FF6200] transition-colors">Track Cargo Shipment</Link>
+                <Link href="/track-order" className="hover:text-[#2563EB] transition-colors">Track Cargo Shipment</Link>
               </li>
               <li>
-                <Link href="/services" className="hover:text-[#FF6200] transition-colors">Multimodal Services</Link>
+                <Link href="/services" className="hover:text-[#2563EB] transition-colors">Multimodal Services</Link>
               </li>
               <li>
-                <Link href="/request-quote" className="hover:text-[#FF6200] transition-colors">Request a Freight Quote</Link>
+                <Link href="/request-quote" className="hover:text-[#2563EB] transition-colors">Request a Freight Quote</Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-[#FF6200] transition-colors">About WWIL</Link>
+                <Link href="/about" className="hover:text-[#2563EB] transition-colors">About WWIL</Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-[#FF6200] transition-colors">Contact Global Hubs</Link>
+                <Link href="/contact" className="hover:text-[#2563EB] transition-colors">Contact Global Hubs</Link>
               </li>
               <li>
-                <Link href="/admin/dashboard" className="hover:text-[#FF6200] transition-colors">Staff Admin Dashboard</Link>
+                <Link href="/admin/dashboard" className="hover:text-[#2563EB] transition-colors">Staff Admin Dashboard</Link>
               </li>
             </ul>
           </div>
@@ -102,17 +102,17 @@ export default function Footer() {
             <h4 className="font-display font-bold text-sm text-white uppercase tracking-wider">Direct Contact</h4>
             <div className="space-y-2.5 text-xs text-slate-400">
               <p className="flex items-start gap-2.5">
-                <MapPin className="w-4 h-4 text-[#FF6200] shrink-0 mt-0.5" />
+                <MapPin className="w-4 h-4 text-[#2563EB] shrink-0 mt-0.5" />
                 <span>World Trade Logistics Center, Port Boulevard, Suite 1200</span>
               </p>
               <p className="flex items-center gap-2.5">
-                <Phone className="w-4 h-4 text-[#FF6200] shrink-0" />
+                <Phone className="w-4 h-4 text-[#2563EB] shrink-0" />
                 <a href="tel:+18008459945" className="hover:text-white transition-colors font-medium">
                   +1 (800) 845-WWIL (9945)
                 </a>
               </p>
               <p className="flex items-center gap-2.5">
-                <Mail className="w-4 h-4 text-[#FF6200] shrink-0" />
+                <Mail className="w-4 h-4 text-[#2563EB] shrink-0" />
                 <a href="mailto:operations@wwil-logistics.com" className="hover:text-white transition-colors">
                   operations@wwil-logistics.com
                 </a>

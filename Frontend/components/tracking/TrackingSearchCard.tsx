@@ -31,7 +31,7 @@ export default function TrackingSearchCard({ initialCode = 'TRK-2024-001234' }: 
     <div className="bg-white rounded-2xl shadow-2xl p-6 sm:p-8 border border-slate-100 text-slate-800 relative">
       {/* Card Header: Circular orange icon badge with location icon next to title and subtext */}
       <div className="flex items-center gap-3.5 pb-6 border-b border-slate-100">
-        <div className="w-12 h-12 rounded-full bg-[#FF6200]/10 flex items-center justify-center text-[#FF6200] shrink-0">
+        <div className="w-12 h-12 rounded-full bg-[#2563EB]/10 flex items-center justify-center text-[#2563EB] shrink-0">
           <Crosshair className="w-6 h-6" />
         </div>
         <div>
@@ -57,7 +57,7 @@ export default function TrackingSearchCard({ initialCode = 'TRK-2024-001234' }: 
               onChange={(e) => setTrackingNumber(e.target.value)}
               placeholder="e.g. TRK-2024-001234"
               required
-              className="w-full pl-11 pr-10 py-3.5 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 placeholder-slate-400 font-mono text-sm uppercase focus:outline-none focus:bg-white focus:border-[#FF6200] focus:ring-2 focus:ring-[#FF6200]/20 transition-all"
+              className="w-full pl-11 pr-10 py-3.5 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 placeholder-slate-400 font-mono text-sm uppercase focus:outline-none focus:bg-white focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20 transition-all"
             />
             {trackingNumber && (
               <button
@@ -101,7 +101,7 @@ export default function TrackingSearchCard({ initialCode = 'TRK-2024-001234' }: 
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full py-4 px-6 rounded-xl bg-[#FF6200] hover:bg-[#E05600] text-white font-bold text-sm tracking-wide shadow-lg shadow-orange-500/25 transition-all duration-200 flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-[#FF6200] focus:ring-offset-2"
+          className="w-full py-4 px-6 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-sm tracking-wide shadow-lg shadow-blue-500/25 transition-all duration-200 flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:ring-offset-2"
         >
           <Truck className="w-5 h-5" />
           <span>{isSubmitting ? 'ROUTING TO TELEMETRY...' : 'TRACK ORDER'}</span>

@@ -148,16 +148,16 @@ export default function LiveMap({ shipment }: LiveMapProps) {
           width: 38px;
           height: 38px;
           border-radius: 50%;
-          background-color: rgba(255, 98, 0, 0.45);
+          background-color: rgba(37, 99, 235, 0.45);
           animation: beaconPulse 1.8s infinite ease-out;
         "></span>
         <div style="
-          background-color: #FF6200;
+          background-color: #2563EB;
           width: 24px;
           height: 24px;
           border-radius: 50%;
           border: 3px solid #FFFFFF;
-          box-shadow: 0 0 15px rgba(255, 98, 0, 0.7);
+          box-shadow: 0 0 15px rgba(37, 99, 235, 0.7);
           position: relative;
           z-index: 10;
         "></div>
@@ -235,7 +235,7 @@ export default function LiveMap({ shipment }: LiveMapProps) {
             <Polyline
               positions={routeData.completedLeg}
               pathOptions={{
-                color: '#FF6200',
+                color: '#2563EB',
                 weight: routeData.isHighway ? 5 : 4.5,
                 opacity: 1.0,
                 lineCap: 'round',
@@ -262,7 +262,7 @@ export default function LiveMap({ shipment }: LiveMapProps) {
             <Polyline
               positions={routeData.remainingLeg}
               pathOptions={{
-                color: '#FF6200',
+                color: '#2563EB',
                 weight: 3.5,
                 opacity: 0.85,
                 dashArray: '8, 8',
@@ -290,7 +290,7 @@ export default function LiveMap({ shipment }: LiveMapProps) {
               <span className="font-bold text-slate-800 uppercase tracking-wider block text-[10px]">Destination Hub</span>
               <strong className="text-sm text-slate-900 block">{shipment.destination.name}</strong>
               <p className="text-slate-500">{shipment.destination.country}</p>
-              <div className="text-[11px] text-[#FF6200] font-semibold pt-1">ETA: {shipment.eta}</div>
+              <div className="text-[11px] text-[#2563EB] font-semibold pt-1">ETA: {shipment.eta}</div>
             </div>
           </Popup>
         </Marker>
@@ -299,7 +299,7 @@ export default function LiveMap({ shipment }: LiveMapProps) {
         <Marker position={currentCoords} icon={currentIcon}>
           <Popup>
             <div className="p-3 text-xs space-y-1">
-              <span className="font-bold text-[#FF6200] uppercase tracking-wider block text-[10px]">Active Position Telemetry</span>
+              <span className="font-bold text-[#2563EB] uppercase tracking-wider block text-[10px]">Active Position Telemetry</span>
               <strong className="text-sm text-slate-900 block">{shipment.currentLocation.name}</strong>
               <p className="text-slate-600 font-medium">{shipment.carrier}</p>
               <p className="text-slate-500 font-mono text-[11px]">{shipment.conveyance}</p>
@@ -317,7 +317,7 @@ export default function LiveMap({ shipment }: LiveMapProps) {
       {/* Map Layer Switcher & Legend Overlay */}
       <div className="absolute top-4 right-4 z-[400] flex items-center gap-1 bg-white/95 backdrop-blur-md p-1.5 rounded-xl border border-slate-200 shadow-md">
         <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-2 flex items-center gap-1">
-          <Layers className="w-3 h-3 text-[#FF6200]" />
+          <Layers className="w-3 h-3 text-[#2563EB]" />
           Tiles
         </span>
         <button
@@ -325,7 +325,7 @@ export default function LiveMap({ shipment }: LiveMapProps) {
           onClick={() => setSelectedProvider('esriStreet')}
           className={`px-2.5 py-1 text-xs font-semibold rounded-lg transition-colors ${
             selectedProvider === 'esriStreet'
-              ? 'bg-[#FF6200] text-white shadow-sm'
+              ? 'bg-[#2563EB] text-white shadow-sm'
               : 'text-slate-700 hover:bg-slate-100'
           }`}
         >
@@ -336,7 +336,7 @@ export default function LiveMap({ shipment }: LiveMapProps) {
           onClick={() => setSelectedProvider('osm')}
           className={`px-2.5 py-1 text-xs font-semibold rounded-lg transition-colors ${
             selectedProvider === 'osm'
-              ? 'bg-[#FF6200] text-white shadow-sm'
+              ? 'bg-[#2563EB] text-white shadow-sm'
               : 'text-slate-700 hover:bg-slate-100'
           }`}
         >
@@ -347,7 +347,7 @@ export default function LiveMap({ shipment }: LiveMapProps) {
           onClick={() => setSelectedProvider('esriSatellite')}
           className={`px-2.5 py-1 text-xs font-semibold rounded-lg transition-colors ${
             selectedProvider === 'esriSatellite'
-              ? 'bg-[#FF6200] text-white shadow-sm'
+              ? 'bg-[#2563EB] text-white shadow-sm'
               : 'text-slate-700 hover:bg-slate-100'
           }`}
         >
@@ -359,7 +359,7 @@ export default function LiveMap({ shipment }: LiveMapProps) {
       <div className="absolute bottom-4 left-4 z-[400] bg-white/95 backdrop-blur-md rounded-xl p-3 border border-slate-200 shadow-lg text-xs space-y-2 pointer-events-auto max-w-sm sm:max-w-md">
         <div className="font-bold text-slate-900 text-[11px] uppercase tracking-wider flex items-center justify-between gap-3">
           <div className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-[#FF6200] beacon-pulse"></span>
+            <span className="w-2 h-2 rounded-full bg-[#2563EB] beacon-pulse"></span>
             <span>Live Telemetry &amp; Navigation</span>
           </div>
 
@@ -377,8 +377,8 @@ export default function LiveMap({ shipment }: LiveMapProps) {
             </span>
           )}
           {routeData.mode === 'Air' && (
-            <span className="flex items-center gap-1 text-[10px] text-[#FF6200] bg-orange-50 border border-orange-200 px-2 py-0.5 rounded-full font-bold">
-              <Plane className="w-2.5 h-2.5 text-[#FF6200]" />
+            <span className="flex items-center gap-1 text-[10px] text-[#2563EB] bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-full font-bold">
+              <Plane className="w-2.5 h-2.5 text-[#2563EB]" />
               <span>Geodesic Flight Arc</span>
             </span>
           )}
@@ -390,7 +390,7 @@ export default function LiveMap({ shipment }: LiveMapProps) {
             <span className="w-2.5 h-2.5 rounded-full bg-blue-600"></span> Origin (A)
           </span>
           <span className="flex items-center gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#FF6200]"></span> Live Position
+            <span className="w-2.5 h-2.5 rounded-full bg-[#2563EB]"></span> Live Position
           </span>
           <span className="flex items-center gap-1.5">
             <span className="w-2.5 h-2.5 rounded-full bg-slate-900"></span> Destination (B)
@@ -400,11 +400,11 @@ export default function LiveMap({ shipment }: LiveMapProps) {
         {/* Leg Distinction Key (Completed vs Remaining) */}
         <div className="flex flex-wrap items-center gap-3 pt-1 border-t border-slate-100 text-[10.5px]">
           <span className="flex items-center gap-1.5 font-semibold text-slate-800">
-            <span className="w-4 h-1 bg-[#FF6200] rounded-full inline-block"></span>
+            <span className="w-4 h-1 bg-[#2563EB] rounded-full inline-block"></span>
             <span>Completed Leg (Solid)</span>
           </span>
           <span className="flex items-center gap-1.5 font-semibold text-slate-500">
-            <span className="w-4 h-0 border-t-2 border-dashed border-[#FF6200] inline-block"></span>
+            <span className="w-4 h-0 border-t-2 border-dashed border-[#2563EB] inline-block"></span>
             <span>Remaining Leg (Dashed)</span>
           </span>
           {isLoadingRoute && (

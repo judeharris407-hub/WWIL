@@ -22,15 +22,15 @@ export default function RequestQuotePage() {
           className="absolute inset-0 w-full h-full object-cover"
         />
         {/* Semi-transparent dark corporate slate/navy overlay (bg-slate-900/80) */}
-        <div className="absolute inset-0 bg-slate-900/80 bg-gradient-to-r from-slate-950/95 via-slate-900/85 to-slate-900/80 backdrop-blur-[2px]"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-900/65 to-slate-900/35"></div>
 
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 text-[#FF6200] text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 text-[#2563EB] text-xs font-bold uppercase tracking-wider">
             <Award className="w-3.5 h-3.5" />
             Enterprise Rate Request
           </div>
           <h1 className="font-display font-extrabold text-3xl sm:text-5xl text-white tracking-tight">
-            Guaranteed Freight Allocation &amp; <span className="text-[#FF6200]">Fixed Tariffs</span>
+            Guaranteed Freight Allocation &amp; <span className="text-[#2563EB]">Fixed Tariffs</span>
           </h1>
           <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
             Eliminate unexpected demurrage and unpredictable spot surcharges. Receive official contractual tariff matrices backed by priority carrier space.
@@ -43,7 +43,7 @@ export default function RequestQuotePage() {
         {/* 3 Value Pillars */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm flex items-start gap-4">
-            <div className="w-12 h-12 rounded-xl bg-orange-50 text-[#FF6200] flex items-center justify-center shrink-0">
+            <div className="w-12 h-12 rounded-xl bg-blue-50 text-[#2563EB] flex items-center justify-center shrink-0">
               <Clock className="w-6 h-6" />
             </div>
             <div>

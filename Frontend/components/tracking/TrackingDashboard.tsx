@@ -27,7 +27,7 @@ const LiveMap = dynamic(() => import('@/components/tracking/LiveMap'), {
   ssr: false,
   loading: () => (
     <div className="w-full h-[440px] sm:h-[500px] rounded-2xl bg-slate-900 flex flex-col items-center justify-center text-white space-y-3">
-      <div className="w-10 h-10 border-4 border-[#FF6200] border-t-transparent rounded-full animate-spin"></div>
+      <div className="w-10 h-10 border-4 border-[#2563EB] border-t-transparent rounded-full animate-spin"></div>
       <p className="text-sm font-semibold tracking-wide text-slate-300">Initializing Live Leaflet Satellite Telemetry...</p>
     </div>
   ),
@@ -166,7 +166,7 @@ export default function TrackingDashboard({ initialTrackingId = 'TRK-2024-001234
         return {
           icon: <Plane className="w-5 h-5 text-white" />,
           label: 'Air Freight Charter',
-          badgeClass: 'bg-orange-500/20 text-orange-300 border-orange-500/40',
+          badgeClass: 'bg-blue-500/20 text-blue-300 border-blue-500/40',
         };
       case 'Ocean':
         return {
@@ -217,14 +217,14 @@ export default function TrackingDashboard({ initialTrackingId = 'TRK-2024-001234
           />
 
           {/* Semi-transparent dark corporate slate/navy overlay (bg-slate-900/80) */}
-          <div className="absolute inset-0 bg-slate-900/80 bg-gradient-to-r from-slate-950/90 via-slate-900/80 to-slate-900/75 backdrop-blur-[2px]"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-900/60 to-slate-900/35"></div>
 
           {/* Top Row: Meta Badge & Admin Portal Link */}
           <div className="relative z-10 p-6 sm:p-8 flex flex-wrap items-center justify-between gap-4 border-b border-white/10">
             <div className="flex items-center gap-3">
-              <span className="w-3 h-3 rounded-full bg-[#FF6200] beacon-pulse"></span>
+              <span className="w-3 h-3 rounded-full bg-[#2563EB] beacon-pulse"></span>
               <div className="flex items-center gap-2">
-                <span className="text-xs uppercase font-bold tracking-widest text-[#FF6200]">
+                <span className="text-xs uppercase font-bold tracking-widest text-[#2563EB]">
                   WWIL Live Telemetry Gateway
                 </span>
                 <span className={`px-2.5 py-0.5 rounded-full text-[11px] font-bold border flex items-center gap-1.5 ${transport.badgeClass}`}>
@@ -239,7 +239,7 @@ export default function TrackingDashboard({ initialTrackingId = 'TRK-2024-001234
                 className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-semibold text-slate-200 hover:text-white backdrop-blur-md transition-colors border border-white/10"
                 title="Open Administrative Dashboard"
               >
-                <Settings className="w-3.5 h-3.5 text-[#FF6200]" />
+                <Settings className="w-3.5 h-3.5 text-[#2563EB]" />
                 <span>Admin Portal</span>
                 <ExternalLink className="w-3 h-3 text-slate-400" />
               </Link>
@@ -251,7 +251,7 @@ export default function TrackingDashboard({ initialTrackingId = 'TRK-2024-001234
             
             <div className="lg:col-span-7 space-y-2">
               <div className="flex items-center gap-2.5">
-                <div className="w-10 h-10 rounded-xl bg-[#FF6200] flex items-center justify-center text-white shadow-lg shadow-orange-500/30">
+                <div className="w-10 h-10 rounded-xl bg-[#2563EB] flex items-center justify-center text-white shadow-lg shadow-blue-500/30">
                   {transport.icon}
                 </div>
                 <div>
@@ -287,12 +287,12 @@ export default function TrackingDashboard({ initialTrackingId = 'TRK-2024-001234
                   value={searchInput}
                   onChange={(e) => setSearchInput(e.target.value)}
                   placeholder="Query another ID (e.g. TRK-2024-001234)"
-                  className="w-full pl-4 pr-28 py-3.5 bg-slate-950/90 border border-slate-600 rounded-xl text-white placeholder-slate-400 font-mono text-xs uppercase focus:outline-none focus:border-[#FF6200] focus:ring-2 focus:ring-[#FF6200]/30 shadow-inner"
+                  className="w-full pl-4 pr-28 py-3.5 bg-slate-950/90 border border-slate-600 rounded-xl text-white placeholder-slate-400 font-mono text-xs uppercase focus:outline-none focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/30 shadow-inner"
                 />
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="absolute right-1.5 top-1.5 bottom-1.5 px-4 rounded-lg bg-[#FF6200] hover:bg-[#E05600] text-white font-bold text-xs flex items-center gap-1.5 transition-colors shadow-md disabled:opacity-50"
+                  className="absolute right-1.5 top-1.5 bottom-1.5 px-4 rounded-lg bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-xs flex items-center gap-1.5 transition-colors shadow-md disabled:opacity-50"
                 >
                   {isLoading ? (
                     <RefreshCw className="w-3.5 h-3.5 animate-spin" />
@@ -315,7 +315,7 @@ export default function TrackingDashboard({ initialTrackingId = 'TRK-2024-001234
                 onClick={() => handleQuickSelect('TRK-2024-001234')}
                 className={`px-2.5 py-0.5 rounded-full font-mono text-[11px] transition-colors ${
                   currentId === 'TRK-2024-001234'
-                    ? 'bg-[#FF6200] text-white font-bold'
+                    ? 'bg-[#2563EB] text-white font-bold'
                     : 'bg-white/10 hover:bg-white/20 text-slate-200'
                 }`}
               >
@@ -326,7 +326,7 @@ export default function TrackingDashboard({ initialTrackingId = 'TRK-2024-001234
                 onClick={() => handleQuickSelect('MSKU-982341-0')}
                 className={`px-2.5 py-0.5 rounded-full font-mono text-[11px] transition-colors ${
                   currentId === 'MSKU-982341-0'
-                    ? 'bg-[#FF6200] text-white font-bold'
+                    ? 'bg-[#2563EB] text-white font-bold'
                     : 'bg-white/10 hover:bg-white/20 text-slate-200'
                 }`}
               >
@@ -337,7 +337,7 @@ export default function TrackingDashboard({ initialTrackingId = 'TRK-2024-001234
                 onClick={() => handleQuickSelect('WW-TRK-44019')}
                 className={`px-2.5 py-0.5 rounded-full font-mono text-[11px] transition-colors ${
                   currentId === 'WW-TRK-44019'
-                    ? 'bg-[#FF6200] text-white font-bold'
+                    ? 'bg-[#2563EB] text-white font-bold'
                     : 'bg-white/10 hover:bg-white/20 text-slate-200'
                 }`}
               >
@@ -348,7 +348,7 @@ export default function TrackingDashboard({ initialTrackingId = 'TRK-2024-001234
                 onClick={() => handleQuickSelect('WWIL-BOL-4091')}
                 className={`px-2.5 py-0.5 rounded-full font-mono text-[11px] transition-colors ${
                   currentId === 'WWIL-BOL-4091'
-                    ? 'bg-[#FF6200] text-white font-bold'
+                    ? 'bg-[#2563EB] text-white font-bold'
                     : 'bg-white/10 hover:bg-white/20 text-slate-200'
                 }`}
               >
@@ -357,7 +357,7 @@ export default function TrackingDashboard({ initialTrackingId = 'TRK-2024-001234
             </div>
 
             <div className="text-[11px] text-slate-300 flex items-center gap-1.5">
-              <Clock className="w-3.5 h-3.5 text-[#FF6200]" />
+              <Clock className="w-3.5 h-3.5 text-[#2563EB]" />
               <span>Telemetry Refreshed: {shipment.lastUpdated || 'Active'}</span>
             </div>
           </div>
@@ -393,7 +393,7 @@ export default function TrackingDashboard({ initialTrackingId = 'TRK-2024-001234
               </h2>
             </div>
             <div className="flex items-center gap-2">
-              <span className="px-3 py-1 rounded-full bg-orange-100 text-[#FF6200] font-bold text-xs uppercase tracking-wider">
+              <span className="px-3 py-1 rounded-full bg-blue-100 text-[#2563EB] font-bold text-xs uppercase tracking-wider">
                 Current: {shipment.status}
               </span>
             </div>
@@ -403,7 +403,7 @@ export default function TrackingDashboard({ initialTrackingId = 'TRK-2024-001234
             {/* Connecting Track Line */}
             <div className="hidden md:block absolute top-1/2 left-8 right-8 h-1 bg-slate-100 transform -translate-y-1/2 z-0">
               <div
-                className="h-full bg-[#FF6200] transition-all duration-500"
+                className="h-full bg-[#2563EB] transition-all duration-500"
                 style={{
                   width: `${((shipment.statusStep - 1) / (milestones.length - 1)) * 100}%`,
                 }}
@@ -420,7 +420,7 @@ export default function TrackingDashboard({ initialTrackingId = 'TRK-2024-001234
                     <div
                       className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-xs shrink-0 transition-all ${
                         isCurrent
-                          ? 'bg-[#FF6200] text-white ring-4 ring-orange-100 shadow-md scale-110'
+                          ? 'bg-[#2563EB] text-white ring-4 ring-orange-100 shadow-md scale-110'
                           : isPassed
                           ? 'bg-slate-900 text-white'
                           : 'bg-slate-100 text-slate-400 border border-slate-200'
@@ -433,7 +433,7 @@ export default function TrackingDashboard({ initialTrackingId = 'TRK-2024-001234
                       <span
                         className={`text-xs font-bold ${
                           isCurrent
-                            ? 'text-[#FF6200]'
+                            ? 'text-[#2563EB]'
                             : isPassed
                             ? 'text-slate-900'
                             : 'text-slate-400'
@@ -496,7 +496,7 @@ export default function TrackingDashboard({ initialTrackingId = 'TRK-2024-001234
 
             <div>
               <span className="text-[11px] font-medium text-slate-500 block">Estimated Arrival</span>
-              <strong className="text-sm font-bold text-[#FF6200] block truncate">{shipment.eta}</strong>
+              <strong className="text-sm font-bold text-[#2563EB] block truncate">{shipment.eta}</strong>
               <span className="text-[11px] text-slate-400">{shipment.serviceLevel}</span>
             </div>
 
@@ -522,7 +522,7 @@ export default function TrackingDashboard({ initialTrackingId = 'TRK-2024-001234
               </h3>
             </div>
             <div className="text-xs text-slate-500 flex items-center gap-1.5">
-              <MapPin className="w-3.5 h-3.5 text-[#FF6200]" />
+              <MapPin className="w-3.5 h-3.5 text-[#2563EB]" />
               <span>Active Waypoint: <strong>{shipment.currentLocation.name}</strong></span>
             </div>
           </div>
@@ -555,7 +555,7 @@ export default function TrackingDashboard({ initialTrackingId = 'TRK-2024-001234
                 <div
                   className={`absolute -left-[9px] top-1.5 w-4 h-4 rounded-full border-2 border-white ${
                     idx === 0
-                      ? 'bg-[#FF6200] ring-4 ring-orange-100'
+                      ? 'bg-[#2563EB] ring-4 ring-orange-100'
                       : cp.completed
                       ? 'bg-emerald-500'
                       : 'bg-slate-300'

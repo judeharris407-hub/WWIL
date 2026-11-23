@@ -65,14 +65,14 @@ export default function Navbar() {
               <span className="font-medium text-slate-400 tracking-wide">24/7 Global Dispatch:</span>
               <a 
                 href="tel:+18008459945" 
-                className="text-white hover:text-[#FF6200] transition-colors font-semibold flex items-center gap-1"
+                className="text-white hover:text-[#2563EB] transition-colors font-semibold flex items-center gap-1"
               >
-                <Phone className="w-3 h-3 text-[#FF6200]" />
+                <Phone className="w-3 h-3 text-[#2563EB]" />
                 +1 (800) 845-WWIL
               </a>
             </div>
             <div className="hidden md:flex items-center gap-2 border-l border-slate-700 pl-4">
-              <Mail className="w-3 h-3 text-[#FF6200]" />
+              <Mail className="w-3 h-3 text-[#2563EB]" />
               <a 
                 href="mailto:operations@wwil-logistics.com" 
                 className="hover:text-white transition-colors"
@@ -85,7 +85,7 @@ export default function Navbar() {
           {/* Compliance & Regulatory Badges */}
           <div className="flex items-center gap-4 text-slate-400">
             <span className="hidden lg:inline-flex items-center gap-1.5 bg-slate-900/80 px-2.5 py-0.5 rounded text-[11px] border border-slate-800">
-              <ShieldCheck className="w-3.5 h-3.5 text-[#FF6200]" />
+              <ShieldCheck className="w-3.5 h-3.5 text-[#2563EB]" />
               ISO 9001:2015 &amp; IATA Certified Operator
             </span>
             <div className="flex items-center gap-1.5 text-slate-300">
@@ -103,13 +103,13 @@ export default function Navbar() {
             
             {/* Brand Logo */}
             <Link href="/" className="flex items-center gap-3 group">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#FF6200] to-[#E05600] flex items-center justify-center shadow-lg shadow-orange-500/20 group-hover:scale-105 transition-transform duration-200">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:scale-105 transition-transform duration-200">
                 <span className="font-display font-extrabold text-2xl tracking-tighter text-white">W</span>
               </div>
               <div className="flex flex-col">
                 <div className="flex items-center gap-1.5">
                   <span className="font-display font-black text-2xl tracking-wider text-white">WWIL</span>
-                  <span className="inline-block w-2 h-2 rounded-full bg-[#FF6200]"></span>
+                  <span className="inline-block w-2 h-2 rounded-full bg-[#2563EB]"></span>
                 </div>
                 <span className="text-[10px] uppercase tracking-widest text-slate-400 font-semibold -mt-1">
                   Worldwide International Logistics
@@ -127,7 +127,7 @@ export default function Navbar() {
                     href={link.href}
                     className={`px-3 py-2 text-sm font-semibold rounded-lg transition-colors inline-flex items-center gap-1.5 ${
                       active
-                        ? 'text-[#FF6200] bg-slate-800/80'
+                        ? 'text-[#2563EB] bg-slate-800/80'
                         : 'text-slate-300 hover:text-white hover:bg-slate-800/50'
                     }`}
                   >
@@ -148,7 +148,7 @@ export default function Navbar() {
             <div className="flex items-center gap-4">
               <Link
                 href="/request-quote"
-                className="hidden sm:inline-flex items-center gap-2.5 px-5 py-2.5 rounded-lg bg-[#FF6200] hover:bg-[#E05600] text-white font-bold text-sm tracking-wide shadow-lg shadow-orange-500/25 transition-all transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-[#FF6200]"
+                className="hidden sm:inline-flex items-center gap-2.5 px-5 py-2.5 rounded-lg bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-sm tracking-wide shadow-lg shadow-blue-500/25 transition-all transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-[#2563EB]"
               >
                 <span>Request Quote</span>
                 <ArrowRight className="w-4 h-4" />
@@ -158,7 +158,7 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="lg:hidden p-2.5 rounded-lg bg-slate-800 text-slate-200 hover:text-white hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-[#FF6200]"
+                className="lg:hidden p-2.5 rounded-lg bg-slate-800 text-slate-200 hover:text-white hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-[#2563EB]"
                 aria-label="Toggle navigation menu"
               >
                 {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -180,7 +180,7 @@ export default function Navbar() {
                   onClick={() => setMobileMenuOpen(false)}
                   className={`flex items-center justify-between px-3 py-2.5 rounded-md text-base font-medium transition-colors ${
                     active
-                      ? 'text-[#FF6200] bg-slate-800'
+                      ? 'text-[#2563EB] bg-slate-800'
                       : 'text-slate-300 hover:bg-slate-800 hover:text-white'
                   }`}
                 >
@@ -199,7 +199,7 @@ export default function Navbar() {
               <Link
                 href="/request-quote"
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-[#FF6200] hover:bg-[#E05600] text-white font-bold text-base shadow-md"
+                className="w-full flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-base shadow-md"
               >
                 <span>Request Quote</span>
                 <ArrowRight className="w-4 h-4" />

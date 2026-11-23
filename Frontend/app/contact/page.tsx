@@ -75,15 +75,15 @@ export default function ContactPage() {
           className="absolute inset-0 w-full h-full object-cover"
         />
         {/* Semi-transparent dark corporate slate/navy overlay (bg-slate-900/80) */}
-        <div className="absolute inset-0 bg-slate-900/80 bg-gradient-to-r from-slate-950/95 via-slate-900/85 to-slate-900/80 backdrop-blur-[2px]"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-900/65 to-slate-900/35"></div>
 
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 text-[#FF6200] text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 text-[#2563EB] text-xs font-bold uppercase tracking-wider">
             <Globe className="w-3.5 h-3.5" />
             Global Communications
           </div>
           <h1 className="font-display font-extrabold text-3xl sm:text-5xl text-white tracking-tight">
-            Contact WWIL <span className="text-[#FF6200]">Operations</span>
+            Contact WWIL <span className="text-[#2563EB]">Operations</span>
           </h1>
           <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
             Our 24/7 central dispatch centers and licensed customs controllers are available across all time zones to support your logistics pipeline.
@@ -105,10 +105,10 @@ export default function ContactPage() {
                 className="absolute inset-0 w-full h-full object-cover"
               />
               {/* Semi-transparent dark corporate slate/navy overlay (bg-slate-900/80) */}
-              <div className="absolute inset-0 bg-slate-900/80 bg-gradient-to-r from-slate-950/95 via-slate-900/85 to-slate-950/90 backdrop-blur-[2px]"></div>
+              <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-900/60 to-slate-950/80"></div>
 
               <div className="relative z-10 space-y-6">
-                <span className="text-xs font-bold uppercase tracking-wider text-[#FF6200] block">
+                <span className="text-xs font-bold uppercase tracking-wider text-[#2563EB] block">
                   24/7 Central Emergency Operations
                 </span>
                 <h2 className="font-display font-extrabold text-2xl text-white">
@@ -120,7 +120,7 @@ export default function ContactPage() {
 
                 <div className="space-y-4 pt-2 border-t border-slate-800 text-xs">
                   <div className="flex items-start gap-3">
-                    <Phone className="w-4 h-4 text-[#FF6200] shrink-0 mt-0.5" />
+                    <Phone className="w-4 h-4 text-[#2563EB] shrink-0 mt-0.5" />
                     <div>
                       <span className="text-slate-400 block">Toll-Free Global Line</span>
                       <strong className="text-sm text-white">+1 (800) 845-WWIL (9945)</strong>
@@ -128,7 +128,7 @@ export default function ContactPage() {
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <Mail className="w-4 h-4 text-[#FF6200] shrink-0 mt-0.5" />
+                    <Mail className="w-4 h-4 text-[#2563EB] shrink-0 mt-0.5" />
                     <div>
                       <span className="text-slate-400 block">Operations Email</span>
                       <strong className="text-sm text-white">operations@wwil-logistics.com</strong>
@@ -136,7 +136,7 @@ export default function ContactPage() {
                   </div>
 
                   <div className="flex items-start gap-3">
-                    <Clock className="w-4 h-4 text-[#FF6200] shrink-0 mt-0.5" />
+                    <Clock className="w-4 h-4 text-[#2563EB] shrink-0 mt-0.5" />
                     <div>
                       <span className="text-slate-400 block">Support Cadence</span>
                       <strong className="text-sm text-white">24 Hours / 7 Days / 365 Days</strong>
@@ -195,7 +195,7 @@ export default function ContactPage() {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="e.g. Elena Rostova"
-                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:bg-white focus:border-[#FF6200] focus:ring-1 focus:ring-[#FF6200]"
+                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:bg-white focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]"
                     />
                   </div>
 
@@ -210,7 +210,7 @@ export default function ContactPage() {
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="e.rostova@enterprise.com"
-                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:bg-white focus:border-[#FF6200] focus:ring-1 focus:ring-[#FF6200]"
+                      className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:bg-white focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]"
                     />
                   </div>
                 </div>
@@ -223,7 +223,7 @@ export default function ContactPage() {
                     id="contact-subject"
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                    className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:bg-white focus:border-[#FF6200] focus:ring-1 focus:ring-[#FF6200]"
+                    className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:bg-white focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]"
                   >
                     <option value="Enterprise Freight Inquiry">Enterprise Freight Inquiry</option>
                     <option value="Air Charter Booking">Air Charter Booking</option>
@@ -245,14 +245,14 @@ export default function ContactPage() {
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     placeholder="Provide details on your origin, destination, cargo volume, or specific compliance requirements..."
-                    className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:bg-white focus:border-[#FF6200] focus:ring-1 focus:ring-[#FF6200]"
+                    className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:bg-white focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]"
                   ></textarea>
                 </div>
 
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full py-4 px-6 rounded-xl bg-[#FF6200] hover:bg-[#E05600] text-white font-bold text-sm tracking-wide shadow-lg shadow-orange-500/25 transition-all flex items-center justify-center gap-2"
+                  className="w-full py-4 px-6 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-sm tracking-wide shadow-lg shadow-blue-500/25 transition-all flex items-center justify-center gap-2"
                 >
                   <Send className="w-4 h-4" />
                   <span>{submitting ? 'TRANSMITTING MESSAGE...' : 'SEND INQUIRY'}</span>
@@ -266,7 +266,7 @@ export default function ContactPage() {
         {/* Global Regional Offices Grid */}
         <div className="space-y-6">
           <div className="text-center max-w-xl mx-auto space-y-1">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#FF6200]">Global Footprint</span>
+            <span className="text-xs font-bold uppercase tracking-wider text-[#2563EB]">Global Footprint</span>
             <h2 className="font-display font-extrabold text-2xl text-slate-900">Regional Port Offices</h2>
           </div>
 
@@ -274,10 +274,10 @@ export default function ContactPage() {
             {regionalOffices.map((office, idx) => (
               <div key={idx} className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-3">
                 <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center text-slate-800">
-                  <Building2 className="w-5 h-5 text-[#FF6200]" />
+                  <Building2 className="w-5 h-5 text-[#2563EB]" />
                 </div>
                 <div>
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#FF6200] block">{office.region}</span>
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-[#2563EB] block">{office.region}</span>
                   <h3 className="font-bold text-slate-900 text-sm">{office.city}</h3>
                 </div>
                 <p className="text-xs text-slate-500 leading-relaxed">{office.address}</p>

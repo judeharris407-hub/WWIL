@@ -19,7 +19,7 @@ export default function TrackOrderPage({ searchParams }: TrackOrderPageProps) {
       fallback={
         <div className="min-h-screen bg-[#F8FAFC] flex items-center justify-center">
           <div className="text-center space-y-3">
-            <div className="w-10 h-10 border-4 border-[#FF6200] border-t-transparent rounded-full animate-spin mx-auto"></div>
+            <div className="w-10 h-10 border-4 border-[#2563EB] border-t-transparent rounded-full animate-spin mx-auto"></div>
             <p className="text-sm font-semibold text-slate-600">Connecting to WWIL Global Telemetry Gateway...</p>
           </div>
         </div>

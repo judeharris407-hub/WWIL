@@ -105,7 +105,7 @@ export default function StaticQuoteForm() {
           </div>
           <div>
             <span className="text-slate-400 block mb-0.5">Target Date</span>
-            <strong className="text-[#FF6200] block truncate">{formData.expectedDate}</strong>
+            <strong className="text-[#2563EB] block truncate">{formData.expectedDate}</strong>
           </div>
         </div>
 
@@ -128,7 +128,7 @@ export default function StaticQuoteForm() {
           <h3 className="font-display font-bold text-xl text-slate-900">Request a Guaranteed Freight Tariff</h3>
           <p className="text-xs text-slate-500 mt-0.5">Direct vessel, air charter, and rail space allocation</p>
         </div>
-        <span className="px-2.5 py-1 rounded bg-[#FF6200]/10 text-[#FF6200] text-xs font-bold">
+        <span className="px-2.5 py-1 rounded bg-[#2563EB]/10 text-[#2563EB] text-xs font-bold">
           Free Consultation
         </span>
       </div>
@@ -145,7 +145,7 @@ export default function StaticQuoteForm() {
             value={formData.freightType}
             onChange={handleChange}
             required
-            className="w-full px-3.5 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-800 focus:outline-none focus:bg-white focus:border-[#FF6200] focus:ring-1 focus:ring-[#FF6200]"
+            className="w-full px-3.5 py-3 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-800 focus:outline-none focus:bg-white focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]"
           >
             <option value="Air Freight (Expedited)">Global Air Freight (Expedited Charter / Liner)</option>
             <option value="Ocean Freight (Full Container Load - FCL)">Ocean Shipping (Full Container Load - FCL)</option>
@@ -170,7 +170,7 @@ export default function StaticQuoteForm() {
               onChange={handleChange}
               placeholder="e.g. Germany (Frankfurt Hub)"
               required
-              className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:bg-white focus:border-[#FF6200] focus:ring-1 focus:ring-[#FF6200]"
+              className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:bg-white focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]"
             />
           </div>
 
@@ -186,7 +186,7 @@ export default function StaticQuoteForm() {
               onChange={handleChange}
               placeholder="e.g. United States (Chicago ORD)"
               required
-              className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:bg-white focus:border-[#FF6200] focus:ring-1 focus:ring-[#FF6200]"
+              className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:bg-white focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]"
             />
           </div>
         </div>
@@ -206,7 +206,7 @@ export default function StaticQuoteForm() {
               placeholder="e.g. 1500"
               required
               min="1"
-              className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 font-mono focus:outline-none focus:bg-white focus:border-[#FF6200] focus:ring-1 focus:ring-[#FF6200]"
+              className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 font-mono focus:outline-none focus:bg-white focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]"
             />
           </div>
 
@@ -221,7 +221,7 @@ export default function StaticQuoteForm() {
               value={formData.expectedDate}
               onChange={handleChange}
               required
-              className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:bg-white focus:border-[#FF6200] focus:ring-1 focus:ring-[#FF6200]"
+              className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:bg-white focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]"
             />
           </div>
         </div>
@@ -240,7 +240,7 @@ export default function StaticQuoteForm() {
               onChange={handleChange}
               placeholder="e.g. Marcus Vance"
               required
-              className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:bg-white focus:border-[#FF6200] focus:ring-1 focus:ring-[#FF6200]"
+              className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:bg-white focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]"
             />
           </div>
 
@@ -256,7 +256,7 @@ export default function StaticQuoteForm() {
               onChange={handleChange}
               placeholder="vance@apex-industrial.com"
               required
-              className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:bg-white focus:border-[#FF6200] focus:ring-1 focus:ring-[#FF6200]"
+              className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:bg-white focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]"
             />
           </div>
         </div>
@@ -274,7 +274,7 @@ export default function StaticQuoteForm() {
             onChange={handleChange}
             placeholder="+1 (555) 019-2834"
             required
-            className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:bg-white focus:border-[#FF6200] focus:ring-1 focus:ring-[#FF6200]"
+            className="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-800 focus:outline-none focus:bg-white focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB]"
           />
         </div>
 
@@ -283,7 +283,7 @@ export default function StaticQuoteForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full py-4 px-6 rounded-xl bg-[#FF6200] hover:bg-[#E05600] text-white font-bold text-sm tracking-wide shadow-lg shadow-orange-500/25 transition-all duration-200 flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-[#FF6200] focus:ring-offset-2"
+            className="w-full py-4 px-6 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-sm tracking-wide shadow-lg shadow-blue-500/25 transition-all duration-200 flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-[#2563EB] focus:ring-offset-2"
           >
             <Send className="w-4 h-4" />
             <span>{isSubmitting ? 'TRANSMITTING REQUISITION...' : 'SUBMIT FREIGHT QUOTE REQUEST'}</span>

@@ -131,15 +131,15 @@ export default function ServicesPage() {
           className="absolute inset-0 w-full h-full object-cover"
         />
         {/* Semi-transparent dark corporate slate/navy overlay (bg-slate-900/80) */}
-        <div className="absolute inset-0 bg-slate-900/80 bg-gradient-to-r from-slate-950/95 via-slate-900/85 to-slate-900/80 backdrop-blur-[2px]"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-900/65 to-slate-900/35"></div>
 
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 text-[#FF6200] text-xs font-bold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 text-[#2563EB] text-xs font-bold uppercase tracking-wider">
             <Layers className="w-3.5 h-3.5" />
             Multimodal Capabilities
           </div>
           <h1 className="font-display font-extrabold text-3xl sm:text-5xl text-white tracking-tight">
-            Integrated Global <span className="text-[#FF6200]">Supply Chain Services</span>
+            Integrated Global <span className="text-[#2563EB]">Supply Chain Services</span>
           </h1>
           <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
             From single-pallet high-priority air freight to multi-thousand TEU maritime charters and bonded distribution, WWIL delivers end-to-end reliability.
@@ -172,7 +172,7 @@ export default function ServicesPage() {
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-transparent to-transparent"></div>
                     <div className="absolute top-4 left-4">
-                      <span className="px-3 py-1 rounded-full bg-[#FF6200] text-white text-xs font-bold tracking-wider uppercase shadow-md">
+                      <span className="px-3 py-1 rounded-full bg-[#2563EB] text-white text-xs font-bold tracking-wider uppercase shadow-md">
                         {svc.category}
                       </span>
                     </div>
@@ -181,7 +181,7 @@ export default function ServicesPage() {
                   {/* Details Column (7 Cols) */}
                   <div className={`lg:col-span-7 p-6 sm:p-10 space-y-6 ${isReversed ? 'lg:order-1' : ''}`}>
                     <div className="space-y-2">
-                      <div className="flex items-center gap-2 text-[#FF6200]">
+                      <div className="flex items-center gap-2 text-[#2563EB]">
                         <Icon className="w-5 h-5" />
                         <span className="text-xs font-bold uppercase tracking-wider">{svc.category}</span>
                       </div>
@@ -202,7 +202,7 @@ export default function ServicesPage() {
                       <div className="space-y-2">
                         {svc.capabilities.map((cap, i) => (
                           <div key={i} className="flex items-start gap-2.5 text-xs sm:text-sm text-slate-700">
-                            <Check className="w-4 h-4 text-[#FF6200] shrink-0 mt-0.5" />
+                            <Check className="w-4 h-4 text-[#2563EB] shrink-0 mt-0.5" />
                             <span>{cap}</span>
                           </div>
                         ))}
@@ -222,7 +222,7 @@ export default function ServicesPage() {
                     <div className="pt-2 flex items-center justify-between">
                       <Link
                         href="/request-quote"
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#FF6200] hover:bg-[#E05600] text-white font-bold text-xs shadow-md transition-colors"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-xs shadow-md transition-colors"
                       >
                         <span>Book Service</span>
                         <ArrowRight className="w-3.5 h-3.5" />

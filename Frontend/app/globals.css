@@ -6,8 +6,11 @@
 @tailwind utilities;
 
 :root {
-  --primary-orange: #FF6200;
-  --primary-orange-hover: #E05600;
+  --primary-accent: #2563EB;
+  --primary-accent-hover: #1D4ED8;
+  --primary-sky: #0284C7;
+  --primary-orange: #2563EB;
+  --primary-orange-hover: #1D4ED8;
   --navy-dark: #0F172A;
   --navy-surface: #1E293B;
   --navy-deep: #080D1A;
@@ -32,15 +35,15 @@ h1, h2, h3, .font-display {
 @keyframes beaconPulse {
   0% {
     transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(255, 98, 0, 0.7);
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7);
   }
   70% {
     transform: scale(1);
-    box-shadow: 0 0 0 10px rgba(255, 98, 0, 0);
+    box-shadow: 0 0 0 10px rgba(37, 99, 235, 0);
   }
   100% {
     transform: scale(0.95);
-    box-shadow: 0 0 0 0 rgba(255, 98, 0, 0);
+    box-shadow: 0 0 0 0 rgba(37, 99, 235, 0);
   }
 }
 
@@ -99,5 +102,5 @@ h1, h2, h3, .font-display {
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #FF6200;
+  background: #2563EB;
 }

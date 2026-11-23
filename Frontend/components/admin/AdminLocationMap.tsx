@@ -77,16 +77,16 @@ export default function AdminLocationMap({
             width: 44px;
             height: 44px;
             border-radius: 50%;
-            background-color: rgba(255, 98, 0, 0.4);
+            background-color: rgba(37, 99, 235, 0.4);
             animation: beaconPulse 1.6s infinite ease-out;
           "></span>
           <div style="
-            background-color: #FF6200;
+            background-color: #2563EB;
             width: 28px;
             height: 28px;
             border-radius: 50%;
             border: 3px solid #FFFFFF;
-            box-shadow: 0 0 15px rgba(255, 98, 0, 0.8);
+            box-shadow: 0 0 15px rgba(37, 99, 235, 0.8);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -203,7 +203,7 @@ export default function AdminLocationMap({
             <Polyline
               positions={completedSegment}
               pathOptions={{
-                color: '#FF6200',
+                color: '#2563EB',
                 weight: 4,
                 opacity: 1.0,
               }}
@@ -226,7 +226,7 @@ export default function AdminLocationMap({
             <Polyline
               positions={remainingSegment}
               pathOptions={{
-                color: '#FF6200',
+                color: '#2563EB',
                 weight: 3,
                 opacity: 0.85,
                 dashArray: '6, 6',
@@ -265,7 +265,7 @@ export default function AdminLocationMap({
             <div className="p-2 text-xs space-y-1">
               <strong className="text-slate-900 block font-bold">Consignment {shipmentId}</strong>
               <p className="text-slate-600">Drag this pin or click anywhere on the map to reposition.</p>
-              <div className="text-[11px] font-mono text-[#FF6200] pt-1 font-bold">
+              <div className="text-[11px] font-mono text-[#2563EB] pt-1 font-bold">
                 Lat: {lat.toFixed(4)}°, Lng: {lng.toFixed(4)}°
               </div>
             </div>
@@ -276,15 +276,15 @@ export default function AdminLocationMap({
       {/* Floating map hint */}
       <div className="absolute bottom-3 left-3 right-3 sm:right-auto z-[400] bg-slate-900/90 text-white backdrop-blur-md px-3 py-2 rounded-lg text-xs flex flex-wrap items-center justify-between gap-3 border border-slate-700 shadow-md pointer-events-none">
         <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-[#FF6200] beacon-pulse"></span>
+          <span className="w-2 h-2 rounded-full bg-[#2563EB] beacon-pulse"></span>
           <span>Click map or drag orange pin to set GPS coordinates</span>
         </div>
         <div className="flex items-center gap-2.5 text-[10.5px] border-t sm:border-t-0 sm:border-l border-slate-700 pt-1 sm:pt-0 sm:pl-3">
           <span className="flex items-center gap-1 font-semibold text-white">
-            <span className="w-3.5 h-1 bg-[#FF6200] rounded-full inline-block"></span> Solid (Completed)
+            <span className="w-3.5 h-1 bg-[#2563EB] rounded-full inline-block"></span> Solid (Completed)
           </span>
           <span className="flex items-center gap-1 font-semibold text-slate-300">
-            <span className="w-3.5 h-0 border-t-2 border-dashed border-[#FF6200] inline-block"></span> Dashed (Remaining)
+            <span className="w-3.5 h-0 border-t-2 border-dashed border-[#2563EB] inline-block"></span> Dashed (Remaining)
           </span>
         </div>
       </div>

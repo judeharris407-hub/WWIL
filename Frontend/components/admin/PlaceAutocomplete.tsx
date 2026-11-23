@@ -186,16 +186,16 @@ export default function PlaceAutocomplete({
     <div className="relative space-y-1.5" ref={dropdownRef}>
       <div className="flex items-center justify-between">
         <label className="block text-xs font-bold text-slate-700">
-          {label} {required && <span className="text-[#FF6200]">*</span>}
+          {label} {required && <span className="text-[#2563EB]">*</span>}
         </label>
         {onPickOnMap && (
           <button
             type="button"
             onClick={onPickOnMap}
-            className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#FF6200] hover:text-[#E05600] hover:bg-orange-50 px-2 py-0.5 rounded-md border border-orange-200 transition-all shadow-xs"
+            className="inline-flex items-center gap-1 text-[11px] font-semibold text-[#2563EB] hover:text-[#1D4ED8] hover:bg-blue-50 px-2 py-0.5 rounded-md border border-blue-200 transition-all shadow-xs"
             title="Open interactive Leaflet map to pinpoint coordinates"
           >
-            <Compass className="w-3 h-3 text-[#FF6200]" />
+            <Compass className="w-3 h-3 text-[#2563EB]" />
             <span>Pick on Map</span>
           </button>
         )}
@@ -203,7 +203,7 @@ export default function PlaceAutocomplete({
 
       <div className="relative flex items-center">
         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
-          <MapPin className="w-4 h-4 text-[#FF6200]" />
+          <MapPin className="w-4 h-4 text-[#2563EB]" />
         </div>
         <input
           type="text"
@@ -219,11 +219,11 @@ export default function PlaceAutocomplete({
           }}
           placeholder={placeholder}
           required={required}
-          className="w-full pl-9 pr-9 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs text-slate-900 focus:outline-none focus:bg-white focus:border-[#FF6200] focus:ring-1 focus:ring-[#FF6200] transition-colors"
+          className="w-full pl-9 pr-9 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-xs text-slate-900 focus:outline-none focus:bg-white focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] transition-colors"
         />
         {isLoading && (
           <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-slate-400">
-            <Loader2 className="w-3.5 h-3.5 animate-spin text-[#FF6200]" />
+            <Loader2 className="w-3.5 h-3.5 animate-spin text-[#2563EB]" />
           </div>
         )}
         {!isLoading && query && (
@@ -255,10 +255,10 @@ export default function PlaceAutocomplete({
                   onClick={() => handleSelect(item)}
                   className="w-full text-left px-3 py-2 rounded-lg hover:bg-slate-50 flex items-start gap-2.5 transition-colors group"
                 >
-                  <Compass className="w-4 h-4 text-[#FF6200] mt-0.5 shrink-0 group-hover:scale-110 transition-transform" />
+                  <Compass className="w-4 h-4 text-[#2563EB] mt-0.5 shrink-0 group-hover:scale-110 transition-transform" />
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between">
-                      <strong className="text-xs text-slate-900 group-hover:text-[#FF6200] transition-colors truncate">
+                      <strong className="text-xs text-slate-900 group-hover:text-[#2563EB] transition-colors truncate">
                         {item.name}
                       </strong>
                       <span className="text-[10px] font-mono text-slate-500 bg-slate-100 px-1.5 py-0.5 rounded">
@@ -312,7 +312,7 @@ export default function PlaceAutocomplete({
           <button
             type="button"
             onClick={onPickOnMap}
-            className="text-[10px] ml-auto px-2 py-0.5 bg-orange-50 hover:bg-orange-100 text-[#FF6200] border border-orange-200 rounded-md transition-colors font-semibold flex items-center gap-1"
+            className="text-[10px] ml-auto px-2 py-0.5 bg-blue-50 hover:bg-blue-100 text-[#2563EB] border border-blue-200 rounded-md transition-colors font-semibold flex items-center gap-1"
           >
             <MapPin className="w-2.5 h-2.5" />
             <span>Pick on Map</span>
