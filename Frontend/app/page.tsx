@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import TrackingSearchCard from '@/components/tracking/TrackingSearchCard';
 import StaticQuoteForm from '@/components/quote/StaticQuoteForm';
+import GlobalSupportSection from '@/components/home/GlobalSupportSection';
 
 export default function HomePage() {
   return (
@@ -730,6 +731,11 @@ export default function HomePage() {
 
         </div>
       </section>
+
+      {/* ===================================================================== */}
+      {/* 7. 24/7 GLOBAL CUSTOMER SUPPORT & LIVE DISPATCH SECTION              */}
+      {/* ===================================================================== */}
+      <GlobalSupportSection />
 
     </div>
   );
