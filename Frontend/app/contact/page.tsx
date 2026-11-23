@@ -9,7 +9,9 @@ import {
   Send, 
   CheckCircle2, 
   Building2, 
-  Globe 
+  Globe,
+  ExternalLink,
+  MessageCircle
 } from 'lucide-react';
 
 export default function ContactPage() {
@@ -135,6 +137,22 @@ export default function ContactPage() {
                     </div>
                   </div>
 
+                  <a
+                    href={`https://wa.me/${(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '13479214785').replace(/\D/g, '') || '13479214785'}?text=${encodeURIComponent('Hello WWIL Support, I have an urgent freight inquiry.')}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-start gap-3 group/wa transition-colors"
+                  >
+                    <MessageCircle className="w-4 h-4 text-[#25D366] shrink-0 mt-0.5 group-hover/wa:scale-110 transition-transform" />
+                    <div>
+                      <span className="text-slate-400 block">WhatsApp Click-to-Chat</span>
+                      <strong className="text-sm text-[#25D366] group-hover/wa:underline flex items-center gap-1.5">
+                        +1 (347) 921-4785
+                        <ExternalLink className="w-3 h-3 text-emerald-400" />
+                      </strong>
+                    </div>
+                  </a>
+
                   <div className="flex items-start gap-3">
                     <Clock className="w-4 h-4 text-[#2563EB] shrink-0 mt-0.5" />
                     <div>
@@ -144,6 +162,27 @@ export default function ContactPage() {
                   </div>
                 </div>
               </div>
+            </div>
+
+            {/* Quick-Action Card: Chat on WhatsApp */}
+            <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-6 shadow-sm flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="space-y-1">
+                <div className="flex items-center gap-2">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#25D366] animate-pulse"></span>
+                  <span className="text-xs font-bold uppercase tracking-wider text-emerald-700">Instant Messaging</span>
+                </div>
+                <h3 className="font-display font-bold text-base text-slate-900">Direct WhatsApp Dispatch</h3>
+                <p className="text-xs text-slate-600">Connect directly with a dedicated freight controller for urgent queries.</p>
+              </div>
+              <a
+                href={`https://wa.me/${(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '13479214785').replace(/\D/g, '') || '13479214785'}?text=${encodeURIComponent('Hello WWIL Operations Desk, I would like to inquire about international freight tariffs and cargo space allocation.')}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="shrink-0 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#25D366] hover:bg-[#20BD5A] text-white font-bold text-xs shadow-md shadow-emerald-500/20 transition-all hover:scale-105"
+              >
+                <span>Chat on WhatsApp</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
             </div>
 
             <div className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm space-y-2">

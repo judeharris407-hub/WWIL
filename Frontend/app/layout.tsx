@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import LiveSupportWidgets from '@/components/LiveSupportWidgets';
 
 export const metadata: Metadata = {
   title: 'Worldwide International Logistics (WWIL) | Global Freight & Multimodal Cargo',
@@ -19,6 +20,7 @@ export default function RootLayout({
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
+        <LiveSupportWidgets />
       </body>
     </html>
   );
