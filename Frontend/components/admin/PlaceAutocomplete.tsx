@@ -137,7 +137,7 @@ export default function PlaceAutocomplete({
           {
             headers: {
               Accept: 'application/json',
-              'User-Agent': 'WWIL-Logistics-Platform/2.0 (operations@wwil-logistics.com)',
+              'User-Agent': 'TransGlobe-Logistics-Platform/2.0 (operations@transglobe-logistics.com)',
             },
           }
         );

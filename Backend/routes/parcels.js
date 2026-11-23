@@ -178,7 +178,7 @@ router.post('/', verifyAdminToken, async (req, res) => {
   const resolvedCurrentLocationName = (current_location_name || currentLocationName || `${resolvedOriginAddress} Outbound Terminal`).toString().trim();
   const resolvedWeight = (weight_kg || weightKg || weight) ? String(weight_kg || weightKg || weight).trim() : null;
   const resolvedVolume = (volume_cbm || volumeCbm) ? String(volume_cbm || volumeCbm).trim() : null;
-  const resolvedCarrier = (carrier_name || carrierName || carrier || 'WWIL Global Logistics Network').toString().trim();
+  const resolvedCarrier = (carrier_name || carrierName || carrier || 'TransGlobe Global Logistics Network').toString().trim();
   const resolvedConveyance = (vessel_or_flight || vesselOrFlight || conveyance || null)?.toString?.().trim?.() || null;
 
   // Input Validation
@@ -288,7 +288,7 @@ router.post('/', verifyAdminToken, async (req, res) => {
       newParcel.origin_address,
       newParcel.origin_lat,
       newParcel.origin_lng,
-      'Shipment manifested and registered into WWIL international logistics network.',
+      'Shipment manifested and registered into TransGlobe international logistics network.',
     ];
 
     const historyResult = await client.query(insertHistorySql, historyValues);

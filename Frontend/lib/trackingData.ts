@@ -50,11 +50,11 @@ export interface Shipment {
 }
 
 export const mockShipments: Record<string, Shipment> = {
-  'TRK-2024-001234': {
-    id: 'TRK-2024-001234',
+  'TGL-2026-001234': {
+    id: 'TGL-2026-001234',
     type: 'Air',
-    carrier: 'WWIL Air Express Alliance',
-    conveyance: 'Flight WW-904 (Boeing 777F)',
+    carrier: 'TransGlobe Air Express Alliance',
+    conveyance: 'Flight TG-904 (Boeing 777F)',
     senderName: 'Siemens Industrial AG (Frankfurt)',
     receiverName: 'Apex Machinery Components (Chicago)',
     origin: {
@@ -134,7 +134,7 @@ export const mockShipments: Record<string, Shipment> = {
   'AWB-78942-FRA': {
     id: 'AWB-78942-FRA',
     type: 'Air',
-    carrier: 'Lufthansa Cargo / WWIL Air Express',
+    carrier: 'Lufthansa Cargo / TransGlobe Air Express',
     conveyance: 'Flight LH-8220 (MD-11F Cargo)',
     senderName: 'BioHealth Pharma GmbH',
     receiverName: 'Metropolitan Medical Network (Newark)',
@@ -205,7 +205,7 @@ export const mockShipments: Record<string, Shipment> = {
   'MSKU-982341-0': {
     id: 'MSKU-982341-0',
     type: 'Ocean',
-    carrier: 'Maersk Line / WWIL Ocean Alliance',
+    carrier: 'Maersk Line / TransGlobe Ocean Alliance',
     conveyance: 'Vessel: MAERSK MC-KINNEY MOLLER (Voyage 2608W)',
     senderName: 'Cosco Electronics Export Corp (Shanghai)',
     receiverName: 'EuroTech Distribution Logistics BV',
@@ -288,7 +288,7 @@ export const mockShipments: Record<string, Shipment> = {
   'WW-TRK-44019': {
     id: 'WW-TRK-44019',
     type: 'Ground',
-    carrier: 'WWIL Overland Freight Network',
+    carrier: 'TransGlobe Overland Freight Network',
     conveyance: 'Fleet Unit: EV-Semi #TX-4890',
     senderName: 'Texas Industrial Assemblies (Dallas)',
     receiverName: 'Silicon Hills Fab Center (Austin)',
@@ -409,10 +409,10 @@ export function getShipmentById(id: string): Shipment {
 
   // Dynamic fallback for any arbitrary tracking code
   return {
-    id: normalizedId || 'TRK-2024-001234',
+    id: normalizedId || 'TGL-2026-001234',
     type: 'Air',
-    carrier: 'WWIL Global Multimodal Network',
-    conveyance: 'Transport Unit: WWIL-INT-' + Math.floor(1000 + Math.random() * 9000),
+    carrier: 'TransGlobe Global Multimodal Network',
+    conveyance: 'Transport Unit: TGL-INT-' + Math.floor(1000 + Math.random() * 9000),
     senderName: 'International Logistics Gateway Client',
     receiverName: 'Designated Consignee Terminal',
     origin: {
@@ -563,7 +563,7 @@ export function updateShipmentLocation(
   lng: number,
   locationName: string,
   checkpointTitle = 'Manual GPS Telemetry Update',
-  checkpointDetail = 'Position verified and recorded by WWIL operations controller.'
+  checkpointDetail = 'Position verified and recorded by TransGlobe operations controller.'
 ): Shipment {
   const shipment = getShipmentById(id);
   const now = new Date();
@@ -666,7 +666,7 @@ export function transformBackendParcelToShipment(parcel: any): Shipment {
     }) : `Milestone ${index + 1}`,
     location: h.location_name || 'Terminal Waypoint',
     title: h.status || 'Checkpoint Event',
-    detail: h.notes || 'Status confirmed in WWIL global tracking system.',
+    detail: h.notes || 'Status confirmed in TransGlobe global tracking system.',
     completed: true,
   }));
 
@@ -692,8 +692,8 @@ export function transformBackendParcelToShipment(parcel: any): Shipment {
     id: parcel.tracking_number,
     dbId: parcel.id,
     type,
-    carrier: parcel.carrier_name || (type === 'Air' ? 'WWIL Air Express Alliance' : type === 'Ocean' ? 'WWIL Ocean Liner Alliance' : 'WWIL Overland Freight Network'),
-    conveyance: parcel.vessel_or_flight || (type === 'Air' ? 'Flight WW-904 (Cargo Charter)' : type === 'Ocean' ? 'Vessel MAERSK (Voyage 2608W)' : 'Freight EV-Semi Unit #TX-4890'),
+    carrier: parcel.carrier_name || (type === 'Air' ? 'TransGlobe Air Express Alliance' : type === 'Ocean' ? 'TransGlobe Ocean Liner Alliance' : 'TransGlobe Overland Freight Network'),
+    conveyance: parcel.vessel_or_flight || (type === 'Air' ? 'Flight TG-904 (Cargo Charter)' : type === 'Ocean' ? 'Vessel MAERSK (Voyage 2608W)' : 'Freight EV-Semi Unit #TX-4890'),
     senderName: parcel.sender_name,
     senderPhone: parcel.sender_phone,
     receiverName: parcel.recipient_name,
@@ -732,7 +732,7 @@ export function transformBackendParcelToShipment(parcel: any): Shipment {
         time: 'Initial Manifest',
         location: parcel.origin_address,
         title: 'Shipment Manifested',
-        detail: 'Consignment entered into WWIL international logistics network.',
+        detail: 'Consignment entered into TransGlobe international logistics network.',
         completed: true,
       },
     ],

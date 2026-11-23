@@ -31,7 +31,7 @@ export default function HomePage() {
         <div className="absolute inset-0 pointer-events-none">
           <img
             src="/assets/containers1.webp"
-            alt="Worldwide International Logistics Multimodal Container Operations"
+            alt="TransGlobe-Logistics Multimodal Container Operations"
             className="absolute inset-0 w-full h-full object-cover scale-105"
           />
           {/* Semi-transparent dark corporate slate/navy overlay (bg-slate-900/80) */}
@@ -125,7 +125,7 @@ export default function HomePage() {
         {/* Logistics Photography Background & Dark Corporate Translucent Overlay */}
         <img
           src="/assets/bgpic1.avif"
-          alt="WWIL Global Freight Hub Telemetry"
+          alt="TransGlobe-Logistics Global Freight Hub Telemetry"
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-900/60 to-slate-950/80"></div>
@@ -211,7 +211,7 @@ export default function HomePage() {
                 Real-Time GPS Route Mapping &amp; <span className="text-[#2563EB]">Waypoint Telemetry</span>
               </h2>
               <p className="text-slate-600 text-base leading-relaxed">
-                Never wonder where your critical cargo is. WWIL integrates automated AIS vessel tracking, ADS-B flight feeds, and terrestrial GPS sensors into an interactive map interface powered by Leaflet.
+                Never wonder where your critical cargo is. TransGlobe-Logistics integrates automated AIS vessel tracking, ADS-B flight feeds, and terrestrial GPS sensors into an interactive map interface powered by Leaflet.
               </p>
 
               <div className="space-y-3 pt-2">
@@ -276,7 +276,7 @@ export default function HomePage() {
                 <div className="h-64 sm:h-72 rounded-xl overflow-hidden relative border border-slate-200 bg-slate-100">
                   <img
                     src="/assets/bgpic1.avif"
-                    alt="Worldwide Logistics Telemetry Map Preview"
+                    alt="TransGlobe-Logistics Telemetry Map Preview"
                     className="w-full h-full object-cover img-editorial-zoom opacity-80"
                   />
                   <div className="absolute inset-0 bg-slate-950/40 flex items-center justify-center p-6 text-center">
@@ -346,7 +346,7 @@ export default function HomePage() {
             <div className="lg:col-span-7 group relative rounded-2xl overflow-hidden shadow-xl bg-slate-900 flex flex-col justify-end min-h-[480px] lg:min-h-[560px] border border-slate-200">
               <img
                 src="/assets/ship1.avif"
-                alt="Worldwide International Logistics Ocean Container Ship and Air Cargo Operations"
+                alt="TransGlobe-Logistics Ocean Container Ship and Air Cargo Operations"
                 className="absolute inset-0 w-full h-full object-cover img-editorial-zoom"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-wwil-navy-950 via-wwil-navy-950/75 to-wwil-navy-950/20"></div>
@@ -692,7 +692,7 @@ export default function HomePage() {
               <div className="relative overflow-hidden p-5 rounded-2xl bg-wwil-navy-900 text-white space-y-3 shadow-lg border border-slate-800">
                 <img
                   src="/assets/banner2.jpg"
-                  alt="WWIL Maritime Port Facility"
+                  alt="TransGlobe-Logistics Maritime Port Facility"
                   className="absolute inset-0 w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-900/65 to-slate-900/50"></div>
@@ -706,7 +706,7 @@ export default function HomePage() {
                     <Star className="w-3.5 h-3.5 fill-[#2563EB]" />
                   </div>
                   <p className="text-xs text-slate-300 italic leading-relaxed">
-                    "WWIL reduced our transatlantic container transit times by 4 full days while cutting customs clearance delays to zero. Their digital command center gives our executive team full visibility."
+                    "TransGlobe-Logistics reduced our transatlantic container transit times by 4 full days while cutting customs clearance delays to zero. Their digital command center gives our executive team full visibility."
                   </p>
                   <div className="flex items-center gap-3 pt-1 border-t border-slate-800">
                     <div className="w-8 h-8 rounded-full bg-[#2563EB] flex items-center justify-center font-bold text-xs text-white">

@@ -38,7 +38,7 @@ export default function GlobalSupportSection() {
   // 1. WhatsApp Configuration
   const rawWhatsApp = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER?.trim() || '13479214785';
   const whatsappNumber = rawWhatsApp.replace(/\D/g, '') || '13479214785';
-  const whatsappMessage = 'Hello WWIL Support, I would like to connect with a live operations coordinator regarding international freight services.';
+  const whatsappMessage = 'Hello TransGlobe-Logistics Support, I would like to connect with a live operations coordinator regarding international freight services.';
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
   // 2. Smartsupp Live Chat Trigger
@@ -60,7 +60,7 @@ export default function GlobalSupportSection() {
   // 3. Copy Email to Clipboard
   const handleCopyEmail = () => {
     if (typeof navigator !== 'undefined' && navigator.clipboard) {
-      navigator.clipboard.writeText('operations@wwil-logistics.com');
+      navigator.clipboard.writeText('operations@transglobe-logistics.com');
       setCopiedEmail(true);
       setTimeout(() => setCopiedEmail(false), 2400);
     }
@@ -73,7 +73,7 @@ export default function GlobalSupportSection() {
       <div className="absolute inset-0 pointer-events-none">
         <img
           src="/assets/warehouse2.avif"
-          alt="Worldwide International Logistics Operations Command Center"
+          alt="TransGlobe-Logistics Operations Command Center"
           className="absolute inset-0 w-full h-full object-cover scale-105"
         />
         {/* Balanced Dark Slate Overlay (bg-gradient-to-r from-slate-900/85 via-slate-900/65 to-slate-900/50) */}
@@ -197,7 +197,7 @@ export default function GlobalSupportSection() {
               <div>
                 <h3 className="font-display font-bold text-xl text-slate-900">Direct Operations Email</h3>
                 <p className="text-xs font-mono font-semibold text-slate-600 mt-0.5 truncate">
-                  operations@wwil-logistics.com
+                  operations@transglobe-logistics.com
                 </p>
               </div>
 
@@ -209,7 +209,7 @@ export default function GlobalSupportSection() {
             <div className="pt-6 mt-6 border-t border-slate-100 space-y-2.5">
               <div className="grid grid-cols-2 gap-2">
                 <a
-                  href="mailto:operations@wwil-logistics.com?subject=WWIL%20Operations%20Inquiry"
+                  href="mailto:operations@transglobe-logistics.com?subject=TransGlobe-Logistics%20Operations%20Inquiry"
                   className="inline-flex items-center justify-center gap-1.5 px-3 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider transition-colors shadow-sm"
                 >
                   <Mail className="w-3.5 h-3.5" />

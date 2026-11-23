@@ -88,10 +88,10 @@ export default function AdminDashboardPage() {
 
   // Create Shipment Form State
   const [newShipment, setNewShipment] = useState({
-    id: `WWIL-2026-${Math.floor(1000 + Math.random() * 9000)}`,
+    id: `TGL-2026-${Math.floor(1000 + Math.random() * 9000)}`,
     type: 'Air' as Shipment['type'],
-    carrier: 'WWIL Global Multimodal Network',
-    conveyance: 'Flight WW-810 (Cargo Carrier)',
+    carrier: 'TransGlobe Global Multimodal Network',
+    conveyance: 'Flight TG-810 (Cargo Carrier)',
     senderName: 'Apex Precision Engineering AG',
     senderPhone: '+49 69 798 2834',
     receiverName: 'Nexus Global Logistics LLC',
@@ -175,7 +175,7 @@ export default function AdminDashboardPage() {
   };
 
   const generateNewId = () => {
-    const genId = `WWIL-2026-${Math.floor(1000 + Math.random() * 9000)}`;
+    const genId = `TGL-2026-${Math.floor(1000 + Math.random() * 9000)}`;
     setNewShipment((prev) => ({ ...prev, id: genId }));
   };
 
@@ -286,7 +286,7 @@ export default function AdminDashboardPage() {
           current_lat: editLat,
           current_lng: editLng,
           location_name: checkpointLocation || `Waypoint (${editLat.toFixed(2)}°, ${editLng.toFixed(2)}°)`,
-          notes: checkpointDetail || 'Location telemetry recorded by WWIL logistics controller.',
+          notes: checkpointDetail || 'Location telemetry recorded by TransGlobe logistics controller.',
         }),
       });
     } catch (err) {
@@ -299,7 +299,7 @@ export default function AdminDashboardPage() {
       editLng,
       checkpointLocation || `Waypoint (${editLat.toFixed(2)}°, ${editLng.toFixed(2)}°)`,
       checkpointTitle || 'Terminal Waypoint Checkpoint',
-      checkpointDetail || 'Location telemetry recorded by WWIL logistics controller.'
+      checkpointDetail || 'Location telemetry recorded by TransGlobe logistics controller.'
     );
 
     setLocationModalOpen(false);
@@ -374,7 +374,7 @@ export default function AdminDashboardPage() {
             time: 'Just now',
             location: newShipment.originName,
             title: 'Shipment Created & Manifested',
-            detail: 'Consignment entered into WWIL enterprise logistics network.',
+            detail: 'Consignment entered into TransGlobe enterprise logistics network.',
             completed: true,
           },
         ],
@@ -469,7 +469,7 @@ export default function AdminDashboardPage() {
         </div>
         <div className="flex items-center gap-3 text-slate-300 font-semibold text-sm">
           <RefreshCw className="w-4 h-4 text-[#2563EB] animate-spin" />
-          <span>Verifying WWIL Operations clearance...</span>
+          <span>Verifying TransGlobe-Logistics Operations clearance...</span>
         </div>
       </div>
     );
@@ -534,7 +534,7 @@ export default function AdminDashboardPage() {
         <div className="relative overflow-hidden bg-wwil-navy-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-6">
           <img
             src="/assets/bgpic1.avif"
-            alt="WWIL Operations Network"
+            alt="TransGlobe Operations Network"
             className="absolute inset-0 w-full h-full object-cover"
           />
           {/* Semi-transparent dark corporate slate/navy overlay (bg-slate-900/80) */}

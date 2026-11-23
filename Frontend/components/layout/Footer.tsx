@@ -14,12 +14,12 @@ export default function Footer() {
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] flex items-center justify-center shadow-lg shadow-blue-500/20">
-                <span className="font-display font-extrabold text-xl text-white">W</span>
+                <span className="font-display font-extrabold text-lg text-white">TGL</span>
               </div>
               <div className="flex flex-col">
-                <span className="font-display font-black text-xl tracking-wider text-white">WWIL</span>
+                <span className="font-display font-black text-xl tracking-wider text-white">TransGlobe</span>
                 <span className="text-[9px] uppercase tracking-widest text-slate-400 font-semibold -mt-1">
-                  Worldwide International Logistics
+                  TransGlobe-Logistics
                 </span>
               </div>
             </div>
@@ -86,7 +86,7 @@ export default function Footer() {
                 <Link href="/request-quote" className="hover:text-[#2563EB] transition-colors">Request a Freight Quote</Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-[#2563EB] transition-colors">About WWIL</Link>
+                <Link href="/about" className="hover:text-[#2563EB] transition-colors">About TransGlobe-Logistics</Link>
               </li>
               <li>
                 <Link href="/contact" className="hover:text-[#2563EB] transition-colors">Contact Global Hubs</Link>
@@ -108,13 +108,13 @@ export default function Footer() {
               <p className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-[#2563EB] shrink-0" />
                 <a href="tel:+18008459945" className="hover:text-white transition-colors font-medium">
-                  +1 (800) 845-WWIL (9945)
+                  +1 (800) 845-TGL (845-8450)
                 </a>
               </p>
               <p className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-[#2563EB] shrink-0" />
-                <a href="mailto:operations@wwil-logistics.com" className="hover:text-white transition-colors">
-                  operations@wwil-logistics.com
+                <a href="mailto:operations@transglobe-logistics.com" className="hover:text-white transition-colors">
+                  operations@transglobe-logistics.com
                 </a>
               </p>
               <div className="pt-2 text-[11px] text-emerald-400 flex items-center gap-1.5">
@@ -128,7 +128,7 @@ export default function Footer() {
 
         {/* Copyright Bottom Bar */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <p>&copy; 2026 Worldwide International Logistics (WWIL) Inc. All rights reserved.</p>
+          <p>&copy; 2026 TransGlobe-Logistics Inc. All rights reserved.</p>
           <div className="flex flex-wrap items-center gap-4 sm:gap-6">
             <Link href="/about" className="hover:text-slate-300 transition-colors">Privacy Policy</Link>
             <Link href="/about" className="hover:text-slate-300 transition-colors">Terms of Carriage</Link>

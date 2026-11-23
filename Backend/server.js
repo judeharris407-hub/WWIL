@@ -60,7 +60,7 @@ app.get('/api/health', async (req, res) => {
 
     return res.status(200).json({
       status: 'healthy',
-      message: 'WWIL Logistics Enterprise API is operational',
+      message: 'TransGlobe-Logistics Enterprise API is operational',
       timestamp: new Date().toISOString(),
       uptimeSeconds: Math.floor(process.uptime()),
       database: {
@@ -88,7 +88,7 @@ app.get('/api/health', async (req, res) => {
 // Base API Index
 app.get('/', (req, res) => {
   res.json({
-    name: 'Worldwide International Logistics (WWIL) API',
+    name: 'TransGlobe-Logistics API',
     version: '1.0.0',
     documentation: '/api/health',
     endpoints: {

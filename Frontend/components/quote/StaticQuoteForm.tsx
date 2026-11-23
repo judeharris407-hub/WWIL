@@ -52,12 +52,12 @@ export default function StaticQuoteForm() {
         setSubmitted(true);
       } else {
         // Graceful offline fallback
-        setQuoteReference(`WWIL-QT-2026-${Math.floor(1000 + Math.random() * 9000)}`);
+        setQuoteReference(`TGL-QT-2026-${Math.floor(1000 + Math.random() * 9000)}`);
         setSubmitted(true);
       }
     } catch (err) {
       console.warn('Backend quote submission fallback:', err);
-      setQuoteReference(`WWIL-QT-2026-${Math.floor(1000 + Math.random() * 9000)}`);
+      setQuoteReference(`TGL-QT-2026-${Math.floor(1000 + Math.random() * 9000)}`);
       setSubmitted(true);
     } finally {
       setIsSubmitting(false);

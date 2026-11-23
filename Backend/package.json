@@ -1,7 +1,7 @@
 {
-  "name": "wwil-backend",
+  "name": "transglobe-logistics-backend",
   "version": "1.0.0",
-  "description": "Worldwide International Logistics (WWIL) Enterprise API & Database Engine",
+  "description": "TransGlobe-Logistics Enterprise API & Database Engine",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",

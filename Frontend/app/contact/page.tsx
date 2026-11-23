@@ -38,29 +38,29 @@ export default function ContactPage() {
       region: 'Americas Gateway Hub',
       city: 'Miami / Newark, United States',
       address: 'World Trade Logistics Center, Port Boulevard, Suite 1200, Miami FL 33132',
-      phone: '+1 (800) 845-9945',
-      email: 'americas@wwil-logistics.com',
+      phone: '+1 (800) 845-TGL',
+      email: 'americas@transglobe-logistics.com',
     },
     {
       region: 'European Core Terminal',
       city: 'Rotterdam / Frankfurt',
       address: 'Gateway Maasvlakte II, Haven 9200, 3199 LK Rotterdam, Netherlands',
-      phone: '+31 (10) 489-WWIL',
-      email: 'europe@wwil-logistics.com',
+      phone: '+31 (10) 489-TGL',
+      email: 'europe@transglobe-logistics.com',
     },
     {
       region: 'Asia-Pacific Core',
       city: 'Singapore / Shanghai',
       address: 'Jurong Port Logistics Complex, 15 Marina Way, Singapore 018977',
-      phone: '+65 6842 9945',
-      email: 'apac@wwil-logistics.com',
+      phone: '+65 6842-TGL',
+      email: 'apac@transglobe-logistics.com',
     },
     {
       region: 'Middle East & Africa Gateway',
       city: 'Dubai (JAFZA)',
       address: 'Jebel Ali Free Zone Authority, Building 14, Office 402, Dubai, UAE',
-      phone: '+971 4 881 9945',
-      email: 'mena@wwil-logistics.com',
+      phone: '+971 4 881-TGL',
+      email: 'mena@transglobe-logistics.com',
     },
   ];
 
@@ -73,7 +73,7 @@ export default function ContactPage() {
       <section className="relative bg-slate-900 text-white py-16 lg:py-24 overflow-hidden border-b border-slate-800">
         <img
           src="/assets/warehouse2.avif"
-          alt="Worldwide International Logistics Operations Hub"
+          alt="TransGlobe-Logistics Operations Hub"
           className="absolute inset-0 w-full h-full object-cover"
         />
         {/* Semi-transparent dark corporate slate/navy overlay (bg-slate-900/80) */}
@@ -85,7 +85,7 @@ export default function ContactPage() {
             Global Communications
           </div>
           <h1 className="font-display font-extrabold text-3xl sm:text-5xl text-white tracking-tight">
-            Contact WWIL <span className="text-[#2563EB]">Operations</span>
+            Contact TransGlobe-Logistics <span className="text-[#2563EB]">Operations</span>
           </h1>
           <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
             Our 24/7 central dispatch centers and licensed customs controllers are available across all time zones to support your logistics pipeline.
@@ -103,7 +103,7 @@ export default function ContactPage() {
             <div className="relative overflow-hidden bg-wwil-navy-900 text-white rounded-2xl p-8 shadow-xl border border-slate-800 space-y-6">
               <img
                 src="/assets/bgpic1.avif"
-                alt="WWIL Terminal Desk Operations"
+                alt="TransGlobe-Logistics Terminal Desk Operations"
                 className="absolute inset-0 w-full h-full object-cover"
               />
               {/* Semi-transparent dark corporate slate/navy overlay (bg-slate-900/80) */}
@@ -125,7 +125,7 @@ export default function ContactPage() {
                     <Phone className="w-4 h-4 text-[#2563EB] shrink-0 mt-0.5" />
                     <div>
                       <span className="text-slate-400 block">Toll-Free Global Line</span>
-                      <strong className="text-sm text-white">+1 (800) 845-WWIL (9945)</strong>
+                      <strong className="text-sm text-white">+1 (800) 845-TGL (845-8450)</strong>
                     </div>
                   </div>
 
@@ -133,12 +133,12 @@ export default function ContactPage() {
                     <Mail className="w-4 h-4 text-[#2563EB] shrink-0 mt-0.5" />
                     <div>
                       <span className="text-slate-400 block">Operations Email</span>
-                      <strong className="text-sm text-white">operations@wwil-logistics.com</strong>
+                      <strong className="text-sm text-white">operations@transglobe-logistics.com</strong>
                     </div>
                   </div>
 
                   <a
-                    href={`https://wa.me/${(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '13479214785').replace(/\D/g, '') || '13479214785'}?text=${encodeURIComponent('Hello WWIL Support, I have an urgent freight inquiry.')}`}
+                    href={`https://wa.me/${(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '13479214785').replace(/\D/g, '') || '13479214785'}?text=${encodeURIComponent('Hello TransGlobe-Logistics Support, I have an urgent freight inquiry.')}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-start gap-3 group/wa transition-colors"
@@ -175,7 +175,7 @@ export default function ContactPage() {
                 <p className="text-xs text-slate-600">Connect directly with a dedicated freight controller for urgent queries.</p>
               </div>
               <a
-                href={`https://wa.me/${(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '13479214785').replace(/\D/g, '') || '13479214785'}?text=${encodeURIComponent('Hello WWIL Operations Desk, I would like to inquire about international freight tariffs and cargo space allocation.')}`}
+                href={`https://wa.me/${(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || '13479214785').replace(/\D/g, '') || '13479214785'}?text=${encodeURIComponent('Hello TransGlobe-Logistics Operations Desk, I would like to inquire about international freight tariffs and cargo space allocation.')}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="shrink-0 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-[#25D366] hover:bg-[#20BD5A] text-white font-bold text-xs shadow-md shadow-emerald-500/20 transition-all hover:scale-105"
@@ -210,7 +210,7 @@ export default function ContactPage() {
                 </div>
                 <h4 className="font-display font-bold text-xl text-slate-900">Message Successfully Transmitted</h4>
                 <p className="text-xs text-slate-600 max-w-sm mx-auto">
-                  Thank you for contacting WWIL Operations. A licensed logistics specialist will review your inquiry and follow up within 30 minutes.
+                  Thank you for contacting TransGlobe-Logistics Operations. A licensed logistics specialist will review your inquiry and follow up within 30 minutes.
                 </p>
                 <button
                   type="button"

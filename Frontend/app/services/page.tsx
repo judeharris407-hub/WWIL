@@ -14,8 +14,8 @@ import {
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Multimodal Freight & Cargo Services | WWIL Logistics',
-  description: 'Explore WWIL services: Ocean container shipping, air charters, continental trucking, automated bonded warehousing, and customs brokerage.',
+  title: 'Multimodal Freight & Cargo Services | TransGlobe-Logistics',
+  description: 'Explore TransGlobe-Logistics services: Ocean container shipping, air charters, continental trucking, automated bonded warehousing, and customs brokerage.',
 };
 
 export default function ServicesPage() {
@@ -26,7 +26,7 @@ export default function ServicesPage() {
       category: 'Flagship Transcontinental Solution',
       icon: Ship,
       image: '/assets/ship1.avif',
-      description: 'WWIL coordinates direct vessel space contracts with top maritime alliances and holds reserved allocations on premier air cargo airlines. Whether shipping 40ft High Cube containers across Transpacific corridors or chartering Boeing 777F freighters for high-value tech components, we provide fixed schedules and zero-delay port handling.',
+      description: 'TransGlobe-Logistics coordinates direct vessel space contracts with top maritime alliances and holds reserved allocations on premier air cargo airlines. Whether shipping 40ft High Cube containers across Transpacific corridors or chartering Boeing 777F freighters for high-value tech components, we provide fixed schedules and zero-delay port handling.',
       capabilities: [
         'Full Container Load (FCL) and Less Than Container Load (LCL) consolidation',
         'Direct charter flights and Next-Flight-Out (NFO) air allocations',
@@ -65,7 +65,7 @@ export default function ServicesPage() {
       category: 'Automated 3PL & Bonded Storage',
       icon: Building2,
       image: '/assets/warehouse1.avif',
-      description: 'WWIL operates over 3.2 million square meters of strategically positioned fulfillment and bonded storage hubs at key airport and seaport perimeters worldwide. Equipped with robotic sortation, climate control, and automated WMS integration.',
+      description: 'TransGlobe-Logistics operates over 3.2 million square meters of strategically positioned fulfillment and bonded storage hubs at key airport and seaport perimeters worldwide. Equipped with robotic sortation, climate control, and automated WMS integration.',
       capabilities: [
         'Customs Bonded warehousing with duty deferment and tax relief benefits',
         'Automated robotic pick, pack, and sortation systems',
@@ -103,7 +103,7 @@ export default function ServicesPage() {
       category: 'Dedicated Last-Mile Dispatch',
       icon: PackageCheck,
       image: '/assets/van1.avif',
-      description: 'When downtime is not an option. For AOG (Aircraft on Ground) replacement parts, critical automotive components, and emergency medical shipments, WWIL provides dedicated time-critical couriers and chartered van routing.',
+      description: 'When downtime is not an option. For AOG (Aircraft on Ground) replacement parts, critical automotive components, and emergency medical shipments, TransGlobe-Logistics provides dedicated time-critical couriers and chartered van routing.',
       capabilities: [
         'On-Board Courier (OBC) hand-carry for mission-critical micro-freight',
         'Next-Flight-Out (NFO) air courier dispatch within 45 minutes',
@@ -127,7 +127,7 @@ export default function ServicesPage() {
       <section className="relative bg-slate-900 text-white py-16 lg:py-24 overflow-hidden border-b border-slate-800">
         <img
           src="/assets/banner2.jpg"
-          alt="WWIL Multimodal Logistics Operations"
+          alt="TransGlobe-Logistics Multimodal Logistics Operations"
           className="absolute inset-0 w-full h-full object-cover"
         />
         {/* Semi-transparent dark corporate slate/navy overlay (bg-slate-900/80) */}
@@ -142,7 +142,7 @@ export default function ServicesPage() {
             Integrated Global <span className="text-[#2563EB]">Supply Chain Services</span>
           </h1>
           <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
-            From single-pallet high-priority air freight to multi-thousand TEU maritime charters and bonded distribution, WWIL delivers end-to-end reliability.
+            From single-pallet high-priority air freight to multi-thousand TEU maritime charters and bonded distribution, TransGlobe-Logistics delivers end-to-end reliability.
           </p>
         </div>
       </section>

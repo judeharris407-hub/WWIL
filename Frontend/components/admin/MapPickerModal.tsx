@@ -79,7 +79,7 @@ export default function MapPickerModal({
         {
           headers: {
             Accept: 'application/json',
-            'User-Agent': 'WWIL-Logistics-Platform/2.0 (operations@wwil-logistics.com)',
+            'User-Agent': 'TransGlobe-Logistics-Platform/2.0 (operations@transglobe-logistics.com)',
           },
         }
       );
@@ -135,7 +135,7 @@ export default function MapPickerModal({
         {
           headers: {
             Accept: 'application/json',
-            'User-Agent': 'WWIL-Logistics-Platform/2.0 (operations@wwil-logistics.com)',
+            'User-Agent': 'TransGlobe-Logistics-Platform/2.0 (operations@transglobe-logistics.com)',
           },
         }
       );

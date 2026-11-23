@@ -46,9 +46,9 @@ router.post('/', async (req, res) => {
     });
   }
 
-  // 2. Generate unique reference number: WWIL-QT-2026-XXXX
+  // 2. Generate unique reference number: TGL-QT-2026-XXXX
   const randomSuffix = Math.floor(1000 + Math.random() * 9000);
-  const reference_number = `WWIL-QT-2026-${randomSuffix}`;
+  const reference_number = `TGL-QT-2026-${randomSuffix}`;
 
   try {
     // 3. Save quotation record into 'quotes' table in PostgreSQL

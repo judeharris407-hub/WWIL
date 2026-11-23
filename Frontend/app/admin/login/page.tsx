@@ -68,7 +68,7 @@ export default function AdminLoginPage() {
       <div className="absolute inset-0 pointer-events-none">
         <img
           src="/assets/banner1.jpg"
-          alt="Worldwide International Logistics Command Center"
+          alt="TransGlobe-Logistics Command Center"
           className="absolute inset-0 w-full h-full object-cover scale-105"
         />
         {/* Semi-transparent dark corporate slate/navy overlay (bg-slate-900/80) */}
@@ -81,15 +81,15 @@ export default function AdminLoginPage() {
         {/* Brand Logo */}
         <Link href="/" className="inline-flex items-center gap-3 group">
           <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] flex items-center justify-center shadow-lg shadow-blue-500/25 group-hover:scale-105 transition-transform">
-            <span className="font-display font-black text-2xl text-white">W</span>
+            <span className="font-display font-black text-xl text-white">TGL</span>
           </div>
           <div className="text-left">
             <div className="flex items-center gap-1.5">
-              <span className="font-display font-black text-2xl tracking-wider text-white">WWIL</span>
+              <span className="font-display font-black text-2xl tracking-wider text-white">TransGlobe</span>
               <span className="w-2 h-2 rounded-full bg-[#2563EB]"></span>
             </div>
             <span className="text-[10px] uppercase tracking-widest text-slate-400 font-semibold block -mt-1">
-              Worldwide International Logistics
+              TransGlobe-Logistics
             </span>
           </div>
         </Link>
@@ -127,7 +127,7 @@ export default function AdminLoginPage() {
                 Demo Credentials Available
               </span>
               <span className="text-[10px] text-slate-400 block font-mono">
-                admin@wwil-logistics.com
+                admin@transglobe-logistics.com
               </span>
             </div>
             <button
@@ -156,7 +156,7 @@ export default function AdminLoginPage() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="controller@wwil-logistics.com"
+                  placeholder="controller@transglobe-logistics.com"
                   className="w-full pl-10 pr-4 py-3 bg-slate-950/80 border border-slate-700 rounded-xl text-white placeholder-slate-500 text-xs focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] transition-colors"
                 />
               </div>

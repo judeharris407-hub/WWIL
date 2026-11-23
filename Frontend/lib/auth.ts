@@ -20,7 +20,7 @@ const AUTH_COOKIE_NAME = 'wwil_admin_token';
 
 // Default authorized credentials
 export const DEMO_ADMIN_CREDENTIALS = {
-  email: 'admin@wwil-logistics.com',
+  email: 'admin@transglobe-logistics.com',
   password: 'WWIL-Ops#2026',
 };
 
@@ -111,7 +111,7 @@ export async function loginAdmin(
   const isValid =
     (normalizedEmail === DEMO_ADMIN_CREDENTIALS.email.toLowerCase() &&
       password === DEMO_ADMIN_CREDENTIALS.password) ||
-    (normalizedEmail.endsWith('@wwil-logistics.com') && password === DEMO_ADMIN_CREDENTIALS.password);
+    ((normalizedEmail.endsWith('@transglobe-logistics.com') || normalizedEmail.endsWith('@wwil-logistics.com')) && password === DEMO_ADMIN_CREDENTIALS.password);
 
   if (!isValid) {
     return {
@@ -128,7 +128,7 @@ export async function loginAdmin(
     department: 'Global Multimodal Dispatch',
     terminalCode: 'EUR-USA-CENTRAL',
     avatarInitials: 'MV',
-    token: `WWIL-AUTH-TOKEN-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
+    token: `TGL-AUTH-TOKEN-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
     loginTime: new Date().toLocaleDateString('en-US', {
       month: 'short',
       day: 'numeric',

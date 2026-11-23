@@ -74,11 +74,11 @@ function LiveSupportWidgetsContent() {
   const trackingId = searchParams ? searchParams.get('id') : null;
   const isTrackingPage = pathname ? pathname.includes('/track-order') : false;
 
-  let prefilledMessage = 'Hello WWIL Operations Desk, I would like to inquire about international freight tariffs and cargo space allocation.';
+  let prefilledMessage = 'Hello TransGlobe-Logistics Operations Desk, I would like to inquire about international freight tariffs and cargo space allocation.';
   if (isTrackingPage && trackingId) {
-    prefilledMessage = `Hello WWIL Support, I am tracking consignment ${trackingId.trim().toUpperCase()} on the live telemetry portal. Could you please provide an operational status update?`;
+    prefilledMessage = `Hello TransGlobe-Logistics Support, I am tracking consignment ${trackingId.trim().toUpperCase()} on the live telemetry portal. Could you please provide an operational status update?`;
   } else if (isTrackingPage) {
-    prefilledMessage = 'Hello WWIL Support, I have a question regarding live consignment tracking and milestone delivery.';
+    prefilledMessage = 'Hello TransGlobe-Logistics Support, I have a question regarding live consignment tracking and milestone delivery.';
   }
 
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(prefilledMessage)}`;
@@ -153,7 +153,7 @@ function LiveSupportWidgetsContent() {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            title="Chat with WWIL Operations on WhatsApp"
+            title="Chat with TransGlobe-Logistics Operations on WhatsApp"
             className="flex items-center gap-2.5 px-3.5 py-2.5 sm:px-4 sm:py-2.5 rounded-full bg-[#25D366] hover:bg-[#20BD5A] text-white shadow-xl shadow-emerald-950/25 hover:shadow-emerald-950/35 border border-white/20 transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-emerald-400/40"
           >
             {/* WhatsApp Icon with Pulse Ping */}

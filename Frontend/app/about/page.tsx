@@ -12,8 +12,8 @@ import {
 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'About Worldwide International Logistics (WWIL) | Corporate Profile',
-  description: 'Learn about WWIL: Our mission, global port infrastructure, international supply chain certifications, and carbon-reduction initiatives.',
+  title: 'About TransGlobe-Logistics | Corporate Profile',
+  description: 'Learn about TransGlobe-Logistics: Our mission, global port infrastructure, international supply chain certifications, and carbon-reduction initiatives.',
 };
 
 export default function AboutPage() {
@@ -26,7 +26,7 @@ export default function AboutPage() {
       <section className="relative bg-slate-900 text-white py-16 lg:py-24 overflow-hidden border-b border-slate-800">
         <img
           src="/assets/bgpic1.avif"
-          alt="Worldwide International Logistics Port and Global Network"
+          alt="TransGlobe-Logistics Port and Global Network"
           className="absolute inset-0 w-full h-full object-cover"
         />
         {/* Semi-transparent dark corporate slate/navy overlay (bg-slate-900/80) */}
@@ -41,7 +41,7 @@ export default function AboutPage() {
             Engineering the Backbone of <span className="text-[#2563EB]">Global Commerce</span>
           </h1>
           <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
-            Founded with the belief that international logistics should operate with mathematical precision, WWIL delivers high-capacity physical freight networks paired with real-time telemetry.
+            Founded with the belief that international logistics should operate with mathematical precision, TransGlobe-Logistics delivers high-capacity physical freight networks paired with real-time telemetry.
           </p>
         </div>
       </section>
@@ -57,7 +57,7 @@ export default function AboutPage() {
                 Over Two Decades of Multimodal Excellence
               </h2>
               <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
-                Worldwide International Logistics (WWIL) has evolved from an inter-port maritime forwarder into a comprehensive multimodal supply chain operator. Today, we coordinate freight across 180+ countries, managing over 2.4 million metric tons and ocean container TEUs annually.
+                TransGlobe-Logistics has evolved from an inter-port maritime forwarder into a comprehensive multimodal supply chain operator. Today, we coordinate freight across 180+ countries, managing over 2.4 million metric tons and ocean container TEUs annually.
               </p>
               <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
                 By investing in owned gateway infrastructure, licensed in-house customs brokerage teams, and proprietary satellite tracking integrations, we eliminate transit blackouts and ensure contractually guaranteed space allocations.
@@ -83,7 +83,7 @@ export default function AboutPage() {
               <div className="relative rounded-2xl overflow-hidden shadow-xl border border-slate-200">
                 <img
                   src="/assets/news2.jpg"
-                  alt="Worldwide International Logistics Port Terminal Operations"
+                  alt="TransGlobe-Logistics Port Terminal Operations"
                   className="w-full h-80 sm:h-96 object-cover img-editorial-zoom"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
@@ -105,7 +105,7 @@ export default function AboutPage() {
         <div className="relative overflow-hidden bg-wwil-navy-900 text-white rounded-2xl p-8 sm:p-12 shadow-xl border border-slate-800 space-y-8">
           <img
             src="/assets/warehouse1.avif"
-            alt="WWIL Certified Global Logistics Facility"
+            alt="TransGlobe-Logistics Certified Global Logistics Facility"
             className="absolute inset-0 w-full h-full object-cover"
           />
           {/* Semi-transparent dark corporate slate/navy overlay (bg-slate-900/80) */}
@@ -172,7 +172,7 @@ export default function AboutPage() {
             </div>
           </div>
           <p className="text-slate-600 text-sm leading-relaxed max-w-3xl">
-            As global trade volumes increase, WWIL is committed to reducing freight carbon intensity. By combining optimized slow-steaming maritime lanes, double-stack electric rail substitutions, and aerodynamic fleet aerodynamics, we assist enterprise clients in cutting scope-3 emissions by up to 28%.
+            As global trade volumes increase, TransGlobe-Logistics is committed to reducing freight carbon intensity. By combining optimized slow-steaming maritime lanes, double-stack electric rail substitutions, and aerodynamic fleet aerodynamics, we assist enterprise clients in cutting scope-3 emissions by up to 28%.
           </p>
         </div>
 

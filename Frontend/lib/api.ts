@@ -110,7 +110,7 @@ export async function submitQuoteToDb(quote: DatabaseQuote): Promise<{ success: 
   } catch (error) {
     console.warn('[API Client] Backend quote submission failed, generating local reference:', error);
     // Graceful offline simulated reference
-    const offlineRef = `WWIL-Q-${Math.floor(100000 + Math.random() * 900000)}`;
+    const offlineRef = `TGL-QT-2026-${Math.floor(1000 + Math.random() * 9000)}`;
     return {
       success: true,
       reference: offlineRef,

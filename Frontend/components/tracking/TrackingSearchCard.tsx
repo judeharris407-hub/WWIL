@@ -8,7 +8,7 @@ interface TrackingSearchCardProps {
   initialCode?: string;
 }
 
-export default function TrackingSearchCard({ initialCode = 'TRK-2024-001234' }: TrackingSearchCardProps) {
+export default function TrackingSearchCard({ initialCode = 'TGL-2026-001234' }: TrackingSearchCardProps) {
   const [trackingNumber, setTrackingNumber] = useState(initialCode);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
@@ -76,10 +76,10 @@ export default function TrackingSearchCard({ initialCode = 'TRK-2024-001234' }: 
           <span className="text-slate-400 text-[11px] font-medium">Quick Demo:</span>
           <button
             type="button"
-            onClick={() => handleQuickFill('TRK-2024-001234')}
+            onClick={() => handleQuickFill('TGL-2026-001234')}
             className="px-2 py-0.5 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 font-mono text-[11px] transition-colors"
           >
-            TRK-2024-001234
+            TGL-2026-001234
           </button>
           <button
             type="button"

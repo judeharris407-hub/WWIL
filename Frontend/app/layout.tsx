@@ -5,8 +5,8 @@ import Footer from '@/components/layout/Footer';
 import LiveSupportWidgets from '@/components/LiveSupportWidgets';
 
 export const metadata: Metadata = {
-  title: 'Worldwide International Logistics (WWIL) | Global Freight & Multimodal Cargo',
-  description: 'Worldwide International Logistics (WWIL) is a premier global logistics provider specializing in air freight, ocean liners, intermodal rail, and live satellite tracking across 180+ countries.',
+  title: 'TransGlobe-Logistics | Global Freight & Multimodal Cargo',
+  description: 'TransGlobe-Logistics is a premier global logistics provider specializing in air freight, ocean liners, intermodal rail, and live satellite tracking across 180+ countries.',
 };
 
 export default function RootLayout({

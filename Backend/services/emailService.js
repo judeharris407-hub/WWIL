@@ -1,6 +1,6 @@
 /**
  * ==============================================================================
- * Worldwide International Logistics (WWIL)
+ * TransGlobe-Logistics
  * Transactional Email Notification Service (/services/emailService.js)
  * ==============================================================================
  * Dispatches responsive HTML transactional emails via the Resend API.
@@ -14,8 +14,8 @@ const resendApiKey = process.env.RESEND_API_KEY;
 const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
 // Default sender address: Use onboarding@resend.dev for test sandboxes, or custom verified domain
-const SENDER_EMAIL = process.env.EMAIL_FROM || 'WWIL Logistics <onboarding@resend.dev>';
-const SUPPORT_TEAM_EMAIL = process.env.SUPPORT_ALERT_EMAIL || 'support@worldwide-logistics.com';
+const SENDER_EMAIL = process.env.EMAIL_FROM || 'TransGlobe-Logistics <onboarding@resend.dev>';
+const SUPPORT_TEAM_EMAIL = process.env.SUPPORT_ALERT_EMAIL || 'support@transglobe-logistics.com';
 
 /**
  * Generate modern HTML email template for Freight Quotation Confirmation
@@ -38,7 +38,7 @@ function buildQuoteConfirmationHtml(quote) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WWIL Quotation Request Confirmation</title>
+  <title>TransGlobe-Logistics Quotation Request Confirmation</title>
   <style>
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
@@ -182,9 +182,9 @@ function buildQuoteConfirmationHtml(quote) {
 <body>
   <div class="container">
     <div class="header">
-      <div class="brand-logo">W</div>
+      <div class="brand-logo">TGL</div>
       <h1 class="brand-title">Quotation Inquiry Registered</h1>
-      <div class="brand-sub">Worldwide International Logistics (WWIL)</div>
+      <div class="brand-sub">TransGlobe-Logistics</div>
     </div>
     
     <div class="content">
@@ -192,7 +192,7 @@ function buildQuoteConfirmationHtml(quote) {
         Dear <strong>${full_name}</strong>,
       </p>
       <p style="font-size: 14px; line-height: 1.6; color: #475569;">
-        Thank you for contacting Worldwide International Logistics. We have received your freight quotation request and our global dispatch operations desk has assigned a dedicated tariff specialist to analyze your transit corridor.
+        Thank you for contacting TransGlobe-Logistics. We have received your freight quotation request and our global dispatch operations desk has assigned a dedicated tariff specialist to analyze your transit corridor.
       </p>
 
       <div class="reference-box">
@@ -239,10 +239,10 @@ function buildQuoteConfirmationHtml(quote) {
 
     <div class="footer">
       <p style="margin: 0 0 6px 0;">
-        <strong>Worldwide International Logistics Global Dispatch</strong>
+        <strong>TransGlobe-Logistics Global Dispatch</strong>
       </p>
       <p style="margin: 0 0 6px 0;">
-        24/7 Operations Hotline: +1 (800) 845-WWIL &bull; operations@wwil-logistics.com
+        24/7 Operations Hotline: +1 (800) 845-TGL &bull; operations@transglobe-logistics.com
       </p>
       <p style="margin: 0; font-size: 11px; color: #64748B;">
         This is an automated operational notification. Consignment manifests and quotations are processed under IATA, IMO, and ISO 9001:2015 international standards.
@@ -272,7 +272,7 @@ function buildOperationsAlertHtml(quote) {
   <div class="card">
     <div class="badge">NEW INBOUND QUOTE ALERT</div>
     <h2>Reference: ${quote.reference_number}</h2>
-    <p>A new quotation inquiry has been received through the WWIL public portal:</p>
+    <p>A new quotation inquiry has been received through the TransGlobe-Logistics public portal:</p>
     <ul>
       <li><strong>Client:</strong> ${quote.full_name} (${quote.email} / ${quote.phone || 'N/A'})</li>
       <li><strong>Mode:</strong> ${quote.freight_type}</li>
@@ -315,7 +315,7 @@ async function sendQuoteConfirmationEmail(quote) {
     const result = await resend.emails.send({
       from: SENDER_EMAIL,
       to: [quote.email],
-      subject: `WWIL Freight Quotation Confirmation - ${quote.reference_number}`,
+      subject: `TransGlobe-Logistics Freight Quotation Confirmation - ${quote.reference_number}`,
       html: htmlContent,
     });
 

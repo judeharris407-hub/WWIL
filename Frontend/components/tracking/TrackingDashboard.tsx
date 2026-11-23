@@ -225,7 +225,7 @@ export default function TrackingDashboard({ initialTrackingId = 'TRK-2024-001234
               <span className="w-3 h-3 rounded-full bg-[#2563EB] beacon-pulse"></span>
               <div className="flex items-center gap-2">
                 <span className="text-xs uppercase font-bold tracking-widest text-[#2563EB]">
-                  WWIL Live Telemetry Gateway
+                  TransGlobe Live Telemetry Gateway
                 </span>
                 <span className={`px-2.5 py-0.5 rounded-full text-[11px] font-bold border flex items-center gap-1.5 ${transport.badgeClass}`}>
                   {transport.label}
@@ -345,14 +345,14 @@ export default function TrackingDashboard({ initialTrackingId = 'TRK-2024-001234
               </button>
               <button
                 type="button"
-                onClick={() => handleQuickSelect('WWIL-BOL-4091')}
+                onClick={() => handleQuickSelect('TGL-BOL-4091')}
                 className={`px-2.5 py-0.5 rounded-full font-mono text-[11px] transition-colors ${
-                  currentId === 'WWIL-BOL-4091'
+                  currentId === 'TGL-BOL-4091'
                     ? 'bg-[#2563EB] text-white font-bold'
                     : 'bg-white/10 hover:bg-white/20 text-slate-200'
                 }`}
               >
-                WWIL-BOL-4091 (Delivered)
+                TGL-BOL-4091 (Delivered)
               </button>
             </div>
 

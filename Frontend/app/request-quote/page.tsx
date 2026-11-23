@@ -4,7 +4,7 @@ import { ShieldCheck, Clock, Award, CheckCircle2 } from 'lucide-react';
 import StaticQuoteForm from '@/components/quote/StaticQuoteForm';
 
 export const metadata: Metadata = {
-  title: 'Request a Guaranteed Freight Quote | WWIL Logistics',
+  title: 'Request a Guaranteed Freight Quote | TransGlobe-Logistics',
   description: 'Obtain instant enterprise freight tariffs for global air cargo charters, ocean FCL/LCL liner shipping, and overland ground logistics.',
 };
 
@@ -18,7 +18,7 @@ export default function RequestQuotePage() {
       <section className="relative bg-slate-900 text-white py-16 lg:py-24 overflow-hidden border-b border-slate-800">
         <img
           src="/assets/Truck1.avif"
-          alt="Worldwide International Logistics Freight Fleet"
+          alt="TransGlobe-Logistics Freight Fleet"
           className="absolute inset-0 w-full h-full object-cover"
         />
         {/* Semi-transparent dark corporate slate/navy overlay (bg-slate-900/80) */}
