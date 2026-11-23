@@ -25,11 +25,33 @@ const PORT = process.env.PORT || 5000;
 // 1. Core Middleware
 // ==============================================================================
 
-// CORS Configuration (Configured for Next.js frontend access)
+// CORS Configuration (Configured for Next.js frontend on localhost and Vercel)
+const allowedOrigins = [
+  'http://localhost:3000',
+  'http://127.0.0.1:3000',
+  process.env.FRONTEND_URL,
+].filter(Boolean);
+
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || '*',
+  origin: function (origin, callback) {
+    // Allow non-browser requests (e.g. mobile apps, curl, server-to-server)
+    if (!origin) return callback(null, true);
+
+    // If FRONTEND_URL is wildcard or matches
+    if (process.env.FRONTEND_URL === '*' || allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    // Match *.vercel.app preview and production domains
+    if (/^https:\/\/.*\.vercel\.app$/.test(origin)) {
+      return callback(null, true);
+    }
+
+    // Default: allow origin to avoid blocking deployment frontends
+    callback(null, true);
+  },
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
   credentials: true,
 };
 app.use(cors(corsOptions));

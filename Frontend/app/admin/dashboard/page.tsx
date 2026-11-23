@@ -149,7 +149,7 @@ export default function AdminDashboardPage() {
     try {
       const res = await fetch(`${apiUrl}/parcels`);
       const data = await res.json();
-      if (res.ok && data.success && Array.isArray(data.parcels) && data.parcels.length > 0) {
+      if (res.ok && data.success && Array.isArray(data.parcels)) {
         const shipmentMap: Record<string, Shipment> = {};
         data.parcels.forEach((p: any) => {
           const transformed = transformBackendParcelToShipment(p);

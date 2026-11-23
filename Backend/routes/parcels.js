@@ -14,6 +14,7 @@
 const express = require('express');
 const pool = require('../config/db');
 const { verifyAdminToken } = require('../middleware/auth');
+const { sendShipmentCreatedEmail, sendStatusUpdateEmail } = require('../services/emailService');
 
 const router = express.Router();
 
@@ -295,6 +296,11 @@ router.post('/', verifyAdminToken, async (req, res) => {
 
     await client.query('COMMIT');
 
+    // Asynchronous non-blocking email dispatch (never halts or blocks JSON response)
+    sendShipmentCreatedEmail(newParcel).catch((err) => {
+      console.warn('[Email Skipped - Non-blocking notice]:', err.message);
+    });
+
     return res.status(201).json({
       success: true,
       message: `Consignment ${newParcel.tracking_number} created successfully.`,
@@ -461,6 +467,13 @@ router.put('/:id', verifyAdminToken, async (req, res) => {
 
     await client.query('COMMIT');
 
+    // Asynchronous non-blocking email dispatch if status changed
+    if (statusChanged) {
+      sendStatusUpdateEmail(updatedParcel, auditLogEntry || {}).catch((err) => {
+        console.warn('[Email Skipped - Non-blocking notice]:', err.message);
+      });
+    }
+
     return res.status(200).json({
       success: true,
       message: `Shipment ${updatedParcel.tracking_number} updated successfully.`,
@@ -575,6 +588,11 @@ router.patch('/:id/location', verifyAdminToken, async (req, res) => {
     const newHistoryEntry = historyRes.rows[0];
 
     await client.query('COMMIT');
+
+    // Asynchronous non-blocking status/location email dispatch
+    sendStatusUpdateEmail(updatedParcel, newHistoryEntry || {}).catch((err) => {
+      console.warn('[Email Skipped - Non-blocking notice]:', err.message);
+    });
 
     return res.status(200).json({
       success: true,

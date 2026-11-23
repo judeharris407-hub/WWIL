@@ -111,7 +111,7 @@ export default function HomePage() {
 
             {/* Right Side: Clean White Tracking Card (5 Cols) */}
             <div className="lg:col-span-5">
-              <TrackingSearchCard initialCode="TRK-2024-001234" />
+              <TrackingSearchCard initialCode="TGL-2026-001234" />
             </div>
 
           </div>
