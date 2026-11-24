@@ -48,19 +48,19 @@ export default function HomePage() {
               
               <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 text-xs font-semibold tracking-wider uppercase text-slate-300">
                 <span className="w-2.5 h-2.5 rounded-full bg-[#2563EB] beacon-pulse"></span>
-                <span>Next-Gen Multimodal Freight Network</span>
+                <span>International Multimodal Freight Network</span>
               </div>
 
               <h1 className="font-display font-extrabold text-4xl sm:text-5xl xl:text-6xl tracking-tight leading-[1.1] text-white">
-                Seamless International <br />
+                Scheduled International <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-slate-300">
-                  Freight &amp; Cargo
+                  Freight Forwarding &amp;
                 </span>
-                <span className="text-[#2563EB]"> Solutions</span>
+                <span className="text-[#2563EB]"> Logistics</span>
               </h1>
 
               <p className="text-lg sm:text-xl text-slate-300 font-normal leading-relaxed max-w-2xl">
-                Accelerating enterprise commerce across 140+ countries with guaranteed cargo space, AI-optimized container routes, automated single-window customs clearance, and real-time satellite telemetry.
+                Connecting enterprise supply chains across 140+ countries with scheduled freight corridors, secured carrier allocations, single-window customs brokerage, and verified live GPS telemetry.
               </p>
 
               {/* Crisp Stat Badges Grid */}
@@ -164,7 +164,7 @@ export default function HomePage() {
               </div>
               <h3 className="text-sm font-bold text-slate-200 mt-1">Zero-Hold Customs Accuracy</h3>
               <p className="text-xs text-slate-400 mt-1 leading-relaxed">
-                Single-window automated declaration verification ensuring minimal border holds.
+                Single-window customs declaration verification ensuring expedited border release.
               </p>
             </div>
 
@@ -175,7 +175,7 @@ export default function HomePage() {
               </div>
               <h3 className="text-sm font-bold text-slate-200 mt-1">Multimodal Volume Capacity</h3>
               <p className="text-xs text-slate-400 mt-1 leading-relaxed">
-                Over two million metric tons and ocean container TEUs managed seamlessly every year.
+                Over two million metric tons and ocean container TEUs coordinated across major trade lanes annually.
               </p>
             </div>
 
@@ -186,7 +186,7 @@ export default function HomePage() {
               </div>
               <h3 className="text-sm font-bold text-slate-200 mt-1">Average Dispatch Response</h3>
               <p className="text-xs text-slate-400 mt-1 leading-relaxed">
-                Instant booking confirmation, automated space allocation, and 24/7 dedicated support.
+                Rapid booking confirmation, secured carrier space allocation, and 24/7 dispatch support.
               </p>
             </div>
           </div>
@@ -211,7 +211,7 @@ export default function HomePage() {
                 Real-Time GPS Route Mapping &amp; <span className="text-[#2563EB]">Waypoint Telemetry</span>
               </h2>
               <p className="text-slate-600 text-base leading-relaxed">
-                Never wonder where your critical cargo is. TransGlobe-Logistics integrates automated AIS vessel tracking, ADS-B flight feeds, and terrestrial GPS sensors into an interactive map interface powered by Leaflet.
+                Never wonder where your critical cargo is. TransGlobe-Logistics integrates satellite AIS vessel tracking, ADS-B flight telemetry, and terrestrial GPS sensors into an interactive tracking map interface.
               </p>
 
               <div className="space-y-3 pt-2">
@@ -220,7 +220,7 @@ export default function HomePage() {
                     <Check className="w-3.5 h-3.5 font-bold" />
                   </div>
                   <span className="text-sm text-slate-700">
-                    <strong>Autonomous Port &amp; Terminal Pings:</strong> Real-time confirmation as containers clear gantry cranes and customs barriers.
+                    <strong>Direct Port &amp; Terminal Telemetry:</strong> Milestone confirmations as containers clear gantry cranes, container yards, and customs gates.
                   </span>
                 </div>
                 <div className="flex items-start gap-3">
@@ -319,7 +319,7 @@ export default function HomePage() {
                 Engineered Freight Capacity for <span className="text-[#2563EB]">Global Demands</span>
               </h2>
               <p className="text-base text-slate-600 leading-relaxed">
-                We combine maritime liner capacity with scheduled charter air flights, heavy overland transport, and automated bonded warehousing.
+                We combine maritime liner capacity with scheduled charter air flights, heavy overland transport, and secure bonded warehousing.
               </p>
             </div>
 
@@ -436,10 +436,10 @@ export default function HomePage() {
                       </span>
                     </div>
                     <h4 className="font-display font-bold text-base text-slate-900 group-hover:text-[#2563EB] transition-colors truncate">
-                      Intelligent Warehousing &amp; Distribution
+                      Bonded Warehousing &amp; Distribution
                     </h4>
                     <p className="text-xs text-slate-500 line-clamp-2 mt-0.5">
-                      Bonded storage, automated RFID inventory tracking, temperature control, and pick-and-pack.
+                      Bonded storage facilities, barcode/RFID inventory management, climate control, and pick-and-pack fulfillment.
                     </p>
                   </div>
                 </div>
@@ -517,7 +517,7 @@ export default function HomePage() {
               From Origin Gate to <span className="text-[#2563EB]">Destination Doorstep</span>
             </h2>
             <p className="text-base text-slate-600 leading-relaxed">
-              Our 4-stage verified pipeline eliminates supply chain blackouts. Every milestone is logged with satellite timestamps and automated digital proof.
+              Our 4-stage verified pipeline eliminates supply chain blackouts. Every milestone is logged with satellite timestamps and verified electronic proof.
             </p>
           </div>
 
@@ -544,7 +544,7 @@ export default function HomePage() {
                   01. Request &amp; Booking
                 </h3>
                 <p className="text-xs text-slate-500 mt-2 leading-relaxed">
-                  Instant digital rate calculation, automated carrier space allocation, and electronic booking confirmation.
+                  Direct tariff calculation, confirmed carrier space allocation, and electronic booking confirmation.
                 </p>
               </div>
 
@@ -656,8 +656,8 @@ export default function HomePage() {
                     <Check className="w-4 h-4 font-bold" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-bold text-slate-900">100% Real-Time IoT Telemetry</h3>
-                    <p className="text-xs text-slate-600 mt-0.5">Autonomous sensors monitoring location, temperature, humidity, and shock with automated webhook alerts.</p>
+                    <h3 className="text-sm font-bold text-slate-900">Active Cargo Telemetry &amp; Monitoring</h3>
+                    <p className="text-xs text-slate-600 mt-0.5">Calibrated sensors tracking GPS coordinates, ambient temperature, humidity, and transit shock events.</p>
                   </div>
                 </div>
 
@@ -666,7 +666,7 @@ export default function HomePage() {
                     <Check className="w-4 h-4 font-bold" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-bold text-slate-900">Automated Customs Pre-Clearance</h3>
+                    <h3 className="text-sm font-bold text-slate-900">Customs Brokerage Pre-Clearance</h3>
                     <p className="text-xs text-slate-600 mt-0.5">Harmonized Tariff Schedule (HTS) verification keeping port inspection wait times to under 2 hours.</p>
                   </div>
                 </div>

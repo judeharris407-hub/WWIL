@@ -24,7 +24,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-xs text-slate-400 leading-relaxed">
-              Empowering global commerce with precision multimodal freight forwarding, intermodal rail logistics, intelligent warehousing, and verified real-time satellite telemetry across 180+ countries.
+              Coordinating international commerce with scheduled multimodal freight forwarding, intermodal rail corridors, bonded contract warehousing, and verified real-time shipment telemetry across 180+ countries.
             </p>
             <div className="pt-2 flex items-center gap-2 text-xs text-slate-400">
               <ShieldCheck className="w-4 h-4 text-[#2563EB]" />
@@ -53,7 +53,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/services#warehousing" className="hover:text-[#2563EB] transition-colors">
-                  Intelligent Bonded Warehousing
+                  Bonded Contract Warehousing
                 </Link>
               </li>
               <li>

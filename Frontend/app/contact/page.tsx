@@ -117,7 +117,7 @@ export default function ContactPage() {
                   Global Operations Terminal Desk
                 </h2>
                 <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-                  No automated bot queues for urgent cargo questions. Direct phone and telemetric access to licensed logistics planners worldwide.
+                  Direct telephone and operational access to licensed freight coordinators and dispatch planners worldwide without call queues.
                 </p>
 
                 <div className="space-y-4 pt-2 border-t border-slate-800 text-xs">
@@ -191,7 +191,7 @@ export default function ContactPage() {
                 <span>All Regional Gateways Operational</span>
               </div>
               <p className="text-xs text-slate-500">
-                Average phone pickup latency: &lt; 20 seconds. Automated EDI status queries run every 60 seconds.
+                Average telephone response under 20 seconds. EDI status messages synchronized continuously with port gateways.
               </p>
             </div>
           </div>

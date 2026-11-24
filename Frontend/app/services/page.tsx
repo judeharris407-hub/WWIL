@@ -15,7 +15,7 @@ import {
 
 export const metadata: Metadata = {
   title: 'Multimodal Freight & Cargo Services | TransGlobe-Logistics',
-  description: 'Explore TransGlobe-Logistics services: Ocean container shipping, air charters, continental trucking, automated bonded warehousing, and customs brokerage.',
+  description: 'Explore TransGlobe-Logistics services: Ocean container shipping, air charters, continental trucking, bonded contract warehousing, and customs brokerage.',
 };
 
 export default function ServicesPage() {
@@ -31,7 +31,7 @@ export default function ServicesPage() {
         'Full Container Load (FCL) and Less Than Container Load (LCL) consolidation',
         'Direct charter flights and Next-Flight-Out (NFO) air allocations',
         'Temperature-controlled active reefer containers (-25°C to +25°C)',
-        'Electronic Bill of Lading (e-BL) and Airway Bill (e-AWB) automation',
+        'Electronic Bill of Lading (e-BL) and Airway Bill (e-AWB) digital integration',
         'Port-to-Port, Port-to-Door, and Door-to-Door terms under Incoterms 2020',
       ],
       specs: [
@@ -61,20 +61,20 @@ export default function ServicesPage() {
     },
     {
       id: 'warehousing',
-      title: 'Intelligent Warehousing & Distribution',
-      category: 'Automated 3PL & Bonded Storage',
+      title: 'Bonded Warehousing & Distribution',
+      category: 'Contract 3PL & Bonded Storage',
       icon: Building2,
       image: '/assets/warehouse1.avif',
-      description: 'TransGlobe-Logistics operates over 3.2 million square meters of strategically positioned fulfillment and bonded storage hubs at key airport and seaport perimeters worldwide. Equipped with robotic sortation, climate control, and automated WMS integration.',
+      description: 'TransGlobe-Logistics operates over 3.2 million square meters of strategically positioned fulfillment and bonded storage hubs at key airport and seaport perimeters worldwide. Equipped with high-velocity sortation, climate control, and integrated WMS inventory platforms.',
       capabilities: [
         'Customs Bonded warehousing with duty deferment and tax relief benefits',
-        'Automated robotic pick, pack, and sortation systems',
-        'Real-time RFID inventory telematics accessible via enterprise API',
+        'High-velocity pick, pack, and conveyor sortation systems',
+        'Real-time RFID and barcode inventory telematics accessible via enterprise EDI',
         'Clean-room pharma and hazardous materials (HAZMAT) certified storage',
       ],
       specs: [
         { label: 'Global Capacity', value: '3.2M+ sq. meters across 48 global hubs' },
-        { label: 'Inventory Accuracy', value: '99.98% via RFID & Computer Vision' },
+        { label: 'Inventory Accuracy', value: '99.98% via Barcode & RFID Verification' },
         { label: 'Security Class', value: 'TAPA Class A & 24/7 CCTV Monitored' },
       ],
     },
@@ -87,7 +87,7 @@ export default function ServicesPage() {
       description: 'Eliminate border delays and unexpected penalties. Our licensed in-house customs brokers navigate complex global import/export tariffs, dual-use export controls, and free trade agreement certifications across all five continents.',
       capabilities: [
         'Direct EDI integration with US CBP (ACE), EU ATLAS, and China Single Window',
-        'Harmonized Tariff Schedule (HTS) automated classification audit',
+        'Harmonized Tariff Schedule (HTS) classification and pre-entry audit',
         'Duty drawback programs and FTA preferential rate maximization',
         'AEO-F and C-TPAT Tier 3 validated fast-lane processing',
       ],
