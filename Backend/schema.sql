@@ -29,7 +29,9 @@ CREATE TABLE IF NOT EXISTS parcels (
     current_lng NUMERIC(10, 6),
     transport_mode VARCHAR(50) NOT NULL, -- e.g., 'Air Freight', 'Ocean Freight', 'Ground Logistics'
     status VARCHAR(50) NOT NULL DEFAULT 'Order Received', -- e.g., 'Order Received', 'In Transit', 'On Hold', 'Out for Delivery', 'Delivered'
-    estimated_delivery DATE,
+    estimated_delivery VARCHAR(255),
+    departure_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    eta_at TIMESTAMP WITH TIME ZONE,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP
 );

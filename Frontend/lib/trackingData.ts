@@ -41,6 +41,8 @@ export interface Shipment {
   statusStep: 1 | 2 | 3 | 4 | 5; // 1: Order Received, 2: In Transit, 3: On Hold/Customs, 4: Out for Delivery, 5: Delivered
   eta: string;
   departedAt: string;
+  departure_at?: string;
+  eta_at?: string;
   pieces: string;
   weight: string;
   serviceLevel: string;
@@ -265,12 +267,24 @@ export function resetShipmentsToDefault(): void {
  * Transforms a backend PostgreSQL parcel record into the frontend Shipment model
  */
 export function transformBackendParcelToShipment(parcel: any): Shipment {
-  const originLat = Number(parcel.origin_lat || 50.0);
-  const originLng = Number(parcel.origin_lng || 8.0);
-  const destLat = Number(parcel.dest_lat || 40.0);
-  const destLng = Number(parcel.dest_lng || -74.0);
-  const currentLat = Number(parcel.current_lat || originLat);
-  const currentLng = Number(parcel.current_lng || originLng);
+  const originLat = parcel.origin_lat !== undefined && parcel.origin_lat !== null && !isNaN(Number(parcel.origin_lat))
+    ? Number(parcel.origin_lat)
+    : 50.0;
+  const originLng = parcel.origin_lng !== undefined && parcel.origin_lng !== null && !isNaN(Number(parcel.origin_lng))
+    ? Number(parcel.origin_lng)
+    : 8.0;
+  const destLat = parcel.dest_lat !== undefined && parcel.dest_lat !== null && !isNaN(Number(parcel.dest_lat))
+    ? Number(parcel.dest_lat)
+    : 40.0;
+  const destLng = parcel.dest_lng !== undefined && parcel.dest_lng !== null && !isNaN(Number(parcel.dest_lng))
+    ? Number(parcel.dest_lng)
+    : -74.0;
+  const currentLat = parcel.current_lat !== undefined && parcel.current_lat !== null && !isNaN(Number(parcel.current_lat))
+    ? Number(parcel.current_lat)
+    : originLat;
+  const currentLng = parcel.current_lng !== undefined && parcel.current_lng !== null && !isNaN(Number(parcel.current_lng))
+    ? Number(parcel.current_lng)
+    : originLng;
 
   // Determine transport type
   let type: Shipment['type'] = 'Air';
@@ -376,6 +390,8 @@ export function transformBackendParcelToShipment(parcel: any): Shipment {
     statusStep,
     eta: parcel.estimated_delivery || 'In 2 Business Days',
     departedAt: parcel.created_at ? new Date(parcel.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : 'Recent Dispatch',
+    departure_at: parcel.departure_at || parcel.created_at,
+    eta_at: parcel.eta_at || undefined,
     pieces: 'Commercial Pallets',
     weight: parcel.weight_kg ? (parcel.weight_kg.includes('kg') ? parcel.weight_kg : `${parcel.weight_kg} kg`) : 'Standard Consignment',
     serviceLevel: type === 'Air' ? 'Guaranteed Priority Air Freight' : type === 'Ocean' ? 'Guaranteed Ocean Liner FCL' : 'Dedicated Interstate Linehaul',

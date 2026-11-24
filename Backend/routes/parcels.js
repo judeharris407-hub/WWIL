@@ -17,6 +17,62 @@ const { verifyAdminToken } = require('../middleware/auth');
 const { sendShipmentCreatedEmail, sendStatusUpdateEmail } = require('../services/emailService');
 const { validateBody, createParcelSchema, patchLocationSchema } = require('../middleware/validators');
 
+/**
+ * Robust helper to convert ETA string or duration to an ISO timestamp
+ */
+function parseEtaToTimestamp(etaInput, departureDate = new Date()) {
+  if (!etaInput) {
+    const d = new Date(departureDate);
+    d.setDate(d.getDate() + 3);
+    return d.toISOString();
+  }
+
+  const str = String(etaInput).trim();
+
+  // Match relative expressions like "In 3 Business Days", "In 5 Days", "In 48 Hours"
+  const bizDaysMatch = str.match(/in\s+(\d+)\s*(?:business\s*)?days?/i);
+  if (bizDaysMatch) {
+    const days = parseInt(bizDaysMatch[1], 10);
+    const d = new Date(departureDate);
+    let added = 0;
+    while (added < days) {
+      d.setDate(d.getDate() + 1);
+      const dayOfWeek = d.getDay();
+      if (dayOfWeek !== 0 && dayOfWeek !== 6) {
+        added++;
+      }
+    }
+    return d.toISOString();
+  }
+
+  const hoursMatch = str.match(/in\s+(\d+)\s*hours?/i);
+  if (hoursMatch) {
+    const hours = parseInt(hoursMatch[1], 10);
+    const d = new Date(departureDate);
+    d.setHours(d.getHours() + hours);
+    return d.toISOString();
+  }
+
+  const weeksMatch = str.match(/in\s+(\d+)\s*weeks?/i);
+  if (weeksMatch) {
+    const weeks = parseInt(weeksMatch[1], 10);
+    const d = new Date(departureDate);
+    d.setDate(d.getDate() + weeks * 7);
+    return d.toISOString();
+  }
+
+  // Check direct date parse
+  const parsed = new Date(str);
+  if (!isNaN(parsed.getTime())) {
+    return parsed.toISOString();
+  }
+
+  // Default fallback: 3 days after departure
+  const fallback = new Date(departureDate);
+  fallback.setDate(fallback.getDate() + 3);
+  return fallback.toISOString();
+}
+
 const router = express.Router();
 
 /**
@@ -171,12 +227,39 @@ router.post('/', verifyAdminToken, validateBody(createParcelSchema), async (req,
 
   const resolvedStatus = status || 'Order Received';
   const resolvedEstimatedDelivery = estimated_delivery || estimatedDelivery || eta || null;
-  const resolvedOriginLat = Number(origin_lat ?? originLat ?? 0);
-  const resolvedOriginLng = Number(origin_lng ?? originLng ?? 0);
+
+  // Origin & destination coordinate defaulting
+  let rawOriginLat = origin_lat ?? originLat;
+  let rawOriginLng = origin_lng ?? originLng;
+  let rawCurrentLat = current_lat ?? currentLat;
+  let rawCurrentLng = current_lng ?? currentLng;
+
+  // Default origin_lat/origin_lng to initial current_lat/current_lng if separate origin coordinates aren't provided
+  if ((rawOriginLat === undefined || rawOriginLat === null || isNaN(Number(rawOriginLat))) && rawCurrentLat !== undefined && !isNaN(Number(rawCurrentLat))) {
+    rawOriginLat = rawCurrentLat;
+  }
+  if ((rawOriginLng === undefined || rawOriginLng === null || isNaN(Number(rawOriginLng))) && rawCurrentLng !== undefined && !isNaN(Number(rawCurrentLng))) {
+    rawOriginLng = rawCurrentLng;
+  }
+
+  const resolvedOriginLat = Number(rawOriginLat ?? 0);
+  const resolvedOriginLng = Number(rawOriginLng ?? 0);
   const resolvedDestLat = Number(dest_lat ?? destLat ?? 0);
   const resolvedDestLng = Number(dest_lng ?? destLng ?? 0);
-  const resolvedCurrentLat = Number(current_lat ?? currentLat ?? resolvedOriginLat);
-  const resolvedCurrentLng = Number(current_lng ?? currentLng ?? resolvedOriginLng);
+  const resolvedCurrentLat = Number(rawCurrentLat ?? resolvedOriginLat);
+  const resolvedCurrentLng = Number(rawCurrentLng ?? resolvedOriginLng);
+
+  // Departure & ETA timestamps
+  const rawDeparture = req.body.departure_at || req.body.departureAt || null;
+  const resolvedDepartureAt = (rawDeparture && !isNaN(new Date(rawDeparture).getTime()))
+    ? new Date(rawDeparture).toISOString()
+    : new Date().toISOString();
+
+  const rawEta = req.body.eta_at || req.body.etaAt || null;
+  const resolvedEtaAt = (rawEta && !isNaN(new Date(rawEta).getTime()))
+    ? new Date(rawEta).toISOString()
+    : parseEtaToTimestamp(resolvedEstimatedDelivery, new Date(resolvedDepartureAt));
+
   const resolvedCurrentLocationName = (current_location_name || currentLocationName || `${resolvedOriginAddress} Outbound Terminal`).toString().trim();
   const resolvedWeight = (weight_kg || weightKg || weight) ? String(weight_kg || weightKg || weight).trim() : null;
   const resolvedVolume = (volume_cbm || volumeCbm) ? String(volume_cbm || volumeCbm).trim() : null;
@@ -224,6 +307,8 @@ router.post('/', verifyAdminToken, validateBody(createParcelSchema), async (req,
         transport_mode,
         status,
         estimated_delivery,
+        departure_at,
+        eta_at,
         current_location_name,
         weight_kg,
         volume_cbm,
@@ -234,7 +319,7 @@ router.post('/', verifyAdminToken, validateBody(createParcelSchema), async (req,
         recipient_email,
         description
       )
-      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18, $19, $20, $21, $22, $23, $24, $25)
       RETURNING *
     `;
 
@@ -253,6 +338,8 @@ router.post('/', verifyAdminToken, validateBody(createParcelSchema), async (req,
       resolvedTransportMode,
       resolvedStatus,
       resolvedEstimatedDelivery,
+      resolvedDepartureAt,
+      resolvedEtaAt,
       resolvedCurrentLocationName,
       resolvedWeight,
       resolvedVolume,
@@ -359,6 +446,12 @@ router.put('/:id', verifyAdminToken, async (req, res) => {
   const resolvedRecipientEmail = recipient_email || recipientEmail || null;
   const resolvedDescription = description || null;
 
+  const rawDeparture = req.body.departure_at || req.body.departureAt || null;
+  const resolvedDepartureAt = rawDeparture && !isNaN(new Date(rawDeparture).getTime()) ? new Date(rawDeparture).toISOString() : null;
+
+  const rawEta = req.body.eta_at || req.body.etaAt || null;
+  let resolvedEtaAt = rawEta && !isNaN(new Date(rawEta).getTime()) ? new Date(rawEta).toISOString() : null;
+
   const client = await pool.connect();
 
   try {
@@ -375,6 +468,13 @@ router.put('/:id', verifyAdminToken, async (req, res) => {
 
     const existingParcel = findRes.rows[0];
     const statusChanged = status && status !== existingParcel.status;
+
+    if (!resolvedEtaAt && estimated_delivery) {
+      resolvedEtaAt = parseEtaToTimestamp(
+        estimated_delivery,
+        resolvedDepartureAt ? new Date(resolvedDepartureAt) : new Date(existingParcel.departure_at || existingParcel.created_at || Date.now())
+      );
+    }
 
     await client.query('BEGIN');
 
@@ -393,17 +493,19 @@ router.put('/:id', verifyAdminToken, async (req, res) => {
         transport_mode = COALESCE($9, transport_mode),
         status = COALESCE($10, status),
         estimated_delivery = COALESCE($11, estimated_delivery),
-        carrier_name = COALESCE($12, carrier_name),
-        vessel_or_flight = COALESCE($13, vessel_or_flight),
-        weight_kg = COALESCE($14, weight_kg),
-        volume_cbm = COALESCE($15, volume_cbm),
-        progress_percent = COALESCE($16, progress_percent),
-        sender_phone = COALESCE($17, sender_phone),
-        recipient_phone = COALESCE($18, recipient_phone),
-        recipient_email = COALESCE($19, recipient_email),
-        description = COALESCE($20, description),
+        departure_at = COALESCE($12, departure_at),
+        eta_at = COALESCE($13, eta_at),
+        carrier_name = COALESCE($14, carrier_name),
+        vessel_or_flight = COALESCE($15, vessel_or_flight),
+        weight_kg = COALESCE($16, weight_kg),
+        volume_cbm = COALESCE($17, volume_cbm),
+        progress_percent = COALESCE($18, progress_percent),
+        sender_phone = COALESCE($19, sender_phone),
+        recipient_phone = COALESCE($20, recipient_phone),
+        recipient_email = COALESCE($21, recipient_email),
+        description = COALESCE($22, description),
         updated_at = CURRENT_TIMESTAMP
-      WHERE id = $21
+      WHERE id = $23
       RETURNING *
     `;
 
@@ -419,6 +521,8 @@ router.put('/:id', verifyAdminToken, async (req, res) => {
       transport_mode,
       status,
       estimated_delivery,
+      resolvedDepartureAt,
+      resolvedEtaAt,
       carrier_name,
       vessel_or_flight,
       weight_kg ? String(weight_kg) : null,

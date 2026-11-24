@@ -26,6 +26,7 @@ import {
 } from '@/lib/trackingData';
 import { getApiBaseUrl } from '@/lib/api';
 import { TransGlobeEmblem } from '@/components/TransGlobeLogo';
+import { calculateLivePosition } from '@/utils/routeInterpolation';
 
 // Dynamically import LiveMap with SSR disabled (mandatory for Leaflet in Next.js)
 const LiveMap = dynamic(() => import('@/components/tracking/LiveMap'), {
@@ -46,9 +47,41 @@ export default function TrackingDashboard({ initialTrackingId = '' }: TrackingDa
   const [searchInput, setSearchInput] = useState(initialTrackingId || '');
   const [currentId, setCurrentId] = useState(initialTrackingId || '');
   const [shipment, setShipment] = useState<Shipment | null>(() => (initialTrackingId ? getShipmentById(initialTrackingId) : null));
+  const [liveCoords, setLiveCoords] = useState<{ lat: number; lng: number } | null>(() =>
+    shipment ? calculateLivePosition(shipment) : null
+  );
   const [copied, setCopied] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  // Lightweight 15-second client-side interval to update live interpolated telemetry in local state
+  useEffect(() => {
+    if (!shipment) {
+      setLiveCoords(null);
+      return;
+    }
+
+    setLiveCoords(calculateLivePosition(shipment));
+
+    const timer = setInterval(() => {
+      setLiveCoords(calculateLivePosition(shipment));
+    }, 15000);
+
+    return () => clearInterval(timer);
+  }, [
+    shipment?.id,
+    shipment?.status,
+    shipment?.departure_at,
+    shipment?.departedAt,
+    shipment?.eta_at,
+    shipment?.eta,
+    shipment?.origin?.lat,
+    shipment?.origin?.lng,
+    shipment?.destination?.lat,
+    shipment?.destination?.lng,
+    shipment?.currentLocation?.lat,
+    shipment?.currentLocation?.lng,
+  ]);
 
   // Fetch tracking data from Express API with fallback
   const fetchTrackingData = async (trackingCode: string) => {
@@ -555,7 +588,14 @@ export default function TrackingDashboard({ initialTrackingId = '' }: TrackingDa
                 </div>
                 <div className="text-xs text-slate-500 flex items-center gap-1.5">
                   <MapPin className="w-3.5 h-3.5 text-[#2563EB]" />
-                  <span>Active Waypoint: <strong>{shipment.currentLocation.name}</strong></span>
+                  <span>
+                    Active Waypoint: <strong>{shipment.currentLocation.name}</strong>
+                    {liveCoords && (
+                      <span className="ml-1.5 font-mono text-[11px] text-slate-400">
+                        ({liveCoords.lat.toFixed(2)}°, {liveCoords.lng.toFixed(2)}°)
+                      </span>
+                    )}
+                  </span>
                 </div>
               </div>
 

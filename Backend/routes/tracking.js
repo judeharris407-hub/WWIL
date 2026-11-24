@@ -96,6 +96,8 @@ router.get('/:trackingNumber', async (req, res) => {
         transport_mode: parcel.transport_mode,
         status: parcel.status,
         estimated_delivery: parcel.estimated_delivery,
+        departure_at: parcel.departure_at || parcel.created_at,
+        eta_at: parcel.eta_at,
         current_location_name: parcel.current_location_name,
         carrier_name: parcel.carrier_name,
         vessel_or_flight: parcel.vessel_or_flight,

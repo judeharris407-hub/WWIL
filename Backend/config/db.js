@@ -38,12 +38,24 @@ pool.on('error', (err) => {
   console.error('❌ [Database] Unexpected idle client error:', err.message);
 });
 
-// Perform startup connectivity check and log database details
+// Perform startup connectivity check and ensure schema support
 pool.query('SELECT NOW() AS current_time, current_database() AS db_name')
-  .then((res) => {
+  .then(async (res) => {
     const { current_time, db_name } = res.rows[0];
     console.log(`✅ [Database] Connected to Neon PostgreSQL database: "${db_name}"`);
     console.log(`   Database Server Time: ${current_time}`);
+
+    // Ensure interpolation timestamp columns exist
+    try {
+      await pool.query(`
+        ALTER TABLE parcels 
+        ADD COLUMN IF NOT EXISTS departure_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP;
+        ALTER TABLE parcels 
+        ADD COLUMN IF NOT EXISTS eta_at TIMESTAMP WITH TIME ZONE;
+      `);
+    } catch (migErr) {
+      console.warn('⚠️ [Database] Schema check notice:', migErr.message);
+    }
   })
   .catch((err) => {
     console.error('❌ [Database] Initial connection attempt failed:', err.message);

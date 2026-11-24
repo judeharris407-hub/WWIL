@@ -406,6 +406,7 @@ export default function AdminDashboardPage() {
         transport_mode: newShipment.type === 'Air' ? 'Air Freight' : newShipment.type === 'Ocean' ? 'Ocean Freight' : 'Ground Logistics',
         status: newShipment.status,
         estimated_delivery: newShipment.eta,
+        departure_at: new Date().toISOString(),
         carrier_name: newShipment.carrier,
         vessel_or_flight: newShipment.conveyance,
         weight_kg: newShipment.weight,

@@ -6,6 +6,7 @@ import L from 'leaflet';
 import { Layers, Plane, Ship, Truck } from 'lucide-react';
 import { Shipment } from '@/lib/trackingData';
 import { calculateModeAwareRoute, RouteLegs, normalizeTransportMode } from '@/lib/routing';
+import { calculateLivePosition } from '@/utils/routeInterpolation';
 
 // Component to dynamically fit map bounds to route
 function MapController({ coords }: { coords: [number, number][] }) {
@@ -53,6 +54,39 @@ const TILE_PROVIDERS = {
 
 export default function LiveMap({ shipment }: LiveMapProps) {
   const [selectedProvider, setSelectedProvider] = useState<keyof typeof TILE_PROVIDERS>('esriStreet');
+  
+  // Real-time automatic position interpolation (updated via lightweight 15s interval)
+  const [liveCoords, setLiveCoords] = useState<[number, number]>(() => {
+    const pos = calculateLivePosition(shipment);
+    return [pos.lat, pos.lng];
+  });
+
+  // Client-side 15-second interval: recalculates marker position locally without database hits or log entries
+  useEffect(() => {
+    const pos = calculateLivePosition(shipment);
+    setLiveCoords([pos.lat, pos.lng]);
+
+    const timer = setInterval(() => {
+      const updated = calculateLivePosition(shipment);
+      setLiveCoords([updated.lat, updated.lng]);
+    }, 15000);
+
+    return () => clearInterval(timer);
+  }, [
+    shipment.id,
+    shipment.status,
+    shipment.departure_at,
+    shipment.departedAt,
+    shipment.eta_at,
+    shipment.eta,
+    shipment.origin.lat,
+    shipment.origin.lng,
+    shipment.destination.lat,
+    shipment.destination.lng,
+    shipment.currentLocation.lat,
+    shipment.currentLocation.lng,
+  ]);
+
   const [routeData, setRouteData] = useState<RouteLegs>({
     fullRoute: [],
     completedLeg: [],
@@ -71,7 +105,7 @@ export default function LiveMap({ shipment }: LiveMapProps) {
       const computed = await calculateModeAwareRoute({
         origin: [shipment.origin.lat, shipment.origin.lng],
         destination: [shipment.destination.lat, shipment.destination.lng],
-        current: [shipment.currentLocation.lat, shipment.currentLocation.lng],
+        current: liveCoords,
         transportMode: (shipment as any).transport_mode || shipment.type,
         status: shipment.status,
         existingRoute: shipment.routeCoordinates,
@@ -94,8 +128,8 @@ export default function LiveMap({ shipment }: LiveMapProps) {
     shipment.origin.lng,
     shipment.destination.lat,
     shipment.destination.lng,
-    shipment.currentLocation.lat,
-    shipment.currentLocation.lng,
+    liveCoords[0],
+    liveCoords[1],
     shipment.type,
     shipment.status,
     shipment.routeCoordinates,
@@ -244,7 +278,7 @@ export default function LiveMap({ shipment }: LiveMapProps) {
 
   const originCoords: [number, number] = [shipment.origin.lat, shipment.origin.lng];
   const destCoords: [number, number] = [shipment.destination.lat, shipment.destination.lng];
-  const currentCoords: [number, number] = [shipment.currentLocation.lat, shipment.currentLocation.lng];
+  const currentCoords: [number, number] = liveCoords;
 
   const currentTile = TILE_PROVIDERS[selectedProvider];
 
@@ -379,7 +413,7 @@ export default function LiveMap({ shipment }: LiveMapProps) {
               <div className="mt-2 pt-1 border-t border-slate-100 flex items-center justify-between text-[11px]">
                 <span className="text-slate-400">Coordinates:</span>
                 <span className="text-slate-700 font-mono font-semibold">
-                  {shipment.currentLocation.lat.toFixed(4)}°, {shipment.currentLocation.lng.toFixed(4)}°
+                  {currentCoords[0].toFixed(4)}°, {currentCoords[1].toFixed(4)}°
                 </span>
               </div>
             </div>
