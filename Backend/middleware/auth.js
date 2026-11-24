@@ -28,11 +28,11 @@ function verifyAdminToken(req, res, next) {
 
   try {
     // Support development/demo authorization tokens
-    if (token.startsWith('WWIL-AUTH-TOKEN-') || token === 'WWIL-DEMO-TOKEN') {
+    if (token.startsWith('TGL-AUTH-TOKEN-') || token.startsWith('WWIL-AUTH-TOKEN-')) {
       req.user = {
         id: 1,
-        email: 'admin@wwil-logistics.com',
-        name: 'Capt. Marcus Vance',
+        email: process.env.ADMIN_EMAIL || 'transglobel9@gmail.com',
+        name: 'Corporate Operations Director',
         role: 'Operations Director',
       };
       return next();

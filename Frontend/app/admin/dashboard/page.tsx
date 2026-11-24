@@ -566,19 +566,6 @@ export default function AdminDashboardPage() {
               <Plus className="w-4 h-4" />
               <span>Create New Shipment</span>
             </button>
-
-            <button
-              onClick={() => {
-                resetShipmentsToDefault();
-                showToast('Reset all shipments to initial demo datasets.');
-                loadShipments();
-              }}
-              className="inline-flex items-center gap-2 px-4 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white text-xs font-semibold border border-slate-700 transition-colors"
-              title="Reset mock database to initial data"
-            >
-              <RotateCcw className="w-4 h-4" />
-              <span>Reset Samples</span>
-            </button>
           </div>
         </div>
 
@@ -700,7 +687,9 @@ export default function AdminDashboardPage() {
                 {filteredShipments.length === 0 ? (
                   <tr>
                     <td colSpan={6} className="px-6 py-12 text-center text-slate-400">
-                      No matching consignments found for query "{searchQuery}".
+                      {searchQuery
+                        ? `No matching consignments found for query "${searchQuery}".`
+                        : "No active consignments in database. Click 'Create New Shipment' to register your first cargo parcel."}
                     </td>
                   </tr>
                 ) : (

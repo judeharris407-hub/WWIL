@@ -4,13 +4,11 @@ const jwt = require('jsonwebtoken');
 const { query, checkConnection } = require('../db');
 
 const router = express.Router();
-const JWT_SECRET = process.env.JWT_SECRET || 'wwil_super_secret_jwt_key_2026_operations';
+const JWT_SECRET = process.env.JWT_SECRET || 'transglobe_operations_jwt_secret_key_2026';
 
-// Fallback demo credentials if PostgreSQL is running offline
-const DEFAULT_DEMO_CREDENTIALS = {
-  email: 'admin@wwil-logistics.com',
-  password: 'WWIL-Ops#2026',
-};
+// Corporate admin credentials
+const DEFAULT_CORP_EMAIL = (process.env.ADMIN_EMAIL || 'transglobel9@gmail.com').trim().toLowerCase();
+const DEFAULT_CORP_PASSWORD = process.env.ADMIN_PASSWORD || 'Kenfack123@';
 
 /**
  * POST /api/auth/login
@@ -64,13 +62,11 @@ router.post('/login', async (req, res) => {
       }
     }
 
-    // Fallback verification for demo controller key
-    const isDemoMatch =
-      (normalizedEmail === DEFAULT_DEMO_CREDENTIALS.email.toLowerCase() ||
-        normalizedEmail.endsWith('@wwil-logistics.com')) &&
-      password === DEFAULT_DEMO_CREDENTIALS.password;
+    // Fallback verification for corporate credentials
+    const isCorpMatch =
+      normalizedEmail === DEFAULT_CORP_EMAIL && password === DEFAULT_CORP_PASSWORD;
 
-    if (isDemoMatch) {
+    if (isCorpMatch) {
       const token = jwt.sign(
         { id: 999, email: normalizedEmail, role: 'Operations Director' },
         JWT_SECRET,
@@ -82,7 +78,7 @@ router.post('/login', async (req, res) => {
         user: {
           id: 999,
           email: normalizedEmail,
-          name: 'Capt. Marcus Vance',
+          name: 'Corporate Operations Director',
           role: 'Operations Director',
           department: 'Global Multimodal Dispatch',
           terminalCode: 'EUR-USA-CENTRAL',

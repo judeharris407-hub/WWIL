@@ -111,7 +111,7 @@ export default function HomePage() {
 
             {/* Right Side: Clean White Tracking Card (5 Cols) */}
             <div className="lg:col-span-5">
-              <TrackingSearchCard initialCode="TGL-2026-001234" />
+              <TrackingSearchCard initialCode="" />
             </div>
 
           </div>
@@ -243,17 +243,11 @@ export default function HomePage() {
 
               <div className="pt-4 flex flex-wrap items-center gap-3">
                 <Link
-                  href="/track-order?id=TRK-2024-001234"
+                  href="/track-order"
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm transition-colors shadow-md"
                 >
                   <MapPin className="w-4 h-4 text-[#2563EB]" />
                   <span>Launch Live Tracking Dashboard</span>
-                </Link>
-                <Link
-                  href="/track-order?id=MSKU-982341-0"
-                  className="inline-flex items-center gap-2 px-4 py-3 rounded-xl bg-white hover:bg-slate-100 text-slate-700 font-semibold text-xs border border-slate-200 transition-colors"
-                >
-                  <span>Sample Ocean Liner (MSKU-982341-0)</span>
                 </Link>
               </div>
             </div>
@@ -265,11 +259,11 @@ export default function HomePage() {
                   <div className="flex items-center gap-2">
                     <span className="w-3 h-3 rounded-full bg-emerald-500 animate-ping"></span>
                     <span className="font-bold text-xs uppercase tracking-wider text-slate-800">
-                      Live Telemetry Stream &bull; TRK-2024-001234
+                      Live Telemetry Stream &bull; Active Satellite Mesh
                     </span>
                   </div>
                   <span className="px-2.5 py-0.5 rounded-full bg-blue-100 text-[#2563EB] text-xs font-bold">
-                    In Transit
+                    Online
                   </span>
                 </div>
 
@@ -287,7 +281,7 @@ export default function HomePage() {
                         Track coordinates, geofences, and checkpoint logs on our dedicated tracking page.
                       </p>
                       <Link
-                        href="/track-order?id=TRK-2024-001234"
+                        href="/track-order"
                         className="mt-3 inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-[#2563EB] text-white font-bold text-xs hover:bg-[#1D4ED8] transition-colors"
                       >
                         <span>Open Interactive Map</span>
@@ -298,8 +292,8 @@ export default function HomePage() {
                 </div>
 
                 <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
-                  <span>Frankfurt FRA &rarr; Chicago ORD</span>
-                  <span className="text-[#2563EB] font-bold">ETA: Tomorrow by 14:00 CST</span>
+                  <span>Global Multimodal Corridors</span>
+                  <span className="text-[#2563EB] font-bold">Continuous Satellite Updates</span>
                 </div>
               </div>
             </div>

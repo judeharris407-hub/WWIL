@@ -12,7 +12,7 @@ interface TrackOrderPageProps {
 }
 
 export default function TrackOrderPage({ searchParams }: TrackOrderPageProps) {
-  const trackingId = searchParams?.id || 'TGL-2026-001234';
+  const trackingId = searchParams?.id || '';
 
   return (
     <Suspense

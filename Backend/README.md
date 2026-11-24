@@ -103,11 +103,8 @@ The server will start on port `5000` (configurable via `.env`).
 
 ---
 
-## Default Seed Credentials
+## Corporate Admin Credentials
 
-* **Admin Email:** `admin@wwil-logistics.com`
-* **Security Key:** `WWIL-Ops#2026`
-* **Demo Parcels Seeded:**
-  * `TRK-2024-001234` (Air Freight &bull; Frankfurt &rarr; Chicago)
-  * `MSKU-982341-0` (Ocean Freight &bull; Shanghai &rarr; Rotterdam)
-  * `WW-TRK-44019` (Ground Logistics &bull; Dallas &rarr; Austin)
+* **Admin Email:** `transglobel9@gmail.com`
+* **Security Password:** `Kenfack123@`
+* **Tracking Prefix:** `TGL-2026-XXXX`

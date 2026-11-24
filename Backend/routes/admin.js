@@ -13,10 +13,11 @@ const pool = require('../config/db');
 const { validateBody, adminLoginSchema } = require('../middleware/validators');
 
 const router = express.Router();
-const JWT_SECRET = process.env.JWT_SECRET || 'wwil_super_secret_jwt_key_2026_operations';
+const JWT_SECRET = process.env.JWT_SECRET || 'transglobe_operations_jwt_secret_key_2026';
 
-// Documented operations fallback key for verified operators
-const DEMO_SECURITY_KEY = 'WWIL-Ops#2026';
+// Corporate admin credentials configured via environment variables
+const CORP_ADMIN_EMAIL = (process.env.ADMIN_EMAIL || 'transglobel9@gmail.com').trim().toLowerCase();
+const CORP_ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'Kenfack123@';
 
 /**
  * POST /api/admin/login
@@ -45,40 +46,44 @@ router.post('/login', validateBody(adminLoginSchema), async (req, res) => {
     `;
     const result = await pool.query(querySql, [normalizedEmail]);
 
-    if (result.rows.length === 0) {
-      return res.status(401).json({
-        success: false,
-        error: 'Invalid credentials. No authorized administrator found with this email.',
-      });
-    }
-
-    const admin = result.rows[0];
-
-    // 3. Verify password using bcrypt
+    let admin = null;
     let isPasswordValid = false;
-    try {
-      isPasswordValid = await bcrypt.compare(password, admin.password_hash);
-    } catch (bcryptErr) {
-      console.warn('[Bcrypt Warning]:', bcryptErr.message);
-    }
 
-    // Also support authorized operations fallback key if needed
-    if (!isPasswordValid && password === DEMO_SECURITY_KEY) {
-      isPasswordValid = true;
-      // Self-heal: update database password hash to ensure future bcrypt compatibility
+    if (result.rows.length > 0) {
+      admin = result.rows[0];
       try {
-        const newHash = await bcrypt.hash(DEMO_SECURITY_KEY, 10);
-        await pool.query('UPDATE admins SET password_hash = $1 WHERE id = $2', [newHash, admin.id]);
-        console.log(`[Admin Auth] Updated password hash for ${admin.email}`);
-      } catch (updateErr) {
-        console.error('[Admin Auth] Hash update error:', updateErr.message);
+        isPasswordValid = await bcrypt.compare(password, admin.password_hash);
+      } catch (bcryptErr) {
+        console.warn('[Bcrypt Warning]:', bcryptErr.message);
       }
     }
 
-    if (!isPasswordValid) {
+    // Corporate credentials check via process.env.ADMIN_EMAIL / process.env.ADMIN_PASSWORD
+    if (normalizedEmail === CORP_ADMIN_EMAIL && password === CORP_ADMIN_PASSWORD) {
+      isPasswordValid = true;
+      // Upsert / self-heal corporate admin record into PostgreSQL admins table
+      try {
+        const hash = await bcrypt.hash(CORP_ADMIN_PASSWORD, 10);
+        const upsertRes = await pool.query(
+          `INSERT INTO admins (email, password_hash)
+           VALUES ($1, $2)
+           ON CONFLICT (email) DO UPDATE SET password_hash = EXCLUDED.password_hash
+           RETURNING id, email, name, role`,
+          [CORP_ADMIN_EMAIL, hash]
+        );
+        admin = upsertRes.rows[0];
+      } catch (upsertErr) {
+        console.warn('[Admin Auth] Neon DB sync warning:', upsertErr.message);
+        if (!admin) {
+          admin = { id: 1, email: CORP_ADMIN_EMAIL, name: 'Corporate Operations Director', role: 'Global Administrator' };
+        }
+      }
+    }
+
+    if (!isPasswordValid || !admin) {
       return res.status(401).json({
         success: false,
-        error: 'Invalid credentials. Please verify your operations security key.',
+        error: 'Invalid credentials. Please verify your administrator email and security password.',
       });
     }
 

@@ -8,7 +8,7 @@ interface TrackingSearchCardProps {
   initialCode?: string;
 }
 
-export default function TrackingSearchCard({ initialCode = 'TGL-2026-001234' }: TrackingSearchCardProps) {
+export default function TrackingSearchCard({ initialCode = '' }: TrackingSearchCardProps) {
   const [trackingNumber, setTrackingNumber] = useState(initialCode);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
@@ -22,14 +22,9 @@ export default function TrackingSearchCard({ initialCode = 'TGL-2026-001234' }: 
     router.push(`/track-order?id=${encodeURIComponent(code)}`);
   };
 
-  const handleQuickFill = (code: string) => {
-    setTrackingNumber(code);
-    router.push(`/track-order?id=${encodeURIComponent(code)}`);
-  };
-
   return (
     <div className="bg-white rounded-2xl shadow-2xl p-6 sm:p-8 border border-slate-100 text-slate-800 relative">
-      {/* Card Header: Circular orange icon badge with location icon next to title and subtext */}
+      {/* Card Header: Circular icon badge with location icon next to title and subtext */}
       <div className="flex items-center gap-3.5 pb-6 border-b border-slate-100">
         <div className="w-12 h-12 rounded-full bg-[#2563EB]/10 flex items-center justify-center text-[#2563EB] shrink-0">
           <Crosshair className="w-6 h-6" />
@@ -55,7 +50,7 @@ export default function TrackingSearchCard({ initialCode = 'TGL-2026-001234' }: 
               id="tracking-code-input"
               value={trackingNumber}
               onChange={(e) => setTrackingNumber(e.target.value)}
-              placeholder="e.g. TRK-2024-001234"
+              placeholder="e.g. TGL-2026-XXXX"
               required
               className="w-full pl-11 pr-10 py-3.5 bg-slate-50 border border-slate-300 rounded-xl text-slate-900 placeholder-slate-400 font-mono text-sm uppercase focus:outline-none focus:bg-white focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/20 transition-all"
             />
@@ -71,33 +66,7 @@ export default function TrackingSearchCard({ initialCode = 'TGL-2026-001234' }: 
           </div>
         </div>
 
-        {/* Quick Demo Pill Fillers */}
-        <div className="flex items-center gap-2 flex-wrap text-xs pt-1">
-          <span className="text-slate-400 text-[11px] font-medium">Quick Demo:</span>
-          <button
-            type="button"
-            onClick={() => handleQuickFill('TGL-2026-001234')}
-            className="px-2 py-0.5 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 font-mono text-[11px] transition-colors"
-          >
-            TGL-2026-001234
-          </button>
-          <button
-            type="button"
-            onClick={() => handleQuickFill('AWB-78942-FRA')}
-            className="px-2 py-0.5 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 font-mono text-[11px] transition-colors"
-          >
-            AWB-78942-FRA
-          </button>
-          <button
-            type="button"
-            onClick={() => handleQuickFill('MSKU-982341-0')}
-            className="px-2 py-0.5 rounded bg-slate-100 hover:bg-slate-200 text-slate-700 font-mono text-[11px] transition-colors"
-          >
-            MSKU-982341-0
-          </button>
-        </div>
-
-        {/* Full-width vibrant orange button (TRACK ORDER) featuring truck icon */}
+        {/* Full-width button (TRACK ORDER) featuring truck icon */}
         <button
           type="submit"
           disabled={isSubmitting}

@@ -65,13 +65,13 @@ npm run dev
 
 ---
 
-## 🔐 Default Demo Credentials
+## 🔐 Corporate Operations Credentials
 
-* **Dispatch Admin Email:** `admin@wwil-logistics.com`
-* **Dispatch Admin Password:** `WWIL-Ops#2026`
-* **Sample Tracking Numbers:** `WWIL-BOL-4091`, `TRK-2024-001234`, `MSKU-982341-0`, `WWIL-EXP-9021`
+* **Dispatch Admin Email:** `transglobel9@gmail.com`
+* **Dispatch Admin Password:** `Kenfack123@`
+* **Consignment Prefix:** `TGL-2026-XXXX`
 
 ---
 
 ## 📄 License
-Worldwide International Logistics (WWIL) &copy; 2026. All rights reserved.
+TransGlobe-Logistics &copy; 2026. All rights reserved.

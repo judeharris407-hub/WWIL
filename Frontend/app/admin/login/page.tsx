@@ -16,7 +16,7 @@ import {
   Building2, 
   Sparkles 
 } from 'lucide-react';
-import { loginAdmin, getAdminSession, DEMO_ADMIN_CREDENTIALS } from '@/lib/auth';
+import { loginAdmin, getAdminSession } from '@/lib/auth';
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -53,12 +53,6 @@ export default function AdminLoginPage() {
       setIsLoading(false);
       setError(err?.message || 'Network error during administrator authentication.');
     }
-  };
-
-  const handleQuickDemoFill = () => {
-    setEmail(DEMO_ADMIN_CREDENTIALS.email);
-    setPassword(DEMO_ADMIN_CREDENTIALS.password);
-    setError(null);
   };
 
   return (
@@ -119,26 +113,6 @@ export default function AdminLoginPage() {
             </div>
           )}
 
-          {/* Quick Demo Fill Helper Pill */}
-          <div className="p-3.5 rounded-xl bg-slate-800/80 border border-slate-700/80 flex items-center justify-between text-xs">
-            <div className="space-y-0.5">
-              <span className="font-bold text-slate-200 block text-[11px] flex items-center gap-1">
-                <Sparkles className="w-3 h-3 text-[#2563EB]" />
-                Demo Credentials Available
-              </span>
-              <span className="text-[10px] text-slate-400 block font-mono">
-                admin@transglobe-logistics.com
-              </span>
-            </div>
-            <button
-              type="button"
-              onClick={handleQuickDemoFill}
-              className="px-3 py-1.5 rounded-lg bg-[#2563EB]/20 hover:bg-[#2563EB]/30 text-[#2563EB] font-bold text-[11px] transition-colors border border-[#2563EB]/30"
-            >
-              1-Click Fill
-            </button>
-          </div>
-
           <form onSubmit={handleLogin} className="space-y-4">
             
             {/* Email Field */}
@@ -156,7 +130,7 @@ export default function AdminLoginPage() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="controller@transglobe-logistics.com"
+                  placeholder="name@transglobe-logistics.com"
                   className="w-full pl-10 pr-4 py-3 bg-slate-950/80 border border-slate-700 rounded-xl text-white placeholder-slate-500 text-xs focus:outline-none focus:border-[#2563EB] focus:ring-1 focus:ring-[#2563EB] transition-colors"
                 />
               </div>

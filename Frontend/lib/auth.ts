@@ -18,10 +18,10 @@ export interface AdminUser {
 const AUTH_STORAGE_KEY = 'wwil_admin_session_v1';
 const AUTH_COOKIE_NAME = 'wwil_admin_token';
 
-// Default authorized credentials
-export const DEMO_ADMIN_CREDENTIALS = {
-  email: 'admin@transglobe-logistics.com',
-  password: 'WWIL-Ops#2026',
+// Authorized corporate credentials
+export const CORPORATE_ADMIN_CREDENTIALS = {
+  email: 'transglobel9@gmail.com',
+  password: 'Kenfack123@',
 };
 
 /**
@@ -107,27 +107,26 @@ export async function loginAdmin(
     console.warn('[Admin Auth] Backend server unreachable, attempting authorized local verification:', networkError);
   }
 
-  // 2. Offline fallback verification for demo operator clearance
+  // 2. Offline fallback verification for corporate admin clearance if API is unreachable
   const isValid =
-    (normalizedEmail === DEMO_ADMIN_CREDENTIALS.email.toLowerCase() &&
-      password === DEMO_ADMIN_CREDENTIALS.password) ||
-    ((normalizedEmail.endsWith('@transglobe-logistics.com') || normalizedEmail.endsWith('@wwil-logistics.com')) && password === DEMO_ADMIN_CREDENTIALS.password);
+    normalizedEmail === CORPORATE_ADMIN_CREDENTIALS.email.toLowerCase() &&
+    password === CORPORATE_ADMIN_CREDENTIALS.password;
 
   if (!isValid) {
     return {
       success: false,
-      error: 'Invalid credentials. Please verify your email and authorized operations security key.',
+      error: 'Invalid credentials. Please verify your corporate email and administrator password.',
     };
   }
 
   const user: AdminUser = {
-    id: 'ADMIN-8842',
-    name: 'Capt. Marcus Vance',
+    id: 'ADMIN-CORP-01',
+    name: 'Corporate Operations Director',
     email: normalizedEmail,
     role: 'Operations Director',
     department: 'Global Multimodal Dispatch',
-    terminalCode: 'EUR-USA-CENTRAL',
-    avatarInitials: 'MV',
+    terminalCode: 'TGL-CENTRAL',
+    avatarInitials: 'TG',
     token: `TGL-AUTH-TOKEN-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`,
     loginTime: new Date().toLocaleDateString('en-US', {
       month: 'short',
