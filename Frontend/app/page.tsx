@@ -51,7 +51,7 @@ export default function HomePage() {
                 <span>International Multimodal Freight Network</span>
               </div>
 
-              <h1 className="font-display font-extrabold text-4xl sm:text-5xl xl:text-6xl tracking-tight leading-[1.1] text-white">
+              <h1 className="font-display font-semibold text-3xl sm:text-4xl lg:text-5xl xl:text-6xl tracking-tight leading-[1.1] text-white">
                 Scheduled International <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-slate-100 to-slate-300">
                   Freight Forwarding &amp;
@@ -59,38 +59,38 @@ export default function HomePage() {
                 <span className="text-[#2563EB]"> Logistics</span>
               </h1>
 
-              <p className="text-lg sm:text-xl text-slate-300 font-normal leading-relaxed max-w-2xl">
+              <p className="text-base sm:text-lg lg:text-xl text-slate-300 font-normal leading-relaxed max-w-2xl">
                 Connecting enterprise supply chains across 140+ countries with scheduled freight corridors, secured carrier allocations, single-window customs brokerage, and verified live GPS telemetry.
               </p>
 
               {/* Crisp Stat Badges Grid */}
-              <div className="grid grid-cols-3 gap-3 sm:gap-4 pt-1 max-w-xl">
-                <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-3.5 sm:p-4 text-center">
-                  <span className="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight block">140+</span>
-                  <span className="text-xs font-medium text-slate-400 mt-0.5 block">Countries</span>
+              <div className="grid grid-cols-3 gap-2 sm:gap-4 pt-1 max-w-xl">
+                <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-3 sm:p-4 text-center">
+                  <span className="font-mono text-xl sm:text-3xl font-bold text-white tracking-tight block">140+</span>
+                  <span className="text-[11px] sm:text-xs font-medium text-slate-400 mt-0.5 block">Countries</span>
                 </div>
-                <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-3.5 sm:p-4 text-center">
-                  <span className="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight block">2.4M+</span>
-                  <span className="text-xs font-medium text-slate-400 mt-0.5 block">Tons Shipped</span>
+                <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-3 sm:p-4 text-center">
+                  <span className="font-mono text-xl sm:text-3xl font-bold text-white tracking-tight block">2.4M+</span>
+                  <span className="text-[11px] sm:text-xs font-medium text-slate-400 mt-0.5 block">Tons Shipped</span>
                 </div>
-                <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-3.5 sm:p-4 text-center">
-                  <span className="font-display text-2xl sm:text-3xl font-bold text-[#2563EB] tracking-tight block">99.4%</span>
-                  <span className="text-xs font-medium text-slate-400 mt-0.5 block">On-Time</span>
+                <div className="bg-slate-900/90 border border-slate-800 rounded-xl p-3 sm:p-4 text-center">
+                  <span className="font-mono text-xl sm:text-3xl font-bold text-[#2563EB] tracking-tight block">99.4%</span>
+                  <span className="text-[11px] sm:text-xs font-medium text-slate-400 mt-0.5 block">On-Time</span>
                 </div>
               </div>
 
               {/* Action Buttons */}
-              <div className="flex flex-wrap items-center gap-4 pt-2">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-2 w-full sm:w-auto">
                 <Link
                   href="/request-quote"
-                  className="inline-flex items-center gap-3 px-7 py-4 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-base shadow-xl shadow-blue-500/25 transition-all transform hover:-translate-y-0.5"
+                  className="inline-flex items-center justify-center gap-3 px-6 sm:px-7 py-3.5 sm:py-4 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-semibold text-sm sm:text-base shadow-xl shadow-blue-500/25 transition-all transform hover:-translate-y-0.5 w-full sm:w-auto"
                 >
                   <span>Request Instant Tariff</span>
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
                   href="/services"
-                  className="inline-flex items-center gap-2.5 px-6 py-4 rounded-xl bg-slate-900/80 hover:bg-slate-800 text-slate-200 hover:text-white border border-slate-700 font-semibold text-base transition-colors"
+                  className="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 sm:py-4 rounded-xl bg-slate-900/80 hover:bg-slate-800 text-slate-200 hover:text-white border border-slate-700 font-semibold text-sm sm:text-base transition-colors w-full sm:w-auto"
                 >
                   <Boxes className="w-5 h-5 text-[#2563EB]" />
                   <span>Explore Services</span>

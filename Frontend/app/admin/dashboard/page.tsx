@@ -835,8 +835,8 @@ export default function AdminDashboardPage() {
       {/* MODAL 1: INTERACTIVE LEAFLET LOCATION ADJUSTER                       */}
       {/* ===================================================================== */}
       {locationModalOpen && activeShipmentId && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/75 backdrop-blur-sm">
-          <div className="bg-white rounded-2xl w-full max-w-3xl overflow-hidden shadow-2xl border border-slate-200 animate-in fade-in zoom-in-95 duration-200">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/75 backdrop-blur-sm">
+          <div className="bg-white rounded-2xl w-[95vw] max-w-3xl max-h-[90vh] flex flex-col overflow-hidden shadow-2xl border border-slate-200 animate-in fade-in zoom-in-95 duration-200">
             
             <div className="p-5 sm:p-6 bg-wwil-navy-900 text-white flex items-center justify-between">
               <div>
@@ -968,8 +968,8 @@ export default function AdminDashboardPage() {
       {/* MODAL 2: CREATE NEW PARCEL SHIPMENT                                  */}
       {/* ===================================================================== */}
       {createModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/75 backdrop-blur-sm">
-          <div className="bg-white rounded-2xl w-full max-w-2xl overflow-hidden shadow-2xl border border-slate-200 animate-in fade-in zoom-in-95 duration-200">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/75 backdrop-blur-sm">
+          <div className="bg-white rounded-2xl w-[95vw] max-w-2xl max-h-[90vh] flex flex-col overflow-hidden shadow-2xl border border-slate-200 animate-in fade-in zoom-in-95 duration-200">
             
             <div className="p-5 sm:p-6 bg-wwil-navy-900 text-white flex items-center justify-between">
               <div>

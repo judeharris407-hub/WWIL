@@ -82,7 +82,7 @@ export default function TrackingSearchCard({ initialCode = '' }: TrackingSearchC
         <span className="text-[10px] uppercase font-bold tracking-widest text-slate-400 block mb-3">
           TRUSTED BY LEADING COMPANIES
         </span>
-        <div className="flex items-center justify-between gap-4 grayscale opacity-40 px-2 select-none">
+        <div className="flex items-center justify-between gap-2 sm:gap-4 grayscale opacity-40 px-1 sm:px-2 select-none text-[11px] sm:text-sm">
           <span className="font-display font-black text-sm tracking-wider text-slate-600">MAERSK</span>
           <span className="font-display font-black text-sm tracking-wider text-slate-600">HAPAG-LLOYD</span>
           <span className="font-display font-black text-sm tracking-wider text-slate-600">LUFTHANSA</span>

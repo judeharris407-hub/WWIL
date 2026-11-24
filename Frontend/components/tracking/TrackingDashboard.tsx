@@ -31,9 +31,9 @@ import {
 const LiveMap = dynamic(() => import('@/components/tracking/LiveMap'), {
   ssr: false,
   loading: () => (
-    <div className="w-full h-[440px] sm:h-[500px] rounded-2xl bg-slate-900 flex flex-col items-center justify-center text-white space-y-3">
+    <div className="w-full h-[320px] sm:h-[420px] lg:h-[500px] rounded-2xl bg-slate-900 flex flex-col items-center justify-center text-white space-y-3">
       <div className="w-10 h-10 border-4 border-[#2563EB] border-t-transparent rounded-full animate-spin"></div>
-      <p className="text-sm font-semibold tracking-wide text-slate-300">Initializing Live Leaflet Satellite Telemetry...</p>
+      <p className="text-xs sm:text-sm font-semibold tracking-wide text-slate-300">Initializing Live Leaflet Satellite Telemetry...</p>
     </div>
   ),
 });
@@ -318,18 +318,18 @@ export default function TrackingDashboard({ initialTrackingId = '' }: TrackingDa
 
             {/* Tracking Search Input */}
             <div className="lg:col-span-5">
-              <form onSubmit={handleSearch} className="relative flex items-center">
+              <form onSubmit={handleSearch} className="flex flex-col sm:flex-row gap-2 sm:gap-0 sm:relative items-stretch sm:items-center">
                 <input
                   type="text"
                   value={searchInput}
                   onChange={(e) => setSearchInput(e.target.value)}
                   placeholder="Enter Tracking ID (e.g. TGL-2026-XXXX)"
-                  className="w-full pl-4 pr-28 py-3.5 bg-slate-950/90 border border-slate-600 rounded-xl text-white placeholder-slate-400 font-mono text-xs uppercase focus:outline-none focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/30 shadow-inner"
+                  className="w-full pl-4 pr-4 sm:pr-28 py-3.5 bg-slate-950/90 border border-slate-600 rounded-xl text-white placeholder-slate-400 font-mono text-xs uppercase focus:outline-none focus:border-[#2563EB] focus:ring-2 focus:ring-[#2563EB]/30 shadow-inner"
                 />
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="absolute right-1.5 top-1.5 bottom-1.5 px-4 rounded-lg bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-xs flex items-center gap-1.5 transition-colors shadow-md disabled:opacity-50"
+                  className="sm:absolute right-1.5 top-1.5 bottom-1.5 px-5 py-3 sm:py-0 rounded-lg bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-xs flex items-center justify-center gap-1.5 transition-colors shadow-md disabled:opacity-50 shrink-0"
                 >
                   {isLoading ? (
                     <RefreshCw className="w-3.5 h-3.5 animate-spin" />
@@ -435,55 +435,57 @@ export default function TrackingDashboard({ initialTrackingId = '' }: TrackingDa
                 </div>
               </div>
 
-              <div className="relative">
-                {/* Connecting Track Line */}
-                <div className="hidden md:block absolute top-1/2 left-8 right-8 h-1 bg-slate-100 transform -translate-y-1/2 z-0">
-                  <div
-                    className="h-full bg-[#2563EB] transition-all duration-500"
-                    style={{
-                      width: `${((shipment.statusStep - 1) / (milestones.length - 1)) * 100}%`,
-                    }}
-                  ></div>
-                </div>
+              <div className="relative overflow-x-auto pb-3 -mx-4 px-4 sm:mx-0 sm:px-0">
+                <div className="min-w-[540px] md:min-w-0">
+                  {/* Connecting Track Line */}
+                  <div className="hidden md:block absolute top-1/2 left-8 right-8 h-1 bg-slate-100 transform -translate-y-1/2 z-0">
+                    <div
+                      className="h-full bg-[#2563EB] transition-all duration-500"
+                      style={{
+                        width: `${((shipment.statusStep - 1) / (milestones.length - 1)) * 100}%`,
+                      }}
+                    ></div>
+                  </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-5 gap-4 relative z-10">
-                  {milestones.map((m) => {
-                    const isPassed = m.step < shipment.statusStep;
-                    const isCurrent = m.step === shipment.statusStep;
+                  <div className="grid grid-cols-5 gap-3 md:gap-4 relative z-10">
+                    {milestones.map((m) => {
+                      const isPassed = m.step < shipment.statusStep;
+                      const isCurrent = m.step === shipment.statusStep;
 
-                    return (
-                      <div key={m.step} className="flex md:flex-col items-center md:text-center gap-3 md:gap-2">
-                        <div
-                          className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-xs shrink-0 transition-all ${
-                            isCurrent
-                              ? 'bg-[#2563EB] text-white ring-4 ring-blue-100 shadow-md scale-110'
-                              : isPassed
-                              ? 'bg-slate-900 text-white'
-                              : 'bg-slate-100 text-slate-400 border border-slate-200'
-                          }`}
-                        >
-                          {isPassed ? <CheckCircle2 className="w-5 h-5 text-emerald-400" /> : m.step}
-                        </div>
-
-                        <div className="flex flex-col">
-                          <span
-                            className={`text-xs font-bold ${
+                      return (
+                        <div key={m.step} className="flex flex-col items-center text-center gap-2">
+                          <div
+                            className={`w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold text-xs shrink-0 transition-all ${
                               isCurrent
-                                ? 'text-[#2563EB]'
+                                ? 'bg-[#2563EB] text-white ring-4 ring-blue-100 shadow-md scale-110'
                                 : isPassed
-                                ? 'text-slate-900'
-                                : 'text-slate-400'
+                                ? 'bg-slate-900 text-white'
+                                : 'bg-slate-100 text-slate-400 border border-slate-200'
                             }`}
                           >
-                            {m.label}
-                          </span>
-                          <span className="text-[10px] text-slate-400">
-                            {isCurrent ? 'Current Active Node' : isPassed ? 'Verified' : 'Pending'}
-                          </span>
+                            {isPassed ? <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-400" /> : m.step}
+                          </div>
+
+                          <div className="flex flex-col">
+                            <span
+                              className={`text-[11px] sm:text-xs font-bold leading-tight ${
+                                isCurrent
+                                  ? 'text-[#2563EB]'
+                                  : isPassed
+                                  ? 'text-slate-900'
+                                  : 'text-slate-400'
+                              }`}
+                            >
+                              {m.label}
+                            </span>
+                            <span className="text-[9px] sm:text-[10px] text-slate-400 mt-0.5">
+                              {isCurrent ? 'Current Active Node' : isPassed ? 'Verified' : 'Pending'}
+                            </span>
+                          </div>
                         </div>
-                      </div>
-                    );
-                  })}
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             </div>
@@ -515,29 +517,29 @@ export default function TrackingDashboard({ initialTrackingId = '' }: TrackingDa
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-5 bg-slate-50 rounded-xl border border-slate-200">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-4 sm:p-5 bg-slate-50 rounded-xl border border-slate-200">
                 <div>
                   <span className="text-[11px] font-medium text-slate-500 block">Origin Terminal</span>
                   <strong className="text-sm font-bold text-slate-900 block truncate">{shipment.origin.name}</strong>
-                  <span className="text-[11px] text-slate-400">{shipment.origin.country}</span>
+                  <span className="text-[11px] text-slate-400 truncate block">{shipment.origin.country}</span>
                 </div>
 
                 <div>
                   <span className="text-[11px] font-medium text-slate-500 block">Destination Port</span>
                   <strong className="text-sm font-bold text-slate-900 block truncate">{shipment.destination.name}</strong>
-                  <span className="text-[11px] text-slate-400">{shipment.destination.country}</span>
+                  <span className="text-[11px] text-slate-400 truncate block">{shipment.destination.country}</span>
                 </div>
 
                 <div>
                   <span className="text-[11px] font-medium text-slate-500 block">Estimated Arrival</span>
-                  <strong className="text-sm font-bold text-[#2563EB] block truncate">{shipment.eta}</strong>
-                  <span className="text-[11px] text-slate-400">{shipment.serviceLevel}</span>
+                  <strong className="text-sm font-bold text-[#2563EB] font-mono block truncate">{shipment.eta}</strong>
+                  <span className="text-[11px] text-slate-400 truncate block">{shipment.serviceLevel}</span>
                 </div>
 
                 <div>
                   <span className="text-[11px] font-medium text-slate-500 block">Cargo Payload</span>
-                  <strong className="text-sm font-bold text-slate-900 block truncate">{shipment.weight}</strong>
-                  <span className="text-[11px] text-slate-400">{shipment.pieces}</span>
+                  <strong className="text-sm font-bold text-slate-900 font-mono block truncate">{shipment.weight}</strong>
+                  <span className="text-[11px] text-slate-400 font-mono truncate block">{shipment.pieces}</span>
                 </div>
               </div>
             </div>

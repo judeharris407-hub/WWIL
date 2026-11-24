@@ -249,7 +249,7 @@ export default function LiveMap({ shipment }: LiveMapProps) {
   const currentTile = TILE_PROVIDERS[selectedProvider];
 
   return (
-    <div className="relative w-full h-[440px] sm:h-[500px] rounded-2xl overflow-hidden shadow-xl border border-slate-200">
+    <div className="relative w-full h-[320px] sm:h-[420px] lg:h-[500px] rounded-2xl overflow-hidden shadow-xl border border-slate-200">
       <MapContainer
         center={currentCoords}
         zoom={3}
@@ -388,26 +388,26 @@ export default function LiveMap({ shipment }: LiveMapProps) {
       </MapContainer>
 
       {/* Map Layer Switcher Overlay */}
-      <div className="absolute top-4 right-4 z-[400] flex items-center gap-1 bg-white/95 backdrop-blur-md p-1.5 rounded-xl border border-slate-200 shadow-md">
-        <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-2 flex items-center gap-1">
+      <div className="absolute top-2 sm:top-4 right-2 sm:right-4 z-[400] flex items-center gap-0.5 sm:gap-1 bg-white/95 backdrop-blur-md p-1 sm:p-1.5 rounded-xl border border-slate-200 shadow-md">
+        <span className="hidden xs:flex text-[10px] font-bold uppercase tracking-wider text-slate-400 px-1.5 sm:px-2 items-center gap-1">
           <Layers className="w-3 h-3 text-[#2563EB]" />
           Tiles
         </span>
         <button
           type="button"
           onClick={() => setSelectedProvider('esriStreet')}
-          className={`px-2.5 py-1 text-xs font-semibold rounded-lg transition-colors ${
+          className={`px-2 sm:px-2.5 py-0.5 sm:py-1 text-[11px] sm:text-xs font-semibold rounded-lg transition-colors ${
             selectedProvider === 'esriStreet'
               ? 'bg-[#2563EB] text-white shadow-sm'
               : 'text-slate-700 hover:bg-slate-100'
           }`}
         >
-          Esri Street
+          Street
         </button>
         <button
           type="button"
           onClick={() => setSelectedProvider('osm')}
-          className={`px-2.5 py-1 text-xs font-semibold rounded-lg transition-colors ${
+          className={`px-2 sm:px-2.5 py-0.5 sm:py-1 text-[11px] sm:text-xs font-semibold rounded-lg transition-colors ${
             selectedProvider === 'osm'
               ? 'bg-[#2563EB] text-white shadow-sm'
               : 'text-slate-700 hover:bg-slate-100'
@@ -418,7 +418,7 @@ export default function LiveMap({ shipment }: LiveMapProps) {
         <button
           type="button"
           onClick={() => setSelectedProvider('esriSatellite')}
-          className={`px-2.5 py-1 text-xs font-semibold rounded-lg transition-colors ${
+          className={`px-2 sm:px-2.5 py-0.5 sm:py-1 text-[11px] sm:text-xs font-semibold rounded-lg transition-colors ${
             selectedProvider === 'esriSatellite'
               ? 'bg-[#2563EB] text-white shadow-sm'
               : 'text-slate-700 hover:bg-slate-100'
@@ -429,8 +429,8 @@ export default function LiveMap({ shipment }: LiveMapProps) {
       </div>
 
       {/* Floating Map Legend Overlay */}
-      <div className="absolute bottom-4 left-4 z-[400] bg-white/95 backdrop-blur-md rounded-xl p-3 border border-slate-200 shadow-lg text-xs space-y-2 pointer-events-auto max-w-sm sm:max-w-md">
-        <div className="font-bold text-slate-900 text-[11px] uppercase tracking-wider flex items-center justify-between gap-3">
+      <div className="absolute bottom-2 sm:bottom-4 left-2 right-2 sm:right-auto sm:left-4 z-[400] bg-white/95 backdrop-blur-md rounded-xl p-2.5 sm:p-3 border border-slate-200 shadow-lg text-xs space-y-1.5 sm:space-y-2 pointer-events-auto max-w-full sm:max-w-md">
+        <div className="font-bold text-slate-900 text-[10px] sm:text-[11px] uppercase tracking-wider flex items-center justify-between gap-2">
           <div className="flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-[#2563EB] beacon-pulse"></span>
             <span>Live Telemetry &amp; Navigation</span>
@@ -438,50 +438,50 @@ export default function LiveMap({ shipment }: LiveMapProps) {
 
           {/* Mode-Aware Navigation Badge */}
           {activeMode === 'Ground' && (
-            <span className="flex items-center gap-1 text-[10px] text-emerald-700 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full font-bold">
+            <span className="flex items-center gap-1 text-[9px] sm:text-[10px] text-emerald-700 bg-emerald-50 border border-emerald-200 px-1.5 py-0.5 rounded-full font-bold">
               <Truck className="w-2.5 h-2.5 text-emerald-600" />
-              <span>{routeData.isHighway ? 'OSRM Highway Route' : 'Road Routing'}</span>
+              <span>{routeData.isHighway ? 'OSRM Highway' : 'Road'}</span>
             </span>
           )}
           {activeMode === 'Ocean' && (
-            <span className="flex items-center gap-1 text-[10px] text-cyan-800 bg-cyan-50 border border-cyan-200 px-2 py-0.5 rounded-full font-bold">
+            <span className="flex items-center gap-1 text-[9px] sm:text-[10px] text-cyan-800 bg-cyan-50 border border-cyan-200 px-1.5 py-0.5 rounded-full font-bold">
               <Ship className="w-2.5 h-2.5 text-cyan-600" />
-              <span>Maritime Sea Corridor</span>
+              <span>Sea Corridor</span>
             </span>
           )}
           {activeMode === 'Air' && (
-            <span className="flex items-center gap-1 text-[10px] text-[#2563EB] bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-full font-bold">
+            <span className="flex items-center gap-1 text-[9px] sm:text-[10px] text-[#2563EB] bg-blue-50 border border-blue-200 px-1.5 py-0.5 rounded-full font-bold">
               <Plane className="w-2.5 h-2.5 text-[#2563EB]" />
-              <span>Geodesic Flight Arc</span>
+              <span>Flight Arc</span>
             </span>
           )}
         </div>
 
         {/* Marker Key: Clean Origin, Live Vessel / Transit Position, Destination */}
-        <div className="flex flex-wrap items-center gap-3 text-[11px] text-slate-600">
-          <span className="flex items-center gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#2563EB]"></span> Origin
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-[10px] sm:text-[11px] text-slate-600">
+          <span className="flex items-center gap-1">
+            <span className="w-2 h-2 rounded-full bg-[#2563EB]"></span> Origin
           </span>
-          <span className="flex items-center gap-1.5 font-semibold text-slate-800">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#2563EB] ring-2 ring-blue-300"></span> Live Vessel / Transit Position
+          <span className="flex items-center gap-1 font-semibold text-slate-800">
+            <span className="w-2 h-2 rounded-full bg-[#2563EB] ring-2 ring-blue-300"></span> Live Position
           </span>
-          <span className="flex items-center gap-1.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#0F172A]"></span> Destination
+          <span className="flex items-center gap-1">
+            <span className="w-2 h-2 rounded-full bg-[#0F172A]"></span> Destination
           </span>
         </div>
 
         {/* Leg Distinction Key (Completed vs Remaining) */}
-        <div className="flex flex-wrap items-center gap-3 pt-1 border-t border-slate-100 text-[10.5px]">
-          <span className="flex items-center gap-1.5 font-semibold text-slate-800">
-            <span className="w-4 h-1 bg-[#2563EB] rounded-full inline-block"></span>
-            <span>Completed Leg (Solid)</span>
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3 pt-1 border-t border-slate-100 text-[9.5px] sm:text-[10.5px]">
+          <span className="flex items-center gap-1 font-semibold text-slate-800">
+            <span className="w-3 sm:w-4 h-1 bg-[#2563EB] rounded-full inline-block"></span>
+            <span>Completed (Solid)</span>
           </span>
-          <span className="flex items-center gap-1.5 font-semibold text-slate-500">
-            <span className="w-4 h-0 border-t-2 border-dashed border-[#2563EB] inline-block"></span>
-            <span>Remaining Leg (Dashed)</span>
+          <span className="flex items-center gap-1 font-semibold text-slate-500">
+            <span className="w-3 sm:w-4 h-0 border-t-2 border-dashed border-[#2563EB] inline-block"></span>
+            <span>Remaining (Dashed)</span>
           </span>
           {isLoadingRoute && (
-            <span className="text-[10px] text-slate-400 font-normal ml-auto">Computing...</span>
+            <span className="text-[9px] text-slate-400 font-normal ml-auto">Computing route...</span>
           )}
         </div>
       </div>

@@ -30,8 +30,9 @@ module.exports = {
         }
       },
       fontFamily: {
-        sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
-        display: ['Space Grotesk', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-inter)', 'Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        display: ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-ibm-plex-mono)', 'IBM Plex Mono', 'Courier New', 'monospace'],
       },
       boxShadow: {
         'glow-blue': '0 0 25px -5px rgba(37, 99, 235, 0.4)',

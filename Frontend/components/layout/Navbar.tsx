@@ -56,16 +56,16 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-40 w-full transition-all duration-200 shadow-md">
       {/* Top Announcement Bar (Deep Slate #080D1A / #0F172A, Clean, NO Social Clutter) */}
-      <div className="bg-wwil-navy-950 text-slate-300 text-xs py-2 px-4 sm:px-6 lg:px-8 border-b border-slate-800/80">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div className="bg-wwil-navy-950 text-slate-300 text-xs py-2 px-3 sm:px-6 lg:px-8 border-b border-slate-800/80">
+        <div className="max-w-7xl mx-auto flex flex-row items-center justify-between gap-2">
           {/* Operations Contact */}
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2">
-              <span className="inline-flex items-center justify-center w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span className="font-medium text-slate-400 tracking-wide">24/7 Global Dispatch:</span>
+          <div className="flex items-center gap-3 sm:gap-6 min-w-0">
+            <div className="flex items-center gap-1.5 sm:gap-2 truncate">
+              <span className="inline-flex items-center justify-center w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
+              <span className="hidden sm:inline font-medium text-slate-400 tracking-wide">24/7 Global Dispatch:</span>
               <a 
                 href="tel:+18008459945" 
-                className="text-white hover:text-[#2563EB] transition-colors font-semibold flex items-center gap-1"
+                className="text-white hover:text-[#2563EB] transition-colors font-mono font-semibold flex items-center gap-1 text-[11px] sm:text-xs shrink-0"
               >
                 <Phone className="w-3 h-3 text-[#2563EB]" />
                 +1 (800) 845-TGL
@@ -75,7 +75,7 @@ export default function Navbar() {
               <Mail className="w-3 h-3 text-[#2563EB]" />
               <a 
                 href="mailto:operations@transglobe-logistics.com" 
-                className="hover:text-white transition-colors"
+                className="hover:text-white transition-colors text-xs truncate max-w-[200px] xl:max-w-none"
               >
                 operations@transglobe-logistics.com
               </a>
@@ -83,14 +83,14 @@ export default function Navbar() {
           </div>
 
           {/* Compliance & Regulatory Badges */}
-          <div className="flex items-center gap-4 text-slate-400">
+          <div className="flex items-center gap-2 sm:gap-4 text-slate-400 shrink-0">
             <span className="hidden lg:inline-flex items-center gap-1.5 bg-slate-900/80 px-2.5 py-0.5 rounded text-[11px] border border-slate-800">
               <ShieldCheck className="w-3.5 h-3.5 text-[#2563EB]" />
               ISO 9001:2015 &amp; IATA Certified Operator
             </span>
-            <div className="flex items-center gap-1.5 text-slate-300">
+            <div className="flex items-center gap-1.5 text-slate-300 font-mono text-[11px]">
               <Globe className="w-3 h-3 text-blue-400" />
-              <span className="font-medium text-[11px]">180+ Active Corridors</span>
+              <span>180+ Corridors</span>
             </div>
           </div>
         </div>

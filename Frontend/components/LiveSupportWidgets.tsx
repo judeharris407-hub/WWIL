@@ -130,24 +130,30 @@ function LiveSupportWidgetsContent() {
         />
       )}
 
-      {/* Global CSS ensuring Smartsupp sits at default bottom: 20px, right: 20px */}
+      {/* Global CSS ensuring Smartsupp sits at default bottom: 20px, right: 20px (responsive on mobile) */}
       <style jsx global>{`
         #smartsupp-widget-container,
         #chat-application {
-          bottom: 20px !important;
-          right: 20px !important;
+          bottom: 16px !important;
+          right: 16px !important;
           z-index: 40 !important;
+        }
+        @media (min-width: 640px) {
+          #smartsupp-widget-container,
+          #chat-application {
+            bottom: 20px !important;
+            right: 20px !important;
+          }
         }
       `}</style>
 
       {/* =================================================================== */}
       {/* 2. FLOATING WHATSAPP BUTTON (STACKED CLEANLY ABOVE SMARTSUPP)       */}
-      {/* Bottom-right at bottom-24 right-5, sitting above Smartsupp at bottom-5 */}
       {/* =================================================================== */}
       {mounted && (
         <aside
           aria-label="Live WhatsApp Support"
-          className="fixed bottom-24 right-5 z-50 select-none group"
+          className="fixed bottom-20 right-4 sm:bottom-24 sm:right-5 z-50 select-none group"
         >
           <a
             href={whatsappUrl}
