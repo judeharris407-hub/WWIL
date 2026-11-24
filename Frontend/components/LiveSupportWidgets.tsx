@@ -27,6 +27,7 @@ function LiveSupportWidgetsContent() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [mounted, setMounted] = useState(false);
+  const [isSmartsuppOpen, setIsSmartsuppOpen] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -48,13 +49,38 @@ function LiveSupportWidgetsContent() {
   // Digits only in international format: e.g. (347) 921-4785 -> 13479214785
   const whatsappNumber = rawWhatsApp.replace(/\D/g, '') || '13479214785';
 
-  // 2. Smartsupp Visibility Management on Route Transitions
+  // 2. Smartsupp Visibility Management & Event Listeners
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
     if (hasValidSmartsuppKey) {
       (window as any)._smartsupp = (window as any)._smartsupp || {};
       (window as any)._smartsupp.key = rawSmartsuppKey;
+    }
+
+    let intervalId: NodeJS.Timeout | null = null;
+    let registered = false;
+
+    // Register Smartsupp chat visibility events
+    const registerEvents = () => {
+      const smartsupp = (window as any).smartsupp;
+      if (typeof smartsupp === 'function' && !registered) {
+        try {
+          smartsupp('on', 'chat:opened', () => setIsSmartsuppOpen(true));
+          smartsupp('on', 'chat:closed', () => setIsSmartsuppOpen(false));
+          smartsupp('on', 'chat:minimized', () => setIsSmartsuppOpen(false));
+          registered = true;
+          if (intervalId) clearInterval(intervalId);
+        } catch (err) {
+          // Retry if Smartsupp queue is still initializing
+        }
+      }
+    };
+
+    registerEvents();
+
+    if (!registered) {
+      intervalId = setInterval(registerEvents, 300);
     }
 
     if ((window as any).smartsupp) {
@@ -68,6 +94,17 @@ function LiveSupportWidgetsContent() {
         // Silently catch if chat API is not fully loaded yet
       }
     }
+
+    const onCustomOpen = () => setIsSmartsuppOpen(true);
+    const onCustomClose = () => setIsSmartsuppOpen(false);
+    window.addEventListener('smartsupp:chat:opened', onCustomOpen);
+    window.addEventListener('smartsupp:chat:closed', onCustomClose);
+
+    return () => {
+      if (intervalId) clearInterval(intervalId);
+      window.removeEventListener('smartsupp:chat:opened', onCustomOpen);
+      window.removeEventListener('smartsupp:chat:closed', onCustomClose);
+    };
   }, [rawSmartsuppKey, hasValidSmartsuppKey, isAdminRoute]);
 
   // 3. Contextual WhatsApp Pre-filled Message
@@ -125,6 +162,16 @@ function LiveSupportWidgetsContent() {
                 c.src = 'https://www.smartsuppchat.com/loader.js?';
                 s.parentNode.insertBefore(c, s);
               })(document);
+
+              window.smartsupp('on', 'chat:opened', function() {
+                window.dispatchEvent(new CustomEvent('smartsupp:chat:opened'));
+              });
+              window.smartsupp('on', 'chat:closed', function() {
+                window.dispatchEvent(new CustomEvent('smartsupp:chat:closed'));
+              });
+              window.smartsupp('on', 'chat:minimized', function() {
+                window.dispatchEvent(new CustomEvent('smartsupp:chat:closed'));
+              });
             `,
           }}
         />
@@ -153,7 +200,11 @@ function LiveSupportWidgetsContent() {
       {mounted && (
         <aside
           aria-label="Live WhatsApp Support"
-          className="fixed bottom-20 right-4 sm:bottom-24 sm:right-5 z-50 select-none group"
+          className={`fixed bottom-20 right-4 sm:bottom-24 sm:right-5 z-50 select-none group transition-all duration-300 transform ${
+            isSmartsuppOpen
+              ? 'opacity-0 translate-y-6 pointer-events-none scale-90'
+              : 'opacity-100 translate-y-0 pointer-events-auto scale-100'
+          }`}
         >
           <a
             href={whatsappUrl}
