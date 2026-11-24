@@ -337,15 +337,16 @@ export default function HomePage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
             
             {/* Primary Service (Wide 2-Column Feature Card - 7 Cols) */}
-            <div className="lg:col-span-7 group relative rounded-2xl overflow-hidden shadow-xl bg-slate-900 flex flex-col justify-end min-h-[480px] lg:min-h-[560px] border border-slate-200">
+            <div className="lg:col-span-7 group relative rounded-2xl overflow-hidden shadow-xl bg-slate-900 flex flex-col justify-between p-6 sm:p-10 min-h-[480px] lg:min-h-[560px] border border-slate-200">
               <img
                 src="/assets/ship1.avif"
                 alt="TransGlobe-Logistics Ocean Container Ship and Air Cargo Operations"
                 className="absolute inset-0 w-full h-full object-cover img-editorial-zoom"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-wwil-navy-950 via-wwil-navy-950/75 to-wwil-navy-950/20"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-wwil-navy-950 via-wwil-navy-950/80 to-wwil-navy-950/30"></div>
 
-              <div className="absolute top-6 left-6 z-10 flex flex-wrap gap-2">
+              {/* Header Badges in normal document flow (no absolute positioning collisions) */}
+              <div className="relative z-10 flex flex-wrap items-center gap-2 mb-6">
                 <span className="px-3 py-1 rounded-full bg-[#2563EB] text-white text-xs font-bold tracking-wider uppercase shadow-md">
                   Primary Flagship Service
                 </span>
@@ -354,10 +355,13 @@ export default function HomePage() {
                 </span>
               </div>
 
-              <div className="relative z-10 p-6 sm:p-10 space-y-4 text-white">
+              {/* Main Content (Anchored with mt-auto, completely separated from header badges) */}
+              <div className="relative z-10 space-y-4 text-white mt-auto">
                 <div className="space-y-1">
-                  <span className="text-xs font-bold uppercase tracking-widest text-[#2563EB]">Intercontinental Multimodal</span>
-                  <h3 className="font-display font-extrabold text-2xl sm:text-3xl lg:text-4xl text-white tracking-tight leading-tight">
+                  <span className="text-xs font-bold uppercase tracking-widest text-[#2563EB] block">
+                    Intercontinental Multimodal
+                  </span>
+                  <h3 className="font-display font-semibold text-2xl sm:text-3xl lg:text-4xl text-white tracking-tight leading-tight">
                     Global Air &amp; Ocean Freight Multimodal
                   </h3>
                 </div>
@@ -365,25 +369,25 @@ export default function HomePage() {
                   High-volume ocean container logistics combined with guaranteed charter air capacity. We coordinate liner schedules with top maritime alliances and air operators to safeguard delivery timelines across every continent.
                 </p>
 
-                <div className="grid grid-cols-3 gap-3 pt-2 max-w-lg">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 sm:gap-3 pt-2 max-w-lg">
                   <div className="bg-white/10 backdrop-blur-md rounded-lg p-2.5 border border-white/10 text-center">
                     <span className="block text-xs text-slate-300">Transit Speed</span>
-                    <strong className="text-sm font-bold text-white">Air: 2-4 Days</strong>
+                    <strong className="text-sm font-bold text-white font-mono">Air: 2-4 Days</strong>
                   </div>
                   <div className="bg-white/10 backdrop-blur-md rounded-lg p-2.5 border border-white/10 text-center">
                     <span className="block text-xs text-slate-300">Ocean Load</span>
-                    <strong className="text-sm font-bold text-white">FCL &amp; LCL Dry/Reefer</strong>
+                    <strong className="text-sm font-bold text-white font-mono">FCL &amp; LCL Dry/Reefer</strong>
                   </div>
                   <div className="bg-white/10 backdrop-blur-md rounded-lg p-2.5 border border-white/10 text-center">
                     <span className="block text-xs text-slate-300">Space Allocation</span>
-                    <strong className="text-sm font-bold text-white">Guaranteed</strong>
+                    <strong className="text-sm font-bold text-white font-mono">Guaranteed</strong>
                   </div>
                 </div>
 
                 <div className="pt-3">
                   <Link
                     href="/services#air-ocean"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-bold text-sm tracking-wide shadow-lg shadow-blue-500/30 transition-all transform hover:-translate-y-0.5"
+                    className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#2563EB] hover:bg-[#1D4ED8] text-white font-semibold text-sm tracking-wide shadow-lg shadow-blue-500/30 transition-all transform hover:-translate-y-0.5 w-full sm:w-auto"
                   >
                     <span>Explore Route Specifications</span>
                     <ArrowRight className="w-4 h-4" />

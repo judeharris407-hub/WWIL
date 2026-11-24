@@ -246,10 +246,10 @@ export default function TrackingDashboard({ initialTrackingId = '' }: TrackingDa
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-900/60 to-slate-900/35"></div>
 
           {/* Top Row: Meta Badge & Admin Portal Link */}
-          <div className="relative z-10 p-6 sm:p-8 flex flex-wrap items-center justify-between gap-4 border-b border-white/10">
-            <div className="flex items-center gap-3">
-              <span className="w-3 h-3 rounded-full bg-[#2563EB] beacon-pulse"></span>
-              <div className="flex items-center gap-2">
+          <div className="relative z-10 p-4 sm:p-8 flex flex-wrap items-center justify-between gap-3 sm:gap-4 border-b border-white/10">
+            <div className="flex items-center gap-2.5 sm:gap-3">
+              <span className="w-3 h-3 rounded-full bg-[#2563EB] beacon-pulse shrink-0"></span>
+              <div className="flex flex-wrap items-center gap-2">
                 <span className="text-xs uppercase font-bold tracking-widest text-[#2563EB]">
                   TransGlobe Live Telemetry Gateway
                 </span>
