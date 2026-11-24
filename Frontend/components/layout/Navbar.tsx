@@ -12,6 +12,7 @@ import {
   Menu, 
   X
 } from 'lucide-react';
+import TransGlobeLogo from '@/components/TransGlobeLogo';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -80,19 +81,8 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-20">
             
             {/* Brand Logo */}
-            <Link href="/" className="flex items-center gap-3 group">
-              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:scale-105 transition-transform duration-200">
-                <span className="font-display font-extrabold text-xl tracking-tight text-white">TGL</span>
-              </div>
-              <div className="flex flex-col">
-                <div className="flex items-center gap-1.5">
-                  <span className="font-display font-black text-2xl tracking-wider text-white">TransGlobe</span>
-                  <span className="inline-block w-2 h-2 rounded-full bg-[#2563EB]"></span>
-                </div>
-                <span className="text-[10px] uppercase tracking-widest text-slate-400 font-semibold -mt-1">
-                  TransGlobe-Logistics
-                </span>
-              </div>
+            <Link href="/" className="flex items-center group focus:outline-none">
+              <TransGlobeLogo size="md" theme="dark" className="group-hover:scale-105 transition-transform duration-200" />
             </Link>
 
             {/* Desktop Navigation Links */}

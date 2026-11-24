@@ -25,6 +25,7 @@ import {
   mockShipments 
 } from '@/lib/trackingData';
 import { getApiBaseUrl } from '@/lib/api';
+import { TransGlobeEmblem } from '@/components/TransGlobeLogo';
 
 // Dynamically import LiveMap with SSR disabled (mandatory for Leaflet in Next.js)
 const LiveMap = dynamic(() => import('@/components/tracking/LiveMap'), {
@@ -480,16 +481,26 @@ export default function TrackingDashboard({ initialTrackingId = '' }: TrackingDa
             {/* 3. SHIPMENT OVERVIEW CARD */}
             <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-slate-200">
               <div className="flex flex-col lg:flex-row lg:items-center justify-between pb-6 mb-6 border-b border-slate-100 gap-4">
-                <div>
-                  <span className="text-xs uppercase font-bold text-slate-400 tracking-wider">
-                    Consignment Overview
-                  </span>
-                  <h3 className="font-display font-extrabold text-2xl text-slate-900">
-                    Logistics Routing &amp; Manifest Details
-                  </h3>
-                  <p className="text-xs text-slate-500 mt-0.5">
-                    Shipper: <strong className="text-slate-800">{shipment.senderName || 'Authorized Enterprise Shipper'}</strong> &bull; Consignee: <strong className="text-slate-800">{shipment.receiverName || 'Destination Terminal Client'}</strong>
-                  </p>
+                <div className="flex items-start gap-4">
+                  <div className="p-1 rounded-xl bg-slate-900 shadow-md shrink-0">
+                    <TransGlobeEmblem className="w-11 h-11" />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs uppercase font-bold text-slate-400 tracking-wider">
+                        Consignment Overview
+                      </span>
+                      <span className="text-[10px] font-mono uppercase bg-blue-50 text-[#2563EB] font-bold px-2 py-0.5 rounded border border-blue-200/60">
+                        Official Waybill
+                      </span>
+                    </div>
+                    <h3 className="font-display font-extrabold text-2xl text-slate-900">
+                      Logistics Routing &amp; Manifest Details
+                    </h3>
+                    <p className="text-xs text-slate-500 mt-0.5">
+                      Shipper: <strong className="text-slate-800">{shipment.senderName || 'Authorized Enterprise Shipper'}</strong> &bull; Consignee: <strong className="text-slate-800">{shipment.receiverName || 'Destination Terminal Client'}</strong>
+                    </p>
+                  </div>
                 </div>
 
                 <div className="flex items-center gap-3">

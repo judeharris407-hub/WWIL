@@ -17,6 +17,7 @@ import {
   Sparkles 
 } from 'lucide-react';
 import { loginAdmin, getAdminSession } from '@/lib/auth';
+import TransGlobeLogo from '@/components/TransGlobeLogo';
 
 export default function AdminLoginPage() {
   const router = useRouter();
@@ -73,19 +74,8 @@ export default function AdminLoginPage() {
 
       <div className="sm:mx-auto sm:w-full sm:max-w-md relative z-10 text-center space-y-3">
         {/* Brand Logo */}
-        <Link href="/" className="inline-flex items-center gap-3 group">
-          <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] flex items-center justify-center shadow-lg shadow-blue-500/25 group-hover:scale-105 transition-transform">
-            <span className="font-display font-black text-xl text-white">TGL</span>
-          </div>
-          <div className="text-left">
-            <div className="flex items-center gap-1.5">
-              <span className="font-display font-black text-2xl tracking-wider text-white">TransGlobe</span>
-              <span className="w-2 h-2 rounded-full bg-[#2563EB]"></span>
-            </div>
-            <span className="text-[10px] uppercase tracking-widest text-slate-400 font-semibold block -mt-1">
-              TransGlobe-Logistics
-            </span>
-          </div>
+        <Link href="/" className="inline-flex items-center group focus:outline-none">
+          <TransGlobeLogo size="lg" theme="dark" className="group-hover:scale-105 transition-transform duration-200" />
         </Link>
 
         <div>

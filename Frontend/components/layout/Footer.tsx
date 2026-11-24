@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { MapPin, Phone, Mail, ShieldCheck } from 'lucide-react';
+import TransGlobeLogo from '@/components/TransGlobeLogo';
 
 export default function Footer() {
   return (
@@ -12,17 +13,9 @@ export default function Footer() {
           
           {/* Column 1: Company Overview */}
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#2563EB] to-[#1D4ED8] flex items-center justify-center shadow-lg shadow-blue-500/20">
-                <span className="font-display font-extrabold text-lg text-white">TGL</span>
-              </div>
-              <div className="flex flex-col">
-                <span className="font-display font-black text-xl tracking-wider text-white">TransGlobe</span>
-                <span className="text-[9px] uppercase tracking-widest text-slate-400 font-semibold -mt-1">
-                  TransGlobe-Logistics
-                </span>
-              </div>
-            </div>
+            <Link href="/" className="inline-block focus:outline-none">
+              <TransGlobeLogo size="sm" theme="dark" />
+            </Link>
             <p className="text-xs text-slate-400 leading-relaxed">
               Coordinating international commerce with scheduled multimodal freight forwarding, intermodal rail corridors, bonded contract warehousing, and verified real-time shipment telemetry across 180+ countries.
             </p>

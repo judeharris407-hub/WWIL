@@ -22,6 +22,11 @@ const ibmPlexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   title: 'TransGlobe-Logistics | Global Freight & Multimodal Cargo',
   description: 'TransGlobe-Logistics is a premier global logistics provider specializing in air freight, ocean liners, intermodal rail, and live satellite tracking across 180+ countries.',
+  icons: {
+    icon: '/icon.svg',
+    shortcut: '/icon.svg',
+    apple: '/icon.svg',
+  },
 };
 
 export default function RootLayout({
