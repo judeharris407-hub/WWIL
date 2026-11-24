@@ -384,54 +384,61 @@ export default function AdminDashboardPage() {
 
       // Connect to live Express endpoint: POST /api/parcels
       const apiUrl = getApiBaseUrl();
-      try {
-        const backendRes = await fetch(`${apiUrl}/parcels`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${adminUser?.token || ''}`,
-          },
-          body: JSON.stringify({
-            tracking_number: newShipment.id.trim().toUpperCase(),
-            sender_name: newShipment.senderName,
-            sender_phone: newShipment.senderPhone,
-            recipient_name: newShipment.receiverName,
-            recipient_phone: newShipment.recipientPhone,
-            recipient_email: newShipment.recipientEmail,
-            description: newShipment.description,
-            origin_address: `${newShipment.originName}, ${newShipment.originCountry}`,
-            destination_address: `${newShipment.destName}, ${newShipment.destCountry}`,
-            origin_lat: Number(newShipment.originLat),
-            origin_lng: Number(newShipment.originLng),
-            dest_lat: Number(newShipment.destLat),
-            dest_lng: Number(newShipment.destLng),
-            current_lat: Number(newShipment.originLat),
-            current_lng: Number(newShipment.originLng),
-            transport_mode: newShipment.type === 'Air' ? 'Air Freight' : newShipment.type === 'Ocean' ? 'Ocean Freight' : 'Ground Logistics',
-            status: newShipment.status,
-            estimated_delivery: newShipment.eta,
-            carrier_name: newShipment.carrier,
-            vessel_or_flight: newShipment.conveyance,
-            weight_kg: newShipment.weight,
-          }),
-        });
+      const session = adminUser || getAdminSession();
+      const token = session?.token || '';
 
-        const createdData = await backendRes.json();
-        if (createdData.success && createdData.parcel) {
-          shipmentToAdd.dbId = createdData.parcel.id;
-        }
-      } catch (err) {
-        console.warn('API create shipment fallback:', err);
+      const payload = {
+        tracking_number: newShipment.id.trim().toUpperCase(),
+        sender_name: newShipment.senderName,
+        sender_phone: newShipment.senderPhone || null,
+        recipient_name: newShipment.receiverName,
+        recipient_phone: newShipment.recipientPhone || null,
+        recipient_email: newShipment.recipientEmail || null,
+        description: newShipment.description || null,
+        origin_address: `${newShipment.originName}, ${newShipment.originCountry}`,
+        destination_address: `${newShipment.destName}, ${newShipment.destCountry}`,
+        origin_lat: Number(newShipment.originLat),
+        origin_lng: Number(newShipment.originLng),
+        dest_lat: Number(newShipment.destLat),
+        dest_lng: Number(newShipment.destLng),
+        current_lat: Number(newShipment.originLat),
+        current_lng: Number(newShipment.originLng),
+        transport_mode: newShipment.type === 'Air' ? 'Air Freight' : newShipment.type === 'Ocean' ? 'Ocean Freight' : 'Ground Logistics',
+        status: newShipment.status,
+        estimated_delivery: newShipment.eta,
+        carrier_name: newShipment.carrier,
+        vessel_or_flight: newShipment.conveyance,
+        weight_kg: newShipment.weight,
+      };
+
+      const backendRes = await fetch(`${apiUrl}/parcels`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const createdData = await backendRes.json();
+
+      if (!backendRes.ok || !createdData.success) {
+        throw new Error(createdData.error || `Server returned status ${backendRes.status}`);
       }
 
+      if (createdData.parcel) {
+        shipmentToAdd.dbId = createdData.parcel.id;
+      }
+
+      // Persist only after PostgreSQL successfully creates the consignment
       upsertShipment(shipmentToAdd);
       setCreateModalOpen(false);
       generateNewId();
-      showToast(`New shipment ${shipmentToAdd.id} created successfully!`);
-      loadShipments();
-    } catch (err) {
+      showToast(`Consignment ${shipmentToAdd.id} saved to live database!`);
+      await loadShipments();
+    } catch (err: any) {
       console.error('Error creating shipment:', err);
-      showToast('Error registering shipment. Please check coordinates and inputs.');
+      showToast(`Creation failed: ${err.message || 'Check database connection'}`);
     } finally {
       setIsCreatingShipment(false);
     }

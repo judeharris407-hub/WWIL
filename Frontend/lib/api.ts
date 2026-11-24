@@ -81,10 +81,10 @@ export async function checkBackendHealth(): Promise<{ online: boolean; databaseC
  */
 export async function fetchParcelFromDb(trackingNumber: string): Promise<DatabaseParcel | null> {
   try {
-    const res = await fetch(`${API_BASE_URL}/parcels/${encodeURIComponent(trackingNumber)}`, {
+    const res = await fetch(`${API_BASE_URL}/tracking/${encodeURIComponent(trackingNumber)}`, {
       method: 'GET',
       headers: { Accept: 'application/json' },
-      signal: AbortSignal.timeout(4000),
+      signal: AbortSignal.timeout(6000),
     });
 
     if (!res.ok) return null;

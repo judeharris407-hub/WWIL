@@ -30,11 +30,11 @@ router.get('/:trackingNumber', async (req, res) => {
   const normalizedTracking = trackingNumber.trim().toUpperCase();
 
   try {
-    // 1. Query the 'parcels' table by tracking_number (case-insensitive)
+    // 1. Query the 'parcels' table by tracking_number (case-insensitive and whitespace-safe)
     const parcelSql = `
       SELECT *
       FROM parcels
-      WHERE UPPER(tracking_number) = $1
+      WHERE UPPER(TRIM(tracking_number)) = UPPER(TRIM($1))
       LIMIT 1
     `;
     const parcelResult = await pool.query(parcelSql, [normalizedTracking]);
@@ -61,10 +61,21 @@ router.get('/:trackingNumber', async (req, res) => {
         notes,
         timestamp
       FROM shipment_history
-      WHERE parcel_id = $1 OR UPPER(tracking_number) = $2
+      WHERE parcel_id = $1 OR UPPER(TRIM(tracking_number)) = UPPER(TRIM($2))
       ORDER BY timestamp ASC
     `;
     const historyResult = await pool.query(historySql, [parcel.id, normalizedTracking]);
+
+    const milestones = historyResult.rows.map((row) => ({
+      id: row.id,
+      parcel_id: row.parcel_id,
+      status: row.status,
+      location_name: row.location_name,
+      latitude: row.latitude ? parseFloat(row.latitude) : null,
+      longitude: row.longitude ? parseFloat(row.longitude) : null,
+      notes: row.notes,
+      timestamp: row.timestamp,
+    }));
 
     // 4. Return clean, formatted response
     return res.status(200).json({
@@ -91,17 +102,14 @@ router.get('/:trackingNumber', async (req, res) => {
         weight_kg: parcel.weight_kg,
         volume_cbm: parcel.volume_cbm,
         progress_percent: parcel.progress_percent,
+        sender_phone: parcel.sender_phone,
+        recipient_phone: parcel.recipient_phone,
+        recipient_email: parcel.recipient_email,
+        description: parcel.description,
         created_at: parcel.created_at,
         updated_at: parcel.updated_at,
-        audit_log: historyResult.rows.map((row) => ({
-          id: row.id,
-          status: row.status,
-          location_name: row.location_name,
-          latitude: row.latitude ? parseFloat(row.latitude) : null,
-          longitude: row.longitude ? parseFloat(row.longitude) : null,
-          notes: row.notes,
-          timestamp: row.timestamp,
-        })),
+        history: milestones,
+        audit_log: milestones,
       },
     });
   } catch (error) {

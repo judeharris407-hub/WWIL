@@ -304,7 +304,11 @@ export function transformBackendParcelToShipment(parcel: any): Shipment {
   }
 
   // Checkpoints parsing
-  const historyList = Array.isArray(parcel.history) ? parcel.history : [];
+  const historyList = Array.isArray(parcel.history) 
+    ? parcel.history 
+    : Array.isArray(parcel.audit_log) 
+    ? parcel.audit_log 
+    : [];
   const checkpoints: Checkpoint[] = historyList.map((h: any, index: number) => ({
     time: h.timestamp ? new Date(h.timestamp).toLocaleDateString('en-US', {
       month: 'short',

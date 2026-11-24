@@ -8,7 +8,7 @@
 
 const jwt = require('jsonwebtoken');
 
-const JWT_SECRET = process.env.JWT_SECRET || 'wwil_super_secret_jwt_key_2026_operations';
+const JWT_SECRET = process.env.JWT_SECRET || 'transglobe_operations_jwt_secret_key_2026';
 
 /**
  * Middleware to verify admin authentication

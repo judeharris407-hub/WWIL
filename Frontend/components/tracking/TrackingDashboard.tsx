@@ -14,10 +14,8 @@ import {
   Download, 
   Copy, 
   Search,
-  Settings,
   ShieldCheck,
   RefreshCw,
-  ExternalLink,
   AlertTriangle
 } from 'lucide-react';
 import { 
@@ -246,7 +244,7 @@ export default function TrackingDashboard({ initialTrackingId = '' }: TrackingDa
           {/* Semi-transparent dark corporate slate/navy overlay */}
           <div className="absolute inset-0 bg-gradient-to-r from-slate-950/85 via-slate-900/60 to-slate-900/35"></div>
 
-          {/* Top Row: Meta Badge & Admin Portal Link */}
+          {/* Top Row: Meta Badge */}
           <div className="relative z-10 p-4 sm:p-8 flex flex-wrap items-center justify-between gap-3 sm:gap-4 border-b border-white/10">
             <div className="flex items-center gap-2.5 sm:gap-3">
               <span className="w-3 h-3 rounded-full bg-[#2563EB] beacon-pulse shrink-0"></span>
@@ -258,18 +256,6 @@ export default function TrackingDashboard({ initialTrackingId = '' }: TrackingDa
                   {transport.label}
                 </span>
               </div>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <Link
-                href="/admin/dashboard"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-xs font-semibold text-slate-200 hover:text-white backdrop-blur-md transition-colors border border-white/10"
-                title="Open Administrative Dashboard"
-              >
-                <Settings className="w-3.5 h-3.5 text-[#2563EB]" />
-                <span>Admin Portal</span>
-                <ExternalLink className="w-3 h-3 text-slate-400" />
-              </Link>
             </div>
           </div>
 
