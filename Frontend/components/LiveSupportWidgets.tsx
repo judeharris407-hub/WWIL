@@ -27,7 +27,7 @@ function LiveSupportWidgetsContent() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [mounted, setMounted] = useState(false);
-  const [isSmartsuppOpen, setIsSmartsuppOpen] = useState(false);
+  const [isChatOpen, setIsChatOpen] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -49,7 +49,7 @@ function LiveSupportWidgetsContent() {
   // Digits only in international format: e.g. (347) 921-4785 -> 13479214785
   const whatsappNumber = rawWhatsApp.replace(/\D/g, '') || '13479214785';
 
-  // 2. Smartsupp Visibility Management & Event Listeners
+  // 2. Smartsupp Visibility Management & Event + DOM Listeners
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
@@ -61,14 +61,14 @@ function LiveSupportWidgetsContent() {
     let intervalId: NodeJS.Timeout | null = null;
     let registered = false;
 
-    // Register Smartsupp chat visibility events
+    // 2a. Event-based visibility listeners
     const registerEvents = () => {
       const smartsupp = (window as any).smartsupp;
       if (typeof smartsupp === 'function' && !registered) {
         try {
-          smartsupp('on', 'chat:opened', () => setIsSmartsuppOpen(true));
-          smartsupp('on', 'chat:closed', () => setIsSmartsuppOpen(false));
-          smartsupp('on', 'chat:minimized', () => setIsSmartsuppOpen(false));
+          smartsupp('on', 'chat:opened', () => setIsChatOpen(true));
+          smartsupp('on', 'chat:closed', () => setIsChatOpen(false));
+          smartsupp('on', 'chat:minimized', () => setIsChatOpen(false));
           registered = true;
           if (intervalId) clearInterval(intervalId);
         } catch (err) {
@@ -83,6 +83,47 @@ function LiveSupportWidgetsContent() {
       intervalId = setInterval(registerEvents, 300);
     }
 
+    // 2b. DOM MutationObserver Fallback: Check if Smartsupp container/iframe expands > 120px
+    const checkSmartsuppDom = () => {
+      try {
+        const chatApp = document.getElementById('chat-application') || document.getElementById('smartsupp-widget-container');
+        const iframes = document.querySelectorAll(
+          'iframe[title*="Smartsupp" i], iframe[title*="smartsupp" i], iframe[id*="smartsupp" i]'
+        );
+
+        let expanded = false;
+        if (chatApp) {
+          const rect = chatApp.getBoundingClientRect();
+          if (rect.height > 120 && rect.width > 120) {
+            expanded = true;
+          }
+        }
+
+        if (!expanded) {
+          iframes.forEach((iframe) => {
+            const rect = iframe.getBoundingClientRect();
+            if (rect.height > 120 && rect.width > 120) {
+              expanded = true;
+            }
+          });
+        }
+
+        setIsChatOpen((prev) => (prev !== expanded ? expanded : prev));
+      } catch (err) {
+        // Safe catch for detached DOM nodes
+      }
+    };
+
+    const observer = new MutationObserver(checkSmartsuppDom);
+    if (document.body) {
+      observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['style', 'class'],
+      });
+    }
+
     if ((window as any).smartsupp) {
       try {
         if (isAdminRoute) {
@@ -95,13 +136,14 @@ function LiveSupportWidgetsContent() {
       }
     }
 
-    const onCustomOpen = () => setIsSmartsuppOpen(true);
-    const onCustomClose = () => setIsSmartsuppOpen(false);
+    const onCustomOpen = () => setIsChatOpen(true);
+    const onCustomClose = () => setIsChatOpen(false);
     window.addEventListener('smartsupp:chat:opened', onCustomOpen);
     window.addEventListener('smartsupp:chat:closed', onCustomClose);
 
     return () => {
       if (intervalId) clearInterval(intervalId);
+      observer.disconnect();
       window.removeEventListener('smartsupp:chat:opened', onCustomOpen);
       window.removeEventListener('smartsupp:chat:closed', onCustomClose);
     };
@@ -183,7 +225,7 @@ function LiveSupportWidgetsContent() {
         #chat-application {
           bottom: 16px !important;
           right: 16px !important;
-          z-index: 40 !important;
+          z-index: 9999999 !important;
         }
         @media (min-width: 640px) {
           #smartsupp-widget-container,
@@ -200,10 +242,10 @@ function LiveSupportWidgetsContent() {
       {mounted && (
         <aside
           aria-label="Live WhatsApp Support"
-          className={`fixed bottom-20 right-4 sm:bottom-24 sm:right-5 z-50 select-none group transition-all duration-300 transform ${
-            isSmartsuppOpen
-              ? 'opacity-0 translate-y-6 pointer-events-none scale-90'
-              : 'opacity-100 translate-y-0 pointer-events-auto scale-100'
+          className={`fixed bottom-20 right-4 sm:bottom-24 sm:right-5 z-20 select-none group transition-all duration-300 transform ${
+            isChatOpen
+              ? 'hidden opacity-0 pointer-events-none scale-90 translate-y-6'
+              : 'opacity-100 pointer-events-auto scale-100 translate-y-0'
           }`}
         >
           <a
