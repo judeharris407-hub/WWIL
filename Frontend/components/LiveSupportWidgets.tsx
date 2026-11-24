@@ -35,11 +35,11 @@ function LiveSupportWidgetsContent() {
   const isAdminRoute = pathname ? pathname.startsWith('/admin') : false;
 
   // 1. Environment Keys & Fallbacks
-  const rawSmartsuppKey = process.env.NEXT_PUBLIC_SMARTSUPP_KEY?.trim() || '';
+  const rawSmartsuppKey = process.env.NEXT_PUBLIC_SMARTSUPP_KEY?.trim() || '2abb64a1ce770861bb747258d40d2a7444d4f148';
   // Check if valid key exists (non-empty, not placeholder)
   const hasValidSmartsuppKey = Boolean(
-    rawSmartsuppKey && 
-    rawSmartsuppKey.length > 5 && 
+    rawSmartsuppKey &&
+    rawSmartsuppKey.length > 5 &&
     !rawSmartsuppKey.toLowerCase().includes('placeholder') &&
     !rawSmartsuppKey.toLowerCase().includes('your_')
   );
