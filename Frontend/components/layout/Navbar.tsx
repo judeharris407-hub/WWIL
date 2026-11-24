@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { 
@@ -10,29 +10,12 @@ import {
   Globe, 
   ArrowRight, 
   Menu, 
-  X,
-  Lock
+  X
 } from 'lucide-react';
-import { getAdminSession } from '@/lib/auth';
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(false);
   const pathname = usePathname();
-
-  useEffect(() => {
-    const check = () => {
-      const session = getAdminSession();
-      setIsAdminLoggedIn(!!session);
-    };
-    check();
-    window.addEventListener('wwil:auth-changed', check);
-    window.addEventListener('storage', check);
-    return () => {
-      window.removeEventListener('wwil:auth-changed', check);
-      window.removeEventListener('storage', check);
-    };
-  }, []);
 
   const navLinks = [
     { name: 'Home', href: '/' },
@@ -41,11 +24,6 @@ export default function Navbar() {
     { name: 'Request Quote', href: '/request-quote' },
     { name: 'About Us', href: '/about' },
     { name: 'Contact Us', href: '/contact' },
-    { 
-      name: isAdminLoggedIn ? 'Admin Dashboard' : 'Admin Portal', 
-      href: isAdminLoggedIn ? '/admin/dashboard' : '/admin/login',
-      isAdmin: true 
-    },
   ];
 
   const isActive = (href: string) => {
@@ -132,13 +110,6 @@ export default function Navbar() {
                     }`}
                   >
                     <span>{link.name}</span>
-                    {link.isAdmin && (
-                      isAdminLoggedIn ? (
-                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" title="Admin Session Active"></span>
-                      ) : (
-                        <Lock className="w-3 h-3 text-slate-400" />
-                      )
-                    )}
                   </Link>
                 );
               })}
@@ -185,13 +156,6 @@ export default function Navbar() {
                   }`}
                 >
                   <span>{link.name}</span>
-                  {link.isAdmin && (
-                    isAdminLoggedIn ? (
-                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                    ) : (
-                      <Lock className="w-3.5 h-3.5 text-slate-400" />
-                    )
-                  )}
                 </Link>
               );
             })}

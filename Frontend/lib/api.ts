@@ -4,7 +4,18 @@
  * with graceful offline fallback to local mock data.
  */
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+/**
+ * Normalizes the API base URL ensuring that:
+ * 1. Trailing slashes are stripped.
+ * 2. It always ends with `/api` so that endpoint paths like `${apiUrl}/tracking/${id}` or `${apiUrl}/parcels`
+ *    always hit `/api/...` regardless of whether `NEXT_PUBLIC_API_URL` is set to `http://localhost:5000` or `http://localhost:5000/api`.
+ */
+export function getApiBaseUrl(): string {
+  const raw = (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api').trim().replace(/\/+$/, '');
+  return raw.endsWith('/api') ? raw : `${raw}/api`;
+}
+
+export const API_BASE_URL = getApiBaseUrl();
 
 export interface DatabaseParcel {
   id: number;

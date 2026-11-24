@@ -45,6 +45,7 @@ import { getAdminSession, logoutAdmin, AdminUser } from '@/lib/auth';
 import PlaceAutocomplete, { PlaceResult } from '@/components/admin/PlaceAutocomplete';
 import { MapPickedLocation } from '@/components/admin/MapPickerModal';
 import { calculateModeAwareRoute } from '@/lib/routing';
+import { getApiBaseUrl } from '@/lib/api';
 
 // Dynamically import AdminLocationMap and MapPickerModal with SSR disabled for Leaflet
 const AdminLocationMap = dynamic(() => import('@/components/admin/AdminLocationMap'), {
@@ -145,7 +146,7 @@ export default function AdminDashboardPage() {
   }, []);
 
   const loadShipments = async () => {
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+    const apiUrl = getApiBaseUrl();
     try {
       const res = await fetch(`${apiUrl}/parcels`);
       const data = await res.json();
@@ -182,7 +183,7 @@ export default function AdminDashboardPage() {
   // Status Change Handler (PUT /api/parcels/:id)
   const handleStatusChange = async (id: string, newStatus: Shipment['status']) => {
     const targetShipment = shipments[id];
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+    const apiUrl = getApiBaseUrl();
     const dbIdentifier = targetShipment?.dbId || id;
 
     try {
@@ -209,7 +210,7 @@ export default function AdminDashboardPage() {
   // Mode Change Handler (PUT /api/parcels/:id)
   const handleModeChange = async (id: string, newMode: Shipment['type']) => {
     const targetShipment = shipments[id];
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+    const apiUrl = getApiBaseUrl();
     const dbIdentifier = targetShipment?.dbId || id;
 
     try {
@@ -236,7 +237,7 @@ export default function AdminDashboardPage() {
   const handleDelete = async (id: string) => {
     if (confirm(`Are you sure you want to delete shipment ${id}?`)) {
       const targetShipment = shipments[id];
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+      const apiUrl = getApiBaseUrl();
       const dbIdentifier = targetShipment?.dbId || id;
 
       try {
@@ -272,7 +273,7 @@ export default function AdminDashboardPage() {
     if (!activeShipmentId) return;
 
     const targetShipment = shipments[activeShipmentId];
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+    const apiUrl = getApiBaseUrl();
     const dbIdentifier = targetShipment?.dbId || activeShipmentId;
 
     try {
@@ -382,7 +383,7 @@ export default function AdminDashboardPage() {
       };
 
       // Connect to live Express endpoint: POST /api/parcels
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+      const apiUrl = getApiBaseUrl();
       try {
         const backendRes = await fetch(`${apiUrl}/parcels`, {
           method: 'POST',

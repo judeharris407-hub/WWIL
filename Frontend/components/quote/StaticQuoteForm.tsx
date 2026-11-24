@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { Send, CheckCircle2, RotateCcw } from 'lucide-react';
+import { getApiBaseUrl } from '@/lib/api';
 
 export default function StaticQuoteForm() {
   const [formData, setFormData] = useState({
@@ -30,7 +31,7 @@ export default function StaticQuoteForm() {
     setIsSubmitting(true);
 
     try {
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+      const apiUrl = getApiBaseUrl();
       const response = await fetch(`${apiUrl}/quotes`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

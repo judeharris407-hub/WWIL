@@ -85,6 +85,7 @@ const globalApiLimiter = rateLimit({
   },
 });
 app.use('/api', globalApiLimiter);
+app.use('/tracking', globalApiLimiter);
 
 // 2. Strict Rate Limiter on Admin Login: 8 attempts per 15 minutes per IP
 const loginLimiter = rateLimit({
@@ -185,8 +186,9 @@ app.use('/api/auth', adminRoutes); // Alias for flexible client compatibility
 // Parcel Management (POST /api/parcels, PUT /api/parcels/:id, PATCH /api/parcels/:id/location)
 app.use('/api/parcels', parcelRoutes);
 
-// Public Shipment Tracking (GET /api/tracking/:trackingNumber)
+// Public Shipment Tracking (GET /api/tracking/:trackingNumber and fallback GET /tracking/:trackingNumber)
 app.use('/api/tracking', trackingRoutes);
+app.use('/tracking', trackingRoutes);
 
 // Inbound Quotation Requests (POST /api/quotes with anti-spam limiter)
 app.use('/api/quotes', quoteLimiter, quoteRoutes);

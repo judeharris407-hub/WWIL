@@ -26,6 +26,7 @@ import {
   transformBackendParcelToShipment, 
   mockShipments 
 } from '@/lib/trackingData';
+import { getApiBaseUrl } from '@/lib/api';
 
 // Dynamically import LiveMap with SSR disabled (mandatory for Leaflet in Next.js)
 const LiveMap = dynamic(() => import('@/components/tracking/LiveMap'), {
@@ -63,7 +64,7 @@ export default function TrackingDashboard({ initialTrackingId = '' }: TrackingDa
     setIsLoading(true);
     setErrorMessage(null);
 
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+    const apiUrl = getApiBaseUrl();
 
     try {
       // 1. Query the live Express backend endpoint: GET /api/tracking/:trackingNumber

@@ -92,7 +92,7 @@ export default function Footer() {
                 <Link href="/contact" className="hover:text-[#2563EB] transition-colors">Contact Global Hubs</Link>
               </li>
               <li>
-                <Link href="/admin/dashboard" className="hover:text-[#2563EB] transition-colors">Staff Admin Dashboard</Link>
+                <Link href="/admin/login" className="hover:text-[#2563EB] transition-colors">Staff / Admin Portal</Link>
               </li>
             </ul>
           </div>

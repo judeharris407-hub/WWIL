@@ -3,6 +3,8 @@
  * Manages admin session state, credentials verification, and route security.
  */
 
+import { getApiBaseUrl } from '@/lib/api';
+
 export interface AdminUser {
   id: string;
   name: string;
@@ -56,7 +58,7 @@ export async function loginAdmin(
   password: string
 ): Promise<{ success: boolean; error?: string; user?: AdminUser }> {
   const normalizedEmail = email.trim().toLowerCase();
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+  const apiUrl = getApiBaseUrl();
 
   try {
     // 1. Attempt authentication against the Node.js Express backend API
